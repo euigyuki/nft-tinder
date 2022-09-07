@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5675039400253327525}
   - component: {fileID: 6794340028724679858}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Green Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 4242739805270480676}
   - component: {fileID: 1114204308122445069}
   m_Layer: 0
-  m_Name: Circle (1)
+  m_Name: Red Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,7 +362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3521956275080735813, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.19471
+      value: -0.213
       objectReference: {fileID: 0}
     - target: {fileID: 3521956275080735813, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -402,7 +402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4089087378375586722, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_Name
-      value: TextBox (1)
+      value: Pass
       objectReference: {fileID: 0}
     - target: {fileID: 6866448979829666088, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_text
@@ -500,7 +500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4089087378375586722, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_Name
-      value: TextBox
+      value: 'Buy '
       objectReference: {fileID: 0}
     - target: {fileID: 6866448979829666088, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_fontSize
