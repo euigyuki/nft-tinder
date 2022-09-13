@@ -7,10 +7,12 @@ public class nftGenerator : MonoBehaviour
 {
     // face, bg, head, body, face
     public imageHolder[] imageParts = new imageHolder[5];
+    public static nftGenerator nftGen;
 
     // Start is called before the first frame update
     void Start()
     {
+        nftGen = this;
         randomGen();
     }
 
@@ -22,7 +24,7 @@ public class nftGenerator : MonoBehaviour
         }
     }
 
-    void randomGen()
+    public void randomGen()
     {
         for(int i = 0; i<imageParts.Length; i++){
             imageHolder temp = imageParts[i];

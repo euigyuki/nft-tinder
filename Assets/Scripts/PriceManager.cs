@@ -21,12 +21,11 @@ public class PriceManager : MonoBehaviour
     private void Awake() {
         instance = this;
     }
+
     void Start()
-    
     {
-        price = Random.Range(1,10);
-        Money.text = money.ToString();
-        Price.text = price.ToString();
+        Money.text = "Money: $"+money.ToString();
+        genPrice();
        
     }
 
@@ -36,13 +35,16 @@ public class PriceManager : MonoBehaviour
        
     }
     public void passItem() {
-        price = Random.Range(1,10);
-        Price.text = price.ToString();
+        genPrice();
     }
     public void SubstractMoney() {
         money-=price;
-        Money.text = money.ToString();
+        Money.text = "Money: $"+money.ToString();
+        genPrice();
+    }
+
+    public void genPrice(){
         price = Random.Range(1,10);
-        Price.text = price.ToString();
+        Price.text = "$"+price.ToString();
     }
 }
