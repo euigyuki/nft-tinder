@@ -7,12 +7,13 @@ public class nftGenerator : MonoBehaviour
 {
     // face, bg, head, body, face
     public imageHolder[] imageParts = new imageHolder[5];
-    public static nftGenerator nftGen;
+
+    public GameObject rotPivot;
+    public float duration;
 
     // Start is called before the first frame update
     void Start()
     {
-        nftGen = this;
         randomGen();
     }
 
@@ -22,14 +23,36 @@ public class nftGenerator : MonoBehaviour
         if(Input.GetKeyDown("g")){
             randomGen();
         }
+
+        if(Input.GetKeyDown("t")){
+            StartCoroutine(rotateAnimation(1));
+        }
+
+        if(Input.GetKeyDown("r")){
+            StartCoroutine(rotateAnimation(-1));
+        }
     }
 
     public void randomGen()
     {
         for(int i = 0; i<imageParts.Length; i++){
             imageHolder temp = imageParts[i];
-            int index = Random.Range(0,4);
+            int index = Random.Range(0,temp.imageTextures.Length);
             temp.imagePart.texture = temp.imageTextures[index];
+        }
+    }
+
+    IEnumerator rotateAnimation(int direction){
+        Vector3 axis = new Vector3(0,0,1);
+        float t = 0.0f;
+        float tDelta = 0.0f;
+        float rotationAngle = 90.0f/duration;
+        while(t<duration){
+            t+=Time.deltaTime;
+            tDelta = Time.deltaTime;
+            if(t>duration) tDelta-=(t-duration);
+            transform.RotateAround(rotPivot.transform.position,axis,direction*rotationAngle*tDelta);
+            yield return null;
         }
     }
 }
