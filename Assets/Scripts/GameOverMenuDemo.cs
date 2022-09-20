@@ -25,7 +25,7 @@ public class GameOverMenuDemo : MonoBehaviour
 
     public void RestartGame() {
         Debug.Log("Restart Button Clicked");
-        SceneManager.LoadScene("Week4Build");
+        SceneManager.LoadScene("hype");
     }
 
     public void QuitGame() {
