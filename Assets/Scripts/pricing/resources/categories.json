@@ -1,0 +1,53 @@
+{
+    "mainCategory1": [
+        "subCategory#1|0",
+        "subCategory#1|1",
+        "subCategory#1|2",
+        "subCategory#1|3"
+    ],
+    "mainCategory2": [
+        "subCategory#2|3",
+        "subCategory#2|1",
+        "subCategory#2|2"
+    ],
+    "mainCategory3": [
+        "subCategory#3|2",
+        "subCategory#3|3",
+        "subCategory#3|1"
+    ],
+    "mainCategory4": [
+        "subCategory#4|1",
+        "subCategory#4|2",
+        "subCategory#4|3"
+    ],
+    "mainCategory5": [
+        "subCategory#5|1",
+        "subCategory#5|2",
+        "subCategory#5|3"
+    ],
+    "mainCategory6": [
+        "subCategory#6|3",
+        "subCategory#6|1",
+        "subCategory#6|2"
+    ],
+    "mainCategory7": [
+        "subCategory#7|3",
+        "subCategory#7|1",
+        "subCategory#7|2"
+    ],
+    "mainCategory8": [
+        "subCategory#8|2",
+        "subCategory#8|3",
+        "subCategory#8|1"
+    ],
+    "mainCategory9": [
+        "subCategory#9|3",
+        "subCategory#9|2",
+        "subCategory#9|1"
+    ],
+    "mainCategory10": [
+        "subCategory#10|3",
+        "subCategory#10|1",
+        "subCategory#10|2"
+    ]
+}

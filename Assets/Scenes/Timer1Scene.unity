@@ -699,7 +699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer1: {fileID: 827130158}
   GameOverMenu: {fileID: 580672137}
-  Time: 10
+  Time: 60
 --- !u!4 &1308003232
 Transform:
   m_ObjectHideFlags: 0

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Week4Build.unity
     guid: 38ae3b82323f544b294f0a157f907f2c
+  - enabled: 0
+    path: Assets/Scenes/PricingManager.unity
+    guid: 8c723bf9a5a8742beb5610f36a41bad0
   m_configObjects: {}

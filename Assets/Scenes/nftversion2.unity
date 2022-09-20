@@ -255,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer1: {fileID: 2119379726}
   GameOverMenu: {fileID: 91417301}
-  Time: 10
+  Time: 60
 --- !u!4 &193672406
 Transform:
   m_ObjectHideFlags: 0
@@ -673,7 +673,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &605260654
 GameObject:
@@ -1635,7 +1635,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1040623779 stripped
 GameObject:
@@ -1810,8 +1810,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Money: {fileID: 1340866713}
   Price: {fileID: 605260656}
+  BreakingNewsPositive: {fileID: 0}
+  BreakingNewsNegative: {fileID: 0}
+  CurrentTrendsPositive: {fileID: 0}
+  CurrentTrendsNegative: {fileID: 0}
+  FutureTrendsPositive: {fileID: 0}
+  FutureTrendsNegative: {fileID: 0}
+  PortfolioValueUiText: {fileID: 0}
+  NftNameUiText: {fileID: 0}
+  NftCategoryUiText: {fileID: 0}
+  NftsOwnedUiText: {fileID: 0}
   price: 50
-  money: 100
+  walletValue: 3000
+  portfolioValue: 0
+  currentNftIdx: 0
+  totalNftsToPick: 50
+  nftsToShow: []
+  CategoryJson: {fileID: 0}
+  subCategories: []
+  mainCategories:
+    mainCategory1: []
+    mainCategory2: []
+    mainCategory3: []
+    mainCategory4: []
+    mainCategory5: []
+    mainCategory6: []
+    mainCategory7: []
+    mainCategory8: []
+    mainCategory9: []
+    mainCategory10: []
+  nftsList:
+    nfts: []
+  NftsJson: {fileID: 0}
 --- !u!1 &1925743778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2887883656708964574, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
@@ -1899,7 +1929,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2067999573
 PrefabInstance:

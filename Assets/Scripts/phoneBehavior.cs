@@ -19,13 +19,13 @@ public class phoneBehavior : MonoBehaviour
     {
         if(Input.GetKeyDown("right")){
             StartCoroutine(showAndHide(buy));
-            PriceManager.instance.SubstractMoney();
+            PriceManager.instance.buyNft();
             nftGenerator.nftGen.randomGen();
         }
 
         if(Input.GetKeyDown("left")){
             StartCoroutine(showAndHide(pass));
-            PriceManager.instance.passItem();
+            PriceManager.instance.passNft();
             nftGenerator.nftGen.randomGen();
         }
     }
