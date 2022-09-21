@@ -39,12 +39,20 @@ public class PriceManager : MonoBehaviour
     }
     public void SubstractMoney() {
         money-=price;
+        MoneyBar.instance.slider.value = MoneyBar.instance.slider.value - (float)price/6000;
+        if(money<0) {
+            MoneyBar.instance.Fill.color = Color.red;
+        }
+        else {
+            MoneyBar.instance.Fill.color = Color.green;
+        }
+        
         Money.text = "Money: $"+money.ToString();
         genPrice();
     }
 
     public void genPrice(){
-        price = Random.Range(1,10);
+        price = Random.Range(500,3000);
         Price.text = "$"+price.ToString();
     }
 }
