@@ -576,7 +576,7 @@ public class PriceManager : MonoBehaviour
     // }
 
     public void genPrice(){
-        price = Random.Range(1,10);
+        price = Random.Range(500,3000);
         Price.text = "$"+price.ToString();
     }
 

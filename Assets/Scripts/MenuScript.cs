@@ -18,6 +18,6 @@ public class MenuScript : MonoBehaviour
     }
 
     public void SwitchToGame() {
-        SceneManager.LoadScene("Week4Build");
+        SceneManager.LoadScene("tutorial");
     }
 }
