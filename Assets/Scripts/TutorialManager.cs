@@ -19,14 +19,27 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("right")||Input.GetKeyDown("left")){
+        if(Input.GetKeyDown("right")){
             nextCard();
+        }
+
+        if(Input.GetKeyDown("left")){
+            prevCard();
         }   
     }
 
     public void nextCard(){
-        tutorialCards[index++%tutorialCards.Length].SetActive(false);
-        tutorialCards[index%tutorialCards.Length].SetActive(true);
+        if(index<tutorialCards.Length-1){
+            tutorialCards[index++%tutorialCards.Length].SetActive(false);
+            tutorialCards[index%tutorialCards.Length].SetActive(true);
+        }
+    }
+
+    public void prevCard(){
+        if(index>0){
+            tutorialCards[index--%tutorialCards.Length].SetActive(false);
+            tutorialCards[index%tutorialCards.Length].SetActive(true);
+        }
     }
 
     public void startGame(){
