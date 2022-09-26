@@ -11,47 +11,58 @@ public class PriceManager : MonoBehaviour
 {
     // Start is called before the first frame update
     
-    public TextMeshProUGUI Money;
-    public TextMeshProUGUI Price;
-    public TextMeshProUGUI BreakingNewsPositive;
-    public TextMeshProUGUI BreakingNewsNegative;
-    public TextMeshProUGUI CurrentTrendsPositive;
-    public TextMeshProUGUI CurrentTrendsNegative;
-    public TextMeshProUGUI FutureTrendsPositive;
-    public TextMeshProUGUI FutureTrendsNegative;
-    public TextMeshProUGUI PortfolioValueUiText;
-    public TextMeshProUGUI NftNameUiText;
-    public TextMeshProUGUI NftCategoryUiText;
-    public TextMeshProUGUI NftsOwnedUiText;
+    // public TextMeshProUGUI Money;
+    // public TextMeshProUGUI Price;
 
     public int price = 2;
-    public double walletValue = 30000;
-    public double portfolioValue = 0;
-    public int currentNftIdx = 0;
+    public static double walletValue = 30000;
+    public static double portfolioValue = 0;
+    public static int currentNftIdx = 0;
+    public static bool jsonLoaded = false;
+    public static int currentDay = 0;
 
     public static PriceManager instance {get; private set;}
-    // public List<string> nftsOwned = new List<string>();
-    public HashSet<string> nftsOwned = new HashSet<string>();
-    // public HashSet<string> nftsOwned;
+    public static HashSet<string> nftsOwned = new HashSet<string>();
+    
     // trends
-    public Dictionary<string, List<string>> currentTrends = new Dictionary<string, List<string>>();
-    public Dictionary<string, List<string>> prevFutureTrends = new Dictionary<string, List<string>>();
-    public Dictionary<string, List<string>> futureTrends = new Dictionary<string, List<string>>();
-    public Dictionary<string, List<string>> breakingNews = new Dictionary<string, List<string>>();
+    // public Dictionary<string, List<string>> currentTrends = new Dictionary<string, List<string>>();
+    // public Dictionary<string, List<string>> prevFutureTrends = new Dictionary<string, List<string>>();
+    // public Dictionary<string, List<string>> futureTrends = new Dictionary<string, List<string>>();
+    // public Dictionary<string, List<string>> breakingNews = new Dictionary<string, List<string>>();
+
+    public static int futureTrendingFacePos = -1;
+    public static int futureTrendingFaceNeg = -1;
+    public static int futureTrendingBodyPos = -1;
+    public static int futureTrendingBodyNeg = -1;
+    public static int futureTrendingHatPos = -1;
+    public static int futureTrendingHatNeg = -1;
+
+    public static int currentTrendingFacePos = -1;
+    public static int currentTrendingFaceNeg = -1;
+    public static int currentTrendingBodyPos = -1;
+    public static int currentTrendingBodyNeg = -1;
+    public static int currentTrendingHatPos = -1;
+    public static int currentTrendingHatNeg = -1;
+
+    public static List<int> prevFutureTrendingFacePos = new List<int>();
+    public static List<int> prevFutureTrendingFaceNeg = new List<int>();
+    public static List<int> prevFutureTrendingBodyPos = new List<int>();
+    public static List<int> prevFutureTrendingBodyNeg = new List<int>();
+    public static List<int> prevFutureTrendingHatPos = new List<int>();
+    public static List<int> prevFutureTrendingHatNeg = new List<int>();
 
     // nfts to show
-    public int totalNftsToPick = 50;
+    public static int totalNftsToPick = 50;
     // public string[] nftsToShow = new string[totalNftsToPick];
-    public List<string> nftsToShow = new List<string>();
+    public static List<string> nftsToShow = new List<string>();
 
     private void Awake() {
-        Debug.Log("In Awake for PriceManager");
+        // Debug.Log("In Awake for PriceManager");
 
         if (instance == null) {
             Debug.Log("Assigning to new instance");
             instance = this;
             DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(NftsOwnedUiText);
         }
         else {
             Debug.Log("Destroying instance");
@@ -63,15 +74,25 @@ public class PriceManager : MonoBehaviour
         populateFromJson();
         pickNftsToShow();
         changePrice();
-        doStartUp();
         currentNftIdx = 0;
     }
 
     void Start() {
-        Debug.Log("In start of PriceManager.");
-        // populateFromJson();
-        // Money.text = "Money: $"+walletValue.ToString();
-        // genPrice();s
+        
+    }
+
+    public static string recommendToBuy() {
+        Nft currentNft = getCurrentNft();
+        
+        if (futureTrendingFacePos == currentNft.imagePics[0] || futureTrendingHatPos == currentNft.imagePics[3] || futureTrendingBodyPos == currentNft.imagePics[2]) {
+            return "May lead to profits!!";
+        }
+
+        if (futureTrendingFaceNeg == currentNft.imagePics[0] || futureTrendingHatNeg == currentNft.imagePics[3] || futureTrendingBodyNeg == currentNft.imagePics[2]) {
+            return "May lead to losses!!";
+        }
+
+        return "";
     }
 
     // Update is called once per frame
@@ -80,53 +101,42 @@ public class PriceManager : MonoBehaviour
        
     }
 
-    double getPortfolioValue() {
+    public static void setUp() {
+        Debug.Log("Starting now!");
+        currentDay += 1;
+        populateFromJson();
+        pickNftsToShow();
+        changePrice();
+        currentNftIdx = 0;
+    }
+
+    static double getPortfolioValue() {
         double totalVal = 0.0;
         foreach (string key in nftsOwned) {
             totalVal += getNftPrice(key);
         }
         return totalVal;
-        // return portfolioValue;
     }
 
-    string computeStrFromList(List<string> strList) {
+    static string computeStrFromList(List<string> strList) {
         return string.Join(",", strList.ToArray());
     }
 
-    string getPosFutureTrends() {
-        return computeStrFromList(futureTrends["Pos"]);
+    public static double getCurrentNftPrice() {
+        Nft currentNft = getCurrentNft();
+        return currentNft.price;
     }
 
-    string getNegFutureTrends() {
-        return computeStrFromList(futureTrends["Neg"]);
-    }
-
-    string getPosCurrentTrends() {
-        return computeStrFromList(currentTrends["Pos"]);
-    }
-
-    string getNegCurrentTrends() {
-        return computeStrFromList(currentTrends["Neg"]);
-    }
-
-    string getPosBreakingNews() {
-        return computeStrFromList(breakingNews["Pos"]);
-    }
-
-    string getNegBreakingNews() {
-        return computeStrFromList(breakingNews["Neg"]);
-    }
-
-    double getNftPrice(string nftId) {
+    static double getNftPrice(string nftId) {
         Nft nft = nftsDict[nftId];
         return nft.price;
     }
 
-    void setWalletValueOnUi() {
-        Money.text = "Money: $"+walletValue.ToString();
+    static void setWalletValueOnUi() {
+        // Money.text = "Money: $"+walletValue.ToString();
     }
 
-    Nft getCurrentNft() {
+    public static Nft getCurrentNft() {
         if (currentNftIdx == nftsToShow.Count) {
             Debug.Log("Run out of nfts to show.");
             // Call sell page
@@ -138,7 +148,12 @@ public class PriceManager : MonoBehaviour
         return nftsDict[nftIdString];
     }
 
-    public void buyNft() {
+    static public int[] getNftPicsIdxs() {
+        Nft currentNft = getCurrentNft();
+        return currentNft.imagePics;
+    }
+
+    public static void buyNft() {
         Nft currentNft = getCurrentNft();
         string nftId = currentNft.nftId;
         double nftPrice = currentNft.price;
@@ -150,15 +165,12 @@ public class PriceManager : MonoBehaviour
         walletValue -= nftPrice;
         portfolioValue += nftPrice;
         setWalletValueOnUi();
-        displayPortfolioValue();
-        displayNftsOwnedOnUi();
         // get next to nft to show
         Nft nextNftToShow = getNextNftToShow();
-        displayNftDetailsOnUi(nextNftToShow);
         // Debug.Log("Successfully bought: " + nftId);
     }
 
-    void sellNft() {
+    public static void sellNft() {
         // double nftPrice = getNftPrice(nftId);
         Nft currentNft = getCurrentNft();
         string nftId = currentNft.nftId;
@@ -168,7 +180,7 @@ public class PriceManager : MonoBehaviour
         setWalletValueOnUi();
     }
 
-    Nft getNextNftToShow() {
+    static Nft getNextNftToShow() {
         if (currentNftIdx == nftsToShow.Count) {
             Debug.Log("Run out of nfts to show.");
             // Call sell page
@@ -180,435 +192,381 @@ public class PriceManager : MonoBehaviour
         return nftsDict[nftIdString];
     }
 
-    List<string> getRandomCategoriesForCurrentTrends(string type, int count) {
-        // List<string> pickedCategories = new List<string>();
-        HashSet<string> pickedCategories = new HashSet<string>();
-        List<string> categoryOptions;
-        int pickedCount = 0;
-        if (type == "Pos") {
-            // Pos case
-            categoryOptions = new List<string>(prevFutureTrends["Pos"]);
-            categoryOptions = categoryOptions.Union(breakingNews["Pos"]).ToList();
+    static void changePricesForNfts(string type, string operation, int category) {
 
-        } 
+        if (type == "face") {
+            if (faceNftMapper.ContainsKey(category)) {
+                foreach (string nftId in faceNftMapper[category]) {
+                    double currentNftPrice = nftsDict[nftId].price;
+                    string tempString = String.Format("Nft: {0} previous price: {1}", nftId, currentNftPrice);
+                    Debug.Log(tempString);
+                    double priceIncFactor = getPriceIncFactor(nftId);
+                    if (operation == "+") {
+                        currentNftPrice += (currentNftPrice * priceIncFactor);
+                    }
+                    else {
+                        currentNftPrice = currentNftPrice * priceIncFactor;
+                    }
+                    nftsDict[nftId].price = currentNftPrice;
+                    tempString = String.Format("Nft: {0} AFTER price: {1}", nftId, currentNftPrice);
+                    Debug.Log(tempString);
+                }
+            }
+        }
+        else if (type == "body") {
+            if (bodyNftMapper.ContainsKey(category)) {
+                foreach (string nftId in bodyNftMapper[category]) {
+                    double currentNftPrice = nftsDict[nftId].price;
+                    string tempString = String.Format("Nft: {0} previous price: {1}", nftId, currentNftPrice);
+                    Debug.Log(tempString);
+                    double priceIncFactor = getPriceIncFactor(nftId);
+                    if (operation == "+") {
+                        currentNftPrice += (currentNftPrice * priceIncFactor);
+                    }
+                    else {
+                        currentNftPrice = currentNftPrice * priceIncFactor;
+                    }
+                    nftsDict[nftId].price = currentNftPrice;
+                    tempString = String.Format("Nft: {0} AFTER price: {1}", nftId, currentNftPrice);
+                    Debug.Log(tempString);
+                }
+            }
+        }
+        else if (type == "head") {
+            if (headNftMapper.ContainsKey(category)) {
+                foreach (string nftId in headNftMapper[category]) {
+                    double currentNftPrice = nftsDict[nftId].price;
+                    string tempString = String.Format("Nft: {0} previous price: {1}", nftId, currentNftPrice);
+                    Debug.Log(tempString);
+                    double priceIncFactor = getPriceIncFactor(nftId);
+                    if (operation == "+") {
+                        currentNftPrice += (currentNftPrice * priceIncFactor);
+                    }
+                    else {
+                        currentNftPrice = currentNftPrice * priceIncFactor;
+                    }
+                    nftsDict[nftId].price = currentNftPrice;
+                    tempString = String.Format("Nft: {0} AFTER price: {1}", nftId, currentNftPrice);
+                    Debug.Log(tempString);
+                }
+            }
+        }
+    }
+
+    static void buildNewFutureTrends() {
+
+        // face, body, head
+        int randomFacePosIdx = Random.Range(0, 3);
+        int randomBodyPosIdx = Random.Range(0, 3);
+        int randomHatPosIdx = Random.Range(0, 3);
+
+        int randomFaceNegIdx = Random.Range(0, 3);
+        int randomBodyNegIdx = Random.Range(0, 3);
+        int randomHatNegIdx = Random.Range(0, 3);
+        // Debug.Log("Future Trends Before");
+        // Debug.Log("futureTrendingFacePos: " + futureTrendingFacePos.ToString());
+        // Debug.Log("futureTrendingFaceNeg: " + futureTrendingFaceNeg.ToString());
+
+        // Debug.Log("futureTrendingBodyPos: " + futureTrendingBodyPos.ToString());
+        // Debug.Log("futureTrendingBodyNeg: " + futureTrendingBodyNeg.ToString());
+
+        // Debug.Log("futureTrendingHatPos: " + futureTrendingHatPos.ToString());
+        // Debug.Log("futureTrendingHatNeg: " + futureTrendingHatNeg.ToString());
+        // Debug.Log("------------------------------");
+        // Debug.Log("Current Trends Before");
+        // Debug.Log("currentTrendingFacePos: " + currentTrendingFacePos.ToString());
+        // Debug.Log("currentTrendingFaceNeg: " + currentTrendingFaceNeg.ToString());
+
+        // Debug.Log("currentTrendingBodyPos: " + currentTrendingBodyPos.ToString());
+        // Debug.Log("currentTrendingBodyNeg: " + currentTrendingBodyNeg.ToString());
+
+        // Debug.Log("currentTrendingHatPos: " + currentTrendingHatPos.ToString());
+        // Debug.Log("currentTrendingHatNeg: " + currentTrendingHatNeg.ToString());
+        // Debug.Log("------------------------------");
+
+        while (randomFacePosIdx == randomFaceNegIdx) {
+            randomFaceNegIdx = Random.Range(0, 3);
+        }
+
+        while (randomBodyPosIdx == randomBodyNegIdx) {
+            randomBodyNegIdx = Random.Range(0, 3);
+        }
+
+        while (randomHatPosIdx == randomHatNegIdx) {
+            randomHatNegIdx = Random.Range(0, 3);
+        }
+
+        if (futureTrendingFacePos != -1) {
+            prevFutureTrendingFacePos.Add(futureTrendingFacePos);
+        }
+
+        if (futureTrendingFaceNeg != -1) {
+            prevFutureTrendingFaceNeg.Add(futureTrendingFaceNeg);
+        }
+
+        if (futureTrendingBodyPos != -1) {
+            prevFutureTrendingBodyPos.Add(futureTrendingBodyPos);
+        }
+
+        if (futureTrendingBodyNeg != -1) {
+            prevFutureTrendingBodyNeg.Add(futureTrendingBodyNeg);
+        }
+        
+        if (futureTrendingHatPos != -1) {
+            prevFutureTrendingHatPos.Add(futureTrendingHatPos);
+        }
+
+        if (futureTrendingHatNeg != -1) {
+            prevFutureTrendingHatNeg.Add(futureTrendingHatNeg);
+        }
+        
+        futureTrendingFacePos = randomFacePosIdx;
+        futureTrendingFaceNeg = randomFaceNegIdx;
+
+        futureTrendingBodyPos = randomBodyPosIdx;
+        futureTrendingBodyNeg = randomBodyNegIdx;
+
+        futureTrendingHatPos = randomHatPosIdx;
+        futureTrendingHatNeg = randomHatNegIdx;
+
+        int incPriceFor = Random.Range(0, 2);
+
+        if (incPriceFor == 0) {
+            // inc for face
+            if (prevFutureTrendingFacePos.Count != 0) {
+                int categoryToInc = Random.Range(0, prevFutureTrendingFacePos.Count-1);
+                categoryToInc = prevFutureTrendingFacePos[categoryToInc];
+                changePricesForNfts("face", "+", categoryToInc);
+                currentTrendingFacePos = categoryToInc;
+                currentTrendingBodyPos = -1;
+                currentTrendingHatPos = -1;
+            }
+        }
+        else if (incPriceFor == 1) {
+            // inc for body
+            if (prevFutureTrendingBodyPos.Count != 0) {
+                int categoryToInc = Random.Range(0, prevFutureTrendingBodyPos.Count-1);
+                categoryToInc = prevFutureTrendingBodyPos[categoryToInc];
+                changePricesForNfts("body", "+", categoryToInc);
+                currentTrendingFacePos = -1;
+                currentTrendingBodyPos = categoryToInc;
+                currentTrendingHatPos = -1;
+            }
+        }
         else {
-            // Neg case
-            categoryOptions = new List<string>(prevFutureTrends["Neg"]);
-            categoryOptions = categoryOptions.Union(breakingNews["Neg"]).ToList();
-        }
-        
-        // might want to add check to remove same nfts picked multiple times
-        int maxLen = categoryOptions.Count;
-        if (categoryOptions.Count == 0) {
-            Debug.Log("prevFutureTrends were empty");
-            return new List<string>();
-        }
-        while (pickedCount < count) {
-            int randomIdx = Random.Range(0, maxLen-1);
-            string nftId = categoryOptions[randomIdx];
-            pickedCategories.Add(nftId);
-            pickedCount += 1;
-        }
-        currentTrends[type] = pickedCategories.ToList();
-        displayCurrentTrends();
-        return pickedCategories.ToList();
-    }
-
-    void displayCurrentTrends() {
-        Debug.Log("Will display current trends here.");
-        CurrentTrendsNegative.text = "-VE: " + getNegCurrentTrends();
-        CurrentTrendsPositive.text = "+VE: " + getPosCurrentTrends();
-    }
-
-    void buildNewFutureTrends(int count) {
-        List<string> posPrevFutureTrends = prevFutureTrends["Pos"].Union(futureTrends["Pos"]).ToList();
-        List<string> negPrevFutureTrends = prevFutureTrends["Neg"].Union(futureTrends["Neg"]).ToList();
-
-        
-        prevFutureTrends["Pos"] = posPrevFutureTrends;
-        prevFutureTrends["Neg"] = negPrevFutureTrends;
-
-        // Maybe convert this to hashMap later
-        int pickedCount = 0;
-        // int maxLen = nftsDict.Count;
-        // string[] nftIdsList = nftsDict.Keys.ToArray();
-        int maxLen = subCategories.Length;
-
-        List<string> pickedSubCategories = new List<string>();
-
-        // set pos values
-        while(pickedCount < count) { 
-            int randomIdx = Random.Range(0, maxLen-1);
-            // string nftId = nftIdsList[randomIdx];
-            string subCategoryId = subCategories[randomIdx];
-            if (pickedSubCategories.Contains(subCategoryId)) {
-                continue;
+            // inc for head
+            if (prevFutureTrendingHatPos.Count != 0) {
+                int categoryToInc = Random.Range(0, prevFutureTrendingHatPos.Count-1);
+                categoryToInc = prevFutureTrendingHatPos[categoryToInc];
+                changePricesForNfts("head", "+", categoryToInc);
+                currentTrendingFacePos = -1;
+                currentTrendingBodyPos = -1;
+                currentTrendingHatPos = categoryToInc;
             }
-
-            pickedCount += 1;
-            pickedSubCategories.Add(subCategoryId);
         }
 
-        futureTrends["Pos"] = pickedSubCategories;
+        int decPriceFor = Random.Range(0, 2);
 
-        // set neg values
-        pickedSubCategories = new List<string>();
-        pickedCount = 0;
-
-        while(pickedCount < count) { 
-            int randomIdx = Random.Range(0, maxLen-1);
-            string subCategoryId = subCategories[randomIdx];
-            
-            if (pickedSubCategories.Contains(subCategoryId)) {
-                continue;
-            }
-
-            if (futureTrends["Pos"].Contains(subCategoryId)) {
-                continue;
-            }
-
-            pickedCount += 1;
-            pickedSubCategories.Add(subCategoryId);
+        while (incPriceFor == decPriceFor) {
+            decPriceFor = Random.Range(0, 2);
         }
 
-        futureTrends["Neg"] = pickedSubCategories;
-        displayFutureTrends();
+        if (decPriceFor == 0) {
+            // inc for face
+            if (prevFutureTrendingFaceNeg.Count != 0) {
+                int categoryToDec = Random.Range(0, prevFutureTrendingFaceNeg.Count-1);
+                categoryToDec = prevFutureTrendingFaceNeg[categoryToDec];
+                changePricesForNfts("face", "-", categoryToDec);
+                currentTrendingFaceNeg = categoryToDec;
+                currentTrendingBodyNeg = -1;
+                currentTrendingHatNeg = -1;
+            }
+        }
+        else if (decPriceFor == 1) {
+            // dec for body
+            if (prevFutureTrendingBodyNeg.Count != 0) {
+                int categoryToDec = Random.Range(0, prevFutureTrendingBodyNeg.Count-1);
+                categoryToDec = prevFutureTrendingBodyNeg[categoryToDec];
+                changePricesForNfts("body", "-", categoryToDec);
+                currentTrendingFaceNeg = -1;
+                currentTrendingBodyNeg = categoryToDec;
+                currentTrendingHatNeg = -1;
+            }
+        }
+        else {
+            // dec for head
+            if (prevFutureTrendingHatNeg.Count != 0) {
+                int categoryToDec = Random.Range(0, prevFutureTrendingHatNeg.Count-1);
+                categoryToDec = prevFutureTrendingHatNeg[categoryToDec];
+                changePricesForNfts("head", "-", categoryToDec);
+                currentTrendingFaceNeg = -1;
+                currentTrendingBodyNeg = -1;
+                currentTrendingHatNeg = categoryToDec;
+            }
+        }
+
+        // Debug.Log("Future Trends After");
+        // Debug.Log("futureTrendingFacePos: " + futureTrendingFacePos.ToString());
+        // Debug.Log("futureTrendingFaceNeg: " + futureTrendingFaceNeg.ToString());
+
+        // Debug.Log("futureTrendingBodyPos: " + futureTrendingBodyPos.ToString());
+        // Debug.Log("futureTrendingBodyNeg: " + futureTrendingBodyNeg.ToString());
+
+        // Debug.Log("futureTrendingHatPos: " + futureTrendingHatPos.ToString());
+        // Debug.Log("futureTrendingHatNeg: " + futureTrendingHatNeg.ToString());
+        // Debug.Log("------------------------------");
+        // Debug.Log("Current Trends After");
+        // Debug.Log("currentTrendingFacePos: " + currentTrendingFacePos.ToString());
+        // Debug.Log("currentTrendingFaceNeg: " + currentTrendingFaceNeg.ToString());
+
+        // Debug.Log("currentTrendingBodyPos: " + currentTrendingBodyPos.ToString());
+        // Debug.Log("currentTrendingBodyNeg: " + currentTrendingBodyNeg.ToString());
+
+        // Debug.Log("currentTrendingHatPos: " + currentTrendingHatPos.ToString());
+        // Debug.Log("currentTrendingHatNeg: " + currentTrendingHatNeg.ToString());
+
     }
 
-    void displayFutureTrends() {
-        FutureTrendsNegative.text = "-VE: " + getNegFutureTrends();
-        FutureTrendsPositive.text = "+VE: " + getPosFutureTrends();
-    }
 
-    double getPriceIncFactor(string nftId) {
+    static double getPriceIncFactor(string nftId) {
         // Can implement changes to how the factor to increase the prices
-        double factor = Random.Range(0, 100) / 100;
+        double factor = Random.Range(5, 100) / 100;
         return factor;
     }
 
-    void changePricesForNfts(List<string> nftCategories, string operation) {
-
-        foreach (string category in nftCategories) {
-            foreach(string nftId in subCategoryNftMapper[category]){
-                double currentNftPrice = nftsDict[nftId].price;
-                string tempString = String.Format("Nft: {0} previous price: {1}", nftId, currentNftPrice);
-                Debug.Log(tempString);
-                double priceIncFactor = getPriceIncFactor(nftId);
-                if (operation == "+") {
-                    currentNftPrice += (currentNftPrice * priceIncFactor);
-                }
-                else {
-                    currentNftPrice -= (currentNftPrice * priceIncFactor);
-                }
-                tempString = String.Format("Nft: {0} new price: {1}", nftId, currentNftPrice);
-                Debug.Log(tempString);
-                nftsDict[nftId].price = currentNftPrice;
-            }
-        }
-    }
-
-    void changePrice() {
+    static void changePrice() {
         // copy futureTrends into currentTrends
-        buildNewFutureTrends(3);
-
-        // May change to more than one categpory later
-        List<string> nftCategoryToIncPrice = getRandomCategoriesForCurrentTrends("Pos", 1);
-        List<string> nftCategoryToDecPrice = getRandomCategoriesForCurrentTrends("Neg", 1);
-
-        changePricesForNfts(nftCategoryToIncPrice, "+");
-        changePricesForNfts(nftCategoryToIncPrice, "-");
-
+        buildNewFutureTrends();
     }
 
-    void pickNftsToShow() {
+    static void pickNftsToShow() {
+        // Debug.Log("Entering pickNftsToShow");
         int pickedNftsCount = 0;
         HashSet<string> nftsPickedSet = new HashSet<string>();
+        int totalNftCount = nftsList.nfts.Length;
+        int noChangeCount = 0;
+        int prevCount = 0;
+        while (pickedNftsCount < 1000) {
+            int randomIdx = Random.Range(0, totalNftCount-1);
+            Nft pickedNft = nftsList.nfts[randomIdx];
+            string nftId = pickedNft.nftId;
 
-        int noOfCategories = subCategoryNftMapper.Count;
-        int eachCategoryCount = Convert.ToInt32(noOfCategories * 0.2);
-
-        foreach (string key in subCategoryNftMapper.Keys) {
-            int nftCountForCategory = 0;
-            int prevNftCountForCategory = 0;
-            int noChangeCount = 0;
-            // string[] nftsForCategory = subCategoryNftMapper[key].
-            int totalNftsInCategory = subCategoryNftMapper[key].Count;
-            // Debug.Log(String.Format("totalNftsInCategory: {0}", totalNftsInCategory));
-            int totalToPick = Convert.ToInt32(totalNftsInCategory * 0.2);
-            // Debug.Log(String.Format("Total to pick: {0}", totalToPick));
-            while (nftCountForCategory < totalToPick) {
-                int randomIdx = Random.Range(0, totalNftsInCategory-1);
-                string nftId = subCategoryNftMapper[key][randomIdx];
-                
-                if (nftsPickedSet.Contains(nftId)) {
-                    continue;
-                }
-
-                if (nftsOwned.Contains(nftId)) {
-                    continue;
-                }
-
-                nftCountForCategory += 1;
-
-                if (nftCountForCategory == prevNftCountForCategory) {
-                    noChangeCount += 1;
-                }
-
-                if (noChangeCount >= 100) {
-                    break;
-                }
-
-                prevNftCountForCategory = nftCountForCategory;
+            if (!nftsPickedSet.Contains(nftId) && !nftsOwned.Contains(nftId)) {
+                pickedNftsCount += 1;
                 nftsPickedSet.Add(nftId);
             }
+
+            if (prevCount == pickedNftsCount) {
+                noChangeCount += 1;
+            }
+
+            if (noChangeCount > 150) {
+                break;
+            }
+
+            prevCount = pickedNftsCount;
+
         }
 
         nftsToShow = nftsPickedSet.ToList();
         currentNftIdx = 0;
+
+        // Debug.Log("Exiting pickNftsToShow");
     }
 
-    void populateFromJson() {
+    static void populateFromJson() {
 
-        // populating mainCategories and subCategories
+        if (jsonLoaded == false) {
+            nftsList = JsonUtility.FromJson<Nfts>(NftsJson.text);
 
-        mainCategories = JsonUtility.FromJson<MainCategory>(CategoryJson.text);
-        int reqLen = 0;
-        reqLen += mainCategories.mainCategory1.Length;
-        reqLen += mainCategories.mainCategory2.Length;
-        reqLen += mainCategories.mainCategory3.Length;
-        reqLen += mainCategories.mainCategory4.Length;
-        reqLen += mainCategories.mainCategory5.Length;
-        reqLen += mainCategories.mainCategory6.Length;
-        reqLen += mainCategories.mainCategory7.Length;
-        reqLen += mainCategories.mainCategory8.Length;
-        reqLen += mainCategories.mainCategory9.Length;
-        reqLen += mainCategories.mainCategory10.Length;
-        
-        Debug.Log($"The reqLen is : {reqLen}");
-
-        // create an array of size reqLen for subCategories
-        subCategories = new string[reqLen];
-        int curIdx = 0;
-        for (int i=0; i < mainCategories.mainCategory1.Length; i++) {
-            subCategories[curIdx++] = mainCategories.mainCategory1[i];
+            for (int i=0; i<nftsList.nfts.Length; i++) {
+                Nft nft = nftsList.nfts[i];
+                nftsDict.Add(nft.nftId, nft);
+                addNftToMappers(nft);
+            }
+            jsonLoaded = true;
         }
-
-        for (int i=0; i < mainCategories.mainCategory2.Length; i++) {
-            subCategories[curIdx++] = mainCategories.mainCategory2[i];
-        }
-
-        for (int i=0; i < mainCategories.mainCategory3.Length; i++) {
-            subCategories[curIdx++] = mainCategories.mainCategory3[i];
-        }
-
-        for (int i=0; i < mainCategories.mainCategory4.Length; i++) {
-            subCategories[curIdx++] = mainCategories.mainCategory4[i];
-        }
-
-        for (int i=0; i < mainCategories.mainCategory5.Length; i++) {
-            subCategories[curIdx++] = mainCategories.mainCategory5[i];
-        }
-
-        for (int i=0; i < mainCategories.mainCategory6.Length; i++) {
-            subCategories[curIdx++] = mainCategories.mainCategory6[i];
-        }
-
-        for (int i=0; i < mainCategories.mainCategory7.Length; i++) {
-            subCategories[curIdx++] = mainCategories.mainCategory7[i];
-        }
-
-        for (int i=0; i < mainCategories.mainCategory8.Length; i++) {
-            subCategories[curIdx++] = mainCategories.mainCategory8[i];
-        }
-
-        for (int i=0; i < mainCategories.mainCategory9.Length; i++) {
-            subCategories[curIdx++] = mainCategories.mainCategory9[i];
-        }
-
-        for (int i=0; i < mainCategories.mainCategory10.Length; i++) {
-            subCategories[curIdx++] = mainCategories.mainCategory10[i];
-        }
-
-        // populating NFTs
-
-        nftsList = JsonUtility.FromJson<Nfts>(NftsJson.text);
-
-        for (int i=0; i<nftsList.nfts.Length; i++) {
-            Nft nft = nftsList.nfts[i];
-            nftsDict.Add(nft.nftId, nft);
-            addNftToMappers(nft);
-        }
-
-        // Debug.Log("The following are the (key, value) pairs in mainCategoryNftMapper");
-        // foreach (string key in mainCategoryNftMapper.Keys)
-        // {
-        //     Debug.Log(key);
-        // }
-
-        // Debug.Log("The following are the (key, value) pairs in subCategoryNftMapper");
-
-        // foreach (string key in subCategoryNftMapper.Keys)
-        // {
-        //     Debug.Log(key);
-        // }
-
-        // populate all trends
-        if (!currentTrends.ContainsKey("Pos")) {
-            currentTrends.Add("Pos", new List<string>());
-        }
-
-        if (!currentTrends.ContainsKey("Neg")) {
-            currentTrends.Add("Neg", new List<string>());
-        }
-
-        if (!futureTrends.ContainsKey("Pos")) {
-            futureTrends.Add("Pos", new List<string>());
-        }
-        
-        if (!futureTrends.ContainsKey("Neg")) {
-            futureTrends.Add("Neg", new List<string>());
-        }
-
-        if (!breakingNews.ContainsKey("Pos")) {
-            breakingNews.Add("Pos", new List<string>());
-        }
-
-        if (!breakingNews.ContainsKey("Neg")) {
-            breakingNews.Add("Neg", new List<string>());
-        }
-
-        if (!prevFutureTrends.ContainsKey("Pos")) {
-            prevFutureTrends.Add("Pos", new List<string>());
-        }
-
-        if (!prevFutureTrends.ContainsKey("Neg")) {
-            prevFutureTrends.Add("Neg", new List<string>());
-        }
-        
-        // if (nftsOwned == null) {
-        //     nftsOwned = new HashSet<string>();
-        // }
         
     }
 
-    void addNftToMappers(Nft nft) {
-        string mainCategoryKey = nft.mainCategory;
-        string subCategoryKey = nft.subCategory;
-        // Debug.Log(mainCategoryKey);
-        // Debug.Log(subCategoryKey);
-        
-        // ADD TO MAIN CATEGORY MAPPER
-        if (mainCategoryNftMapper.ContainsKey(mainCategoryKey)) {
-            // Debug.Log("mainCategoryKey already contains the key.");
-            List<string> list = mainCategoryNftMapper[mainCategoryKey];
+    static void addNftToMappers(Nft nft) {
+        int[] imagePics = nft.imagePics;
+
+        // facePropNftMapper
+
+        if (facePropNftMapper.ContainsKey(imagePics[4])) {
+            List<string> list = facePropNftMapper[imagePics[4]];
             list.Add(nft.nftId);
         }
         else {
-           
             List<string> list = new List<string>();
             list.Add(nft.nftId);
-            // Debug.Log("mainCategoryKey creating the key.");
-            mainCategoryNftMapper.Add(mainCategoryKey, list);
+            facePropNftMapper.Add(imagePics[4], list);
         }
 
-        // ADD TO SUB CATEGORY MAPPER
-        if (subCategoryNftMapper.ContainsKey(subCategoryKey)) {
-            // Debug.Log("subCategoryNftMapper already contains the key.");
-            List<string> list = subCategoryNftMapper[subCategoryKey];
+        // bodyNftMapper
 
+        if (bodyNftMapper.ContainsKey(imagePics[3])) {
+            List<string> list = bodyNftMapper[imagePics[3]];
             list.Add(nft.nftId);
         }
         else {
-            // Debug.Log("subCategoryNftMapper creating the key.");
             List<string> list = new List<string>();
             list.Add(nft.nftId);
-            subCategoryNftMapper.Add(subCategoryKey, list);
+            bodyNftMapper.Add(imagePics[3], list);
+        }
+
+        // headNftMapper
+
+        if (headNftMapper.ContainsKey(imagePics[2])) {
+            List<string> list = headNftMapper[imagePics[2]];
+            list.Add(nft.nftId);
+        }
+        else {
+            List<string> list = new List<string>();
+            list.Add(nft.nftId);
+            headNftMapper.Add(imagePics[2], list);
+        }
+
+        // bgNftMapper
+        if (bgNftMapper.ContainsKey(imagePics[1])) {
+            List<string> list = bgNftMapper[imagePics[1]];
+            list.Add(nft.nftId);
+        }
+        else {
+            List<string> list = new List<string>();
+            list.Add(nft.nftId);
+            bgNftMapper.Add(imagePics[1], list);
+        }
+        // faceNftMapper
+        if (faceNftMapper.ContainsKey(imagePics[0])) {
+            List<string> list = faceNftMapper[imagePics[0]];
+            list.Add(nft.nftId);
+        }
+        else {
+            List<string> list = new List<string>();
+            list.Add(nft.nftId);
+            faceNftMapper.Add(imagePics[0], list);
         }
     }
 
-    public void passNft() {
-        // genPrice();
+    public static void passNft() {
         Nft nextNftToShow = getNextNftToShow();
-        displayNftDetailsOnUi(nextNftToShow);
     }
 
-    public void displayNftDetailsOnUi(Nft nft) {
-        displayNftPriceOnUi(nft.price);
-        displayNftNameOnUi(nft.nftId);
-        displayNftCategoryOnUi(nft.subCategory);
-    }
-
-    public void showFirstNftDetails() {
-        passNft();
-    }
-    
-    public void doStartUp() {
-        showFirstNftDetails();
-        displayPortfolioValue();
-        displayNftsOwnedOnUi();
-    }
-
-    public void displayNftPriceOnUi(double price) {
-        Price.text = "$"+price.ToString();
-    }
-
-    public void displayNftsOwnedOnUi() {
-        Debug.Log("displayNftsOwnedOnUi: " + computeStrFromList(nftsOwned.ToList()));
-        NftsOwnedUiText.text = "Buys: " + computeStrFromList(nftsOwned.ToList());
-    }
-
-    public void displayPortfolioValue() {
-        PortfolioValueUiText.text = "Portfolio: $"+getPortfolioValue().ToString();
-    }
-
-    public void displayNftNameOnUi(string name) {
-        NftNameUiText.text = name;
-    }
-
-    public void displayNftCategoryOnUi(string category) {
-        NftCategoryUiText.text = category;
-    }
-    
-    // public void SubstractMoney() {
-        // walletValue-=price;
-        // Money.text = "Money: $"+walletValue.ToString();
-        // genPrice();
-    // }
-
-    public void genPrice(){
-        price = Random.Range(500,3000);
-        Price.text = "$"+price.ToString();
-    }
-
-    // JSON Serialization
-
-    
-    public TextAsset CategoryJson;
-    // all vars related to categories
-    public string[] subCategories;
-    public MainCategory mainCategories = new MainCategory();
-
-    [System.Serializable]
-    public class MainCategory {
-        public string[] mainCategory1;
-        public string[] mainCategory2;
-        public string[] mainCategory3;
-        public string[] mainCategory4;
-        public string[] mainCategory5;
-        public string[] mainCategory6;
-        public string[] mainCategory7;
-        public string[] mainCategory8;
-        public string[] mainCategory9;
-        public string[] mainCategory10;
-    }
-
-    public Nfts nftsList = new Nfts();
-    public TextAsset NftsJson;
+    public static Nfts nftsList = new Nfts();
+    public static TextAsset NftsJson = Resources.Load<TextAsset>("nfts");
     
     // All vars related to NFTs
-    public Dictionary<string, Nft> nftsDict = new Dictionary<string, Nft>();
-    public Dictionary<string, List<string>> mainCategoryNftMapper = new Dictionary<string, List<string>>();
-    public Dictionary<string, List<string>> subCategoryNftMapper = new Dictionary<string, List<string>>();
+    public static Dictionary<string, Nft> nftsDict = new Dictionary<string, Nft>();
+    // public Dictionary<string, List<string>> mainCategoryNftMapper = new Dictionary<string, List<string>>();
+    // public Dictionary<string, List<string>> subCategoryNftMapper = new Dictionary<string, List<string>>();
+
+    public static Dictionary<int, List<string>> faceNftMapper = new Dictionary<int, List<string>>();
+    public static Dictionary<int, List<string>> bgNftMapper = new Dictionary<int, List<string>>();
+    public static Dictionary<int, List<string>> headNftMapper = new Dictionary<int, List<string>>();
+    public static Dictionary<int, List<string>> bodyNftMapper = new Dictionary<int, List<string>>();
+    public static Dictionary<int, List<string>> facePropNftMapper = new Dictionary<int, List<string>>();
 
     [System.Serializable]
     public class Nft {
@@ -616,8 +574,7 @@ public class PriceManager : MonoBehaviour
         public double price;
         public int rank;
         public int noOfBuyers;
-        public string mainCategory;
-        public string subCategory;
+        public int[] imagePics;
     }
 
     [System.Serializable]

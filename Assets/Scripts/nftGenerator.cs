@@ -42,6 +42,16 @@ public class nftGenerator : MonoBehaviour
         }
     }
 
+    public void setNftPic() {
+        int[] chosenPicsIdxs = PriceManager.getNftPicsIdxs();
+        for(int i = 0; i<imageParts.Length; i++){
+            imageHolder temp = imageParts[i];
+            // int index = Random.Range(0,temp.imageTextures.Length);
+            int index = chosenPicsIdxs[i];
+            temp.imagePart.texture = temp.imageTextures[index];
+        }
+    }
+
     IEnumerator rotateAnimation(int direction){
         Vector3 axis = new Vector3(0,0,1);
         float t = 0.0f;
