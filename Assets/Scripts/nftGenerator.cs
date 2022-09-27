@@ -26,17 +26,17 @@ public class nftGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("g")){
-            randomGen();
-        }
+        // if(Input.GetKeyDown("g")){
+        //     randomGen();
+        // }
 
-        if(Input.GetKeyDown("t")){
-            StartCoroutine(swipeEffect(false));
-        }
+        // if(Input.GetKeyDown("t")){
+        //     StartCoroutine(swipeEffect(false));
+        // }
 
-        if(Input.GetKeyDown("r")){
-            StartCoroutine(swipeEffect(true));
-        }
+        // if(Input.GetKeyDown("r")){
+        //     StartCoroutine(swipeEffect(true));
+        // }
     }
 
     public void randomGen()

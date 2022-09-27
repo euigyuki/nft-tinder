@@ -27,11 +27,11 @@ public class phoneBehavior : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown("right")){
-            if(!firstCard.isCoroutine && !secondCard.isCoroutine) phoneBuy();
+            phoneBuy();
         }
 
         if(Input.GetKeyDown("left")){
-            if(!firstCard.isCoroutine && !secondCard.isCoroutine) phonePass();
+            phonePass();
         }
     }
 
@@ -40,6 +40,7 @@ public class phoneBehavior : MonoBehaviour
         // PriceManager.instance.passItem();
         // PriceManager.instance.passNft();
         // generator.randomGen();
+        if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         PriceManager.passNft();
         firstCard.swipe(true);
         secondCard.setNftPic();
@@ -53,6 +54,7 @@ public class phoneBehavior : MonoBehaviour
         // PriceManager.instance.SubstractMoney();
         // PriceManager.instance.buyNft();
         // generator.randomGen();
+        if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         PriceManager.buyNft();
         firstCard.swipe(false);
         secondCard.setNftPic();
