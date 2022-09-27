@@ -8,14 +8,19 @@ public class nftGenerator : MonoBehaviour
     // face, bg, head, body, face
     public imageHolder[] imageParts = new imageHolder[5];
 
-    public GameObject rotPivot;
-    public float duration;
-    public int rotAngle;
+    public float duration = 0.5f;
+    public int rotAngle = 45;
 
+    private Vector3 originalScale;
+    public Vector3 originalPos;
+    
+    public bool isCoroutine = false;
     // Start is called before the first frame update
     void Start()
     {
         randomGen();
+        originalScale = transform.localScale;
+        originalPos = transform.position;
     }
 
     // Update is called once per frame
@@ -26,13 +31,10 @@ public class nftGenerator : MonoBehaviour
         }
 
         if(Input.GetKeyDown("t")){
-            // StartCoroutine(rotateAnimation(1));
             StartCoroutine(swipeEffect(false));
-            Debug.Log(Screen.width);
         }
 
         if(Input.GetKeyDown("r")){
-            // StartCoroutine(rotateAnimation(-1));
             StartCoroutine(swipeEffect(true));
         }
     }
@@ -56,6 +58,16 @@ public class nftGenerator : MonoBehaviour
         }
     }
 
+    public void swipe(bool swipeLeft){
+        if(swipeLeft) StartCoroutine(swipeEffect(true));
+        else StartCoroutine(swipeEffect(false));
+    }
+
+    public void moveCard(){
+        gameObject.SetActive(true);
+        StartCoroutine(setFirstCard());
+    }
+
     public void setColor(Color newColor){
         for(int i = 0; i<imageParts.Length; i++){
             imageHolder temp = imageParts[i];
@@ -63,24 +75,34 @@ public class nftGenerator : MonoBehaviour
         }
     }
 
-    IEnumerator rotateAnimation(int direction){
-        Vector3 axis = new Vector3(0,0,1);
-        float t = 0.0f;
-        float tDelta = 0.0f;
-        float rotationAngle = 90.0f/duration;
-        while(t<duration){
-            t+=Time.deltaTime;
-            tDelta = Time.deltaTime;
-            if(t>duration) tDelta-=(t-duration);
-            transform.RotateAround(rotPivot.transform.position,axis,direction*rotationAngle*tDelta);
+    public void setSecondCard(){
+        gameObject.SetActive(false);
+        transform.position = new Vector3(originalPos.x,originalPos.y,-2.5f);
+        transform.localScale = new Vector3(0.8f*originalScale.x,0.8f*originalScale.y,0.8f*originalScale.z);
+        transform.eulerAngles = new Vector3(0,0,0);
+        setColor(new Color(1,1,1,0.8f));
+    }
+
+    IEnumerator setFirstCard(){
+        float time = 0;
+        Vector3 currScale = transform.localScale;
+        isCoroutine = true;
+        while(time<duration){
+            time+= Time.deltaTime;
+            transform.position = new Vector3(transform.position.x,transform.position.y,Mathf.SmoothStep(-2.5f,-3f,time/duration));
+            float scalar = Mathf.SmoothStep(currScale.x,originalScale.x,time/duration);
+            transform.localScale = new Vector3(scalar,scalar,scalar);
+            setColor(new Color(1,1,1, Mathf.SmoothStep(0.8f,1,time/duration)));
             yield return null;
         }
+        isCoroutine = false;
     }
 
     IEnumerator swipeEffect(bool swipeLeft){
         float time = 0;
         float fadeStart = duration/1.5f;
         float rotStart = duration/4f;
+        isCoroutine = true;
         while (time<duration){
             time += Time.deltaTime;
             if(swipeLeft){
@@ -100,7 +122,8 @@ public class nftGenerator : MonoBehaviour
             }
             yield return null;
         }
-
+        setSecondCard();
+        isCoroutine = false;
     }
 }
 

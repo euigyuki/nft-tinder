@@ -157,8 +157,8 @@ public class PriceManager : MonoBehaviour
         Nft currentNft = getCurrentNft();
         string nftId = currentNft.nftId;
         double nftPrice = currentNft.price;
-        RectTransform transform = MoneyBar.instance.picture;
-        transform.anchoredPosition =  new Vector2(transform.anchoredPosition.x - (float)(nftPrice/30000) *0.489f, transform.anchoredPosition.y);
+        // RectTransform transform = MoneyBar.instance.picture;
+        // transform.anchoredPosition =  new Vector2(transform.anchoredPosition.x - (float)(nftPrice/30000) *0.489f, transform.anchoredPosition.y);
         if (walletValue - nftPrice < 0) {
             Debug.Log("Not enough money to buy Nft");
             return;
