@@ -14,7 +14,7 @@ public class PriceManager : MonoBehaviour
     // public TextMeshProUGUI Money;
     // public TextMeshProUGUI Price;
 
-    public int price = 2;
+    public static int price = 2;
     public static double walletValue = 30000;
     public static double portfolioValue = 0;
     public static int currentNftIdx = 0;
@@ -81,6 +81,53 @@ public class PriceManager : MonoBehaviour
         
     }
 
+    public static void resetEverything() {
+        price = 2;
+        walletValue = 30000;
+        portfolioValue = 0;
+        currentNftIdx = 0;
+        // jsonLoaded = false;
+        currentDay = 0;
+
+        nftsOwned = new HashSet<string>();
+        futureTrendingFacePos = -1;
+        futureTrendingFaceNeg = -1;
+        futureTrendingBodyPos = -1;
+        futureTrendingBodyNeg = -1;
+        futureTrendingHatPos = -1;
+        futureTrendingHatNeg = -1;
+
+        currentTrendingFacePos = -1;
+        currentTrendingFaceNeg = -1;
+        currentTrendingBodyPos = -1;
+        currentTrendingBodyNeg = -1;
+        currentTrendingHatPos = -1;
+        currentTrendingHatNeg = -1;
+
+        prevFutureTrendingFacePos = new List<int>();
+        prevFutureTrendingFaceNeg = new List<int>();
+        prevFutureTrendingBodyPos = new List<int>();
+        prevFutureTrendingBodyNeg = new List<int>();
+        prevFutureTrendingHatPos = new List<int>();
+        prevFutureTrendingHatNeg = new List<int>();
+
+        nftsToShow = new List<string>();
+
+        // nftsList = new Nfts();
+        // NftsJson = Resources.Load<TextAsset>("nfts");
+        
+        // nftsDict = new Dictionary<string, Nft>();
+        
+        // faceNftMapper = new Dictionary<int, List<string>>();
+        // bgNftMapper = new Dictionary<int, List<string>>();
+        // headNftMapper = new Dictionary<int, List<string>>();
+        // bodyNftMapper = new Dictionary<int, List<string>>();
+        // facePropNftMapper = new Dictionary<int, List<string>>();
+
+        pickNftsToShow();
+
+    }
+
     public static string recommendToBuy() {
         Nft currentNft = getCurrentNft();
         
@@ -110,7 +157,7 @@ public class PriceManager : MonoBehaviour
         currentNftIdx = 0;
     }
 
-    static double getPortfolioValue() {
+    public static double getPortfolioValue() {
         double totalVal = 0.0;
         foreach (string key in nftsOwned) {
             totalVal += getNftPrice(key);
@@ -123,6 +170,9 @@ public class PriceManager : MonoBehaviour
     }
 
     public static double getCurrentNftPrice() {
+        if (nftsToShow.Count == 0) {
+            return 0;
+        }
         Nft currentNft = getCurrentNft();
         return currentNft.price;
     }
@@ -144,8 +194,21 @@ public class PriceManager : MonoBehaviour
             return nftsDict[nftId];
         }
 
-        string nftIdString = nftsToShow[currentNftIdx];
+        string nftIdString;
+        if (currentNftIdx == 0) {
+            nftIdString = nftsToShow[currentNftIdx];
+        }
+        else {
+            nftIdString = nftsToShow[currentNftIdx-1];
+        }
         return nftsDict[nftIdString];
+    }
+
+    public static string getNftId() {
+        if (nftsToShow.Count == 0) {
+            return "";
+        }
+        return getCurrentNft().nftId;
     }
 
     static public int[] getNftPicsIdxs() {
@@ -157,6 +220,8 @@ public class PriceManager : MonoBehaviour
         Nft currentNft = getCurrentNft();
         string nftId = currentNft.nftId;
         double nftPrice = currentNft.price;
+        // Debug.Log("Buying the nft: " + nftId);
+        // TODO: Uncomment Weyei code once confirming that the scene is the latest one
         // RectTransform transform = MoneyBar.instance.picture;
         // transform.anchoredPosition =  new Vector2(transform.anchoredPosition.x - (float)(nftPrice/30000) *0.489f, transform.anchoredPosition.y);
         if (walletValue - nftPrice < 0) {
@@ -166,7 +231,6 @@ public class PriceManager : MonoBehaviour
         nftsOwned.Add(nftId);
         walletValue -= nftPrice;
         portfolioValue += nftPrice;
-        setWalletValueOnUi();
         // get next to nft to show
         Nft nextNftToShow = getNextNftToShow();
         // Debug.Log("Successfully bought: " + nftId);
