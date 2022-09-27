@@ -17,6 +17,7 @@ public class phoneBehavior : MonoBehaviour
         buy.SetActive(false);
         pass.SetActive(false);
         PriceManager.setUp();
+        
     }
 
     // Update is called once per frame
@@ -36,6 +37,7 @@ public class phoneBehavior : MonoBehaviour
         // PriceManager.instance.passItem();
         // PriceManager.instance.passNft();
         // generator.randomGen();
+        StaticAnalytics.leftPressIncrement();
         PriceManager.passNft();
         generator.setNftPic();
         hlMang.resetTimerBar();
@@ -46,6 +48,7 @@ public class phoneBehavior : MonoBehaviour
         // PriceManager.instance.SubstractMoney();
         // PriceManager.instance.buyNft();
         // generator.randomGen();
+        StaticAnalytics.rightPressIncrement();
         PriceManager.buyNft();
         generator.setNftPic();
         hlMang.resetTimerBar();
