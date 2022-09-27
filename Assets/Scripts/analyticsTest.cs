@@ -20,8 +20,4 @@ public class analyticsTest : MonoBehaviour
         WebGLFileSaver.SaveFile(StaticAnalytics.toJson(),"dataJson.json");
 
     }
-
-    public void testing(){
-        Debug.Log("testing");
-    }
 }
