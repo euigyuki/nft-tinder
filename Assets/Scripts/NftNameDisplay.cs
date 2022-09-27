@@ -13,16 +13,16 @@ public class NftNameDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        InvokeRepeating("setNftName", 0, 0.000015f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        setNftPrice();
+        setNftName();
     }
 
-    void setNftPrice() {
-        Name.text = PriceManager.getCurrentNft().nftId;
+    void setNftName() {
+        Name.text = PriceManager.getNftId();
     }
 }
