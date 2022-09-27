@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/working scenes/MenuScene.unity
     guid: d7de047f4ed5b4cdeb2cf160b94f5ed7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/working scenes/tutorial.unity
     guid: 38a20059def874f1f8f9df2a43e4f882
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/working scenes/hypeLatest.unity
     guid: 071ef34030b1f47bda06867a7ef1531f
+  - enabled: 1
+    path: Assets/Scenes/cardFlips.unity
+    guid: e60e44a60fcba4ca7a4f94bbb3796c2f
   m_configObjects: {}
