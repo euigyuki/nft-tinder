@@ -5,16 +5,17 @@ using UnityEngine.UI;
 public class MoneyBar : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Slider slider;
     public Image Fill;
     public static MoneyBar instance;
+    public RectTransform picture;
+    
     private void Awake(){
         instance = this;
-        slider = gameObject.GetComponent<Slider>();
+        picture = GetComponent<RectTransform>();
     }
     void Start()
     {
-        InitiateBar();
+       
     }
 
     // Update is called once per frame
@@ -22,7 +23,5 @@ public class MoneyBar : MonoBehaviour
     {
         
     }
-    public void InitiateBar() {
-        slider.value = 1f;
-    }
+  
 }
