@@ -16,6 +16,7 @@ public class TimerDemo : MonoBehaviour
         .SetDuration(Time)
         .OnEnd(() => {
             Debug.Log("Timer 1 ended");
+            StaticAnalytics.toJson();
             GameOverMenu.SetActive(true);
         })
         .Begin();

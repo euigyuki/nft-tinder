@@ -216,6 +216,19 @@ public class PriceManager : MonoBehaviour
         return currentNft.imagePics;
     }
 
+    public static void sendBuyTrendsToFirebase() {
+        string recomm = recommendToBuy();
+        if (recomm == "May lead to profits!!") {
+            StaticAnalytics.incPosTrendingBuy();
+        }
+        else if (recomm == "May lead to losses!!") {
+            StaticAnalytics.incNegTrendingBuy();
+        }
+        else {
+            StaticAnalytics.incNeutralTrendingBuy();
+        }
+    }
+
     public static void buyNft() {
         Nft currentNft = getCurrentNft();
         string nftId = currentNft.nftId;
@@ -228,6 +241,7 @@ public class PriceManager : MonoBehaviour
             Debug.Log("Not enough money to buy Nft");
             return;
         }
+        sendBuyTrendsToFirebase();
         nftsOwned.Add(nftId);
         walletValue -= nftPrice;
         portfolioValue += nftPrice;
