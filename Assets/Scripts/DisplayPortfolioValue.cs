@@ -7,23 +7,22 @@ using TMPro;
 using UnityEngine.UI;
 using System.Linq;
 
-public class NftPriceDisplay : MonoBehaviour
+public class DisplayPortfolioValue : MonoBehaviour
 {
-    public TextMeshProUGUI Price;
+    public TextMeshProUGUI Portfolio;
     // Start is called before the first frame update
     void Start()
     {
-        // setNftPrice();
-        InvokeRepeating("setNftPrice", 0, 0.000015f);
+        // InvokeRepeating("setPortfolioValue", 0, 0.000015f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        setNftPrice();
+        setPortfolioValue();
     }
 
-    void setNftPrice() {
-        Price.text = "$" + PriceManager.getCurrentNftPrice();
+    void setPortfolioValue() {
+        Portfolio.text = "Portfolio: $" + PriceManager.getPortfolioValue().ToString();
     }
 }
