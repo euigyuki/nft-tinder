@@ -20,7 +20,6 @@ public class phoneBehavior : MonoBehaviour
         buy.SetActive(false);
         pass.SetActive(false);
         PriceManager.setUp();
-        secondCard.setSecondCard();
     }
 
     // Update is called once per frame
@@ -36,33 +35,37 @@ public class phoneBehavior : MonoBehaviour
     }
 
     public void phonePass(){
-        StartCoroutine(showAndHide(pass));
+        // StartCoroutine(showAndHide(pass));
         // PriceManager.instance.passItem();
         // PriceManager.instance.passNft();
         // generator.randomGen();
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         StaticAnalytics.leftPressIncrement();
         PriceManager.passNft();
-        // firstCard.swipe(true);
-        // secondCard.setNftPic();
-        // secondCard.moveCard();
-        firstCard.setNftPic();
+        
+        firstCard.swipe(true);
+        secondCard.setNftPic();
+        secondCard.moveCard();
+        
+        // firstCard.setNftPic();
         swapGen();
         hlMang.resetTimerBar();
     }
 
     public void phoneBuy(){
-        StartCoroutine(showAndHide(buy));
+        // StartCoroutine(showAndHide(buy));
         // PriceManager.instance.SubstractMoney();
         // PriceManager.instance.buyNft();
         // generator.randomGen();
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         StaticAnalytics.rightPressIncrement();
         PriceManager.buyNft();
-        // firstCard.swipe(false);
-        // secondCard.setNftPic();
-        // secondCard.moveCard();
-        firstCard.setNftPic();
+
+        firstCard.swipe(false);
+        secondCard.setNftPic();
+        secondCard.moveCard();
+        
+        // firstCard.setNftPic();
         swapGen();
         hlMang.resetTimerBar();
         hlMang.levelIncrease();

@@ -11,10 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/working scenes/tutorial.unity
     guid: 38a20059def874f1f8f9df2a43e4f882
-  - enabled: 0
-    path: Assets/Scenes/cardFlips.unity
-    guid: e60e44a60fcba4ca7a4f94bbb3796c2f
   - enabled: 1
-    path: Assets/Scenes/cardFlipsRiddhi.unity
-    guid: 3edf9f3ec380a4c54958179e60174632
+    path: Assets/Scenes/trending.unity
+    guid: 23cfa3f8812194bb983023f1d48b40c9
   m_configObjects: {}

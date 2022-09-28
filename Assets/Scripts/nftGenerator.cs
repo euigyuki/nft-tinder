@@ -20,7 +20,7 @@ public class nftGenerator : MonoBehaviour
     {
         randomGen();
         originalScale = transform.localScale;
-        originalPos = transform.position;
+        originalPos = transform.localPosition;
     }
 
     // Update is called once per frame
@@ -64,7 +64,7 @@ public class nftGenerator : MonoBehaviour
     }
 
     public void moveCard(){
-        gameObject.SetActive(true);
+        setColor(new Color(1,1,1,1));
         StartCoroutine(setFirstCard());
     }
 
@@ -76,21 +76,17 @@ public class nftGenerator : MonoBehaviour
     }
 
     public void setSecondCard(){
-        gameObject.SetActive(false);
-        transform.position = new Vector3(originalPos.x,originalPos.y,-2.5f);
-        transform.localScale = new Vector3(0.8f*originalScale.x,0.8f*originalScale.y,0.8f*originalScale.z);
+        transform.localPosition = new Vector3(originalPos.x,originalPos.y,-2.5f);
         transform.eulerAngles = new Vector3(0,0,0);
-        setColor(new Color(1,1,1,0.8f));
     }
 
     IEnumerator setFirstCard(){
         float time = 0;
-        Vector3 currScale = transform.localScale;
         isCoroutine = true;
         while(time<duration){
             time+= Time.deltaTime;
-            transform.position = new Vector3(transform.position.x,transform.position.y,Mathf.SmoothStep(-2.5f,-3f,time/duration));
-            float scalar = Mathf.SmoothStep(currScale.x,originalScale.x,time/duration);
+            transform.localPosition = new Vector3(transform.localPosition.x,transform.localPosition.y,Mathf.SmoothStep(-2.5f,-3f,time/duration));
+            float scalar = Mathf.SmoothStep(0.8f*originalScale.x,originalScale.x,time/duration);
             transform.localScale = new Vector3(scalar,scalar,scalar);
             setColor(new Color(1,1,1, Mathf.SmoothStep(0.8f,1,time/duration)));
             yield return null;
@@ -106,13 +102,13 @@ public class nftGenerator : MonoBehaviour
         while (time<duration){
             time += Time.deltaTime;
             if(swipeLeft){
-                transform.position = new Vector3(Mathf.SmoothStep(transform.position.x, 
-                transform.position.x-0.025f,time/duration),transform.position.y,transform.position.z);
+                transform.localPosition = new Vector3(Mathf.SmoothStep(originalPos.x, 
+                originalPos.x-3,time/duration),transform.localPosition.y,transform.localPosition.z);
                 if(time>rotStart)
                     transform.eulerAngles = new Vector3(0,0,Mathf.LerpAngle(0,rotAngle,(time-rotStart)/(duration-rotStart)));
             }else{
-                transform.position = new Vector3(Mathf.SmoothStep(transform.position.x, 
-                transform.position.x+0.025f,time/duration),transform.position.y,transform.position.z);
+                transform.localPosition = new Vector3(Mathf.SmoothStep(originalPos.x, 
+                originalPos.x+3,time/duration),transform.localPosition.y,transform.localPosition.z);
                 if(time>rotStart)
                     transform.eulerAngles = new Vector3(0,0,Mathf.LerpAngle(0,-1*rotAngle,(time-rotStart)/(duration-rotStart)));
 
