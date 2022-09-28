@@ -44,6 +44,7 @@ public class HypeLevelManager : MonoBehaviour
             GameOverMenu.SetActive(true);
             enabled = false;
             phone.disablePhone();
+            StaticAnalytics.toJson();
         } 
         setLevelBar();
         setTimerBar();

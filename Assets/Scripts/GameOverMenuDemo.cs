@@ -26,7 +26,7 @@ public class GameOverMenuDemo : MonoBehaviour
     public void RestartGame() {
         Debug.Log("Restart Button Clicked");
         PriceManager.resetEverything();
-        SceneManager.LoadScene("hypeLatest");
+        SceneManager.LoadScene("cardFlipsRiddhi");
     }
 
     public void QuitGame() {

@@ -41,6 +41,7 @@ public class phoneBehavior : MonoBehaviour
         // PriceManager.instance.passNft();
         // generator.randomGen();
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
+        StaticAnalytics.leftPressIncrement();
         PriceManager.passNft();
         firstCard.swipe(true);
         secondCard.setNftPic();
@@ -55,6 +56,7 @@ public class phoneBehavior : MonoBehaviour
         // PriceManager.instance.buyNft();
         // generator.randomGen();
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
+        StaticAnalytics.rightPressIncrement();
         PriceManager.buyNft();
         firstCard.swipe(false);
         secondCard.setNftPic();
