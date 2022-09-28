@@ -36,7 +36,7 @@ public class phoneBehavior : MonoBehaviour
     }
 
     public void phonePass(){
-        // StartCoroutine(showAndHide(pass));
+        StartCoroutine(showAndHide(pass));
         // PriceManager.instance.passItem();
         // PriceManager.instance.passNft();
         // generator.randomGen();
@@ -52,7 +52,7 @@ public class phoneBehavior : MonoBehaviour
     }
 
     public void phoneBuy(){
-        // StartCoroutine(showAndHide(buy));
+        StartCoroutine(showAndHide(buy));
         // PriceManager.instance.SubstractMoney();
         // PriceManager.instance.buyNft();
         // generator.randomGen();
