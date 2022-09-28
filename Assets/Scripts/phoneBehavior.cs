@@ -43,9 +43,10 @@ public class phoneBehavior : MonoBehaviour
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         StaticAnalytics.leftPressIncrement();
         PriceManager.passNft();
-        firstCard.swipe(true);
-        secondCard.setNftPic();
-        secondCard.moveCard();
+        // firstCard.swipe(true);
+        // secondCard.setNftPic();
+        // secondCard.moveCard();
+        firstCard.setNftPic();
         swapGen();
         hlMang.resetTimerBar();
     }
@@ -58,9 +59,10 @@ public class phoneBehavior : MonoBehaviour
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         StaticAnalytics.rightPressIncrement();
         PriceManager.buyNft();
-        firstCard.swipe(false);
-        secondCard.setNftPic();
-        secondCard.moveCard();
+        // firstCard.swipe(false);
+        // secondCard.setNftPic();
+        // secondCard.moveCard();
+        firstCard.setNftPic();
         swapGen();
         hlMang.resetTimerBar();
         hlMang.levelIncrease();
