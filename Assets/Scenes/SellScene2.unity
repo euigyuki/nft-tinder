@@ -243,7 +243,8 @@ MonoBehaviour:
   pass: {fileID: 0}
   fadeTime: 1
   hlMang: {fileID: 0}
-  generator: {fileID: 0}
+  firstCard: {fileID: 0}
+  secondCard: {fileID: 0}
 --- !u!212 &100195883
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2032,7 +2033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7925759486389282434, guid: 5e4bc3e298f954d8293d3404b5ba8235, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.3
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 7925759486389282434, guid: 5e4bc3e298f954d8293d3404b5ba8235, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
