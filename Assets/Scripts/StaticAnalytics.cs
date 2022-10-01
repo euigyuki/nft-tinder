@@ -71,6 +71,7 @@ public class StaticAnalytics : MonoBehaviour
     
     {
         //userId=userId.ToString();
+        Debug.Log("Sending data to firebase");
         RestClient.Patch<analyticsJson>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/buySellLatest/{userId}.json", data);
     }
 
@@ -91,6 +92,7 @@ public class StaticAnalytics : MonoBehaviour
     }
 
     public static void PostBuyTrendData(buyTrendDataJson data, int userId) {
+        Debug.Log("Sending data to firebase");
         RestClient.Patch<buyTrendDataJson>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/buyTrendsData/{userId}.json", data);
     }
 }
