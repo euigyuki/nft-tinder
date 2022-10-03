@@ -9,8 +9,12 @@ using System.Linq;
 
 public class NftBuyRecommDisplay : MonoBehaviour
 {
-    public TextMeshProUGUI BuyRecommendation;
+    //public TextMeshProUGUI BuyRecommendation;
     // Start is called before the first frame update
+    public Slider recommender;
+    private void Awake(){
+        recommender = GetComponent<Slider>();
+    }
     void Start()
     {
     }
@@ -18,10 +22,20 @@ public class NftBuyRecommDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        setBuyRecommendation();
+        //setBuyRecommendation();
+        Debug.Log("Update");
+        setRecommender();
+        //recommender.value= (float)n;
+        // setRecommender(PriceManager.sellProb());
     }
 
-    void setBuyRecommendation() {
-        BuyRecommendation.text = PriceManager.recommendToBuy();
+    // void setBuyRecommendation() {
+    //     BuyRecommendation.text = PriceManager.recommendToBuy();
+    // }
+    public void setRecommender(){
+        double n = PriceManager.sellProb();
+        recommender.value = (float)n;
+        Debug.Log("Recommender");
+        // Debug.Log(recommender.value);
     }
 }
