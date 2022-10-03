@@ -16,6 +16,8 @@ public class phoneBehavior : MonoBehaviour
     {
         buy.SetActive(false);
         pass.SetActive(false);
+        MoneyBar.instance.subText.SetActive(false);
+        MoneyBar.instance.addText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class phoneBehavior : MonoBehaviour
 
     public void phonePass(){
         StartCoroutine(showAndHide(pass));
+        StartCoroutine(showAndHide(MoneyBar.instance.subText));
         // PriceManager.instance.passItem();
         PriceManager.instance.passNft();
         generator.randomGen();
@@ -40,6 +43,7 @@ public class phoneBehavior : MonoBehaviour
 
     public void phoneBuy(){
         StartCoroutine(showAndHide(buy));
+        StartCoroutine(showAndHide(MoneyBar.instance.addText));
         // PriceManager.instance.SubstractMoney();
         PriceManager.instance.buyNft();
         generator.randomGen();
