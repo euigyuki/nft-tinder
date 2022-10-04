@@ -10,20 +10,19 @@ public class CountDownManager : MonoBehaviour
     public int countdownTime;
     public TextMeshProUGUI countdownDisplay;
 
+    private Timer timer;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(CountdownToStart());
-        
+        timer = FindObjectOfType<Timer>();
+        StartCoroutine(CountdownToStart());   
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
     IEnumerator CountdownToStart()
     {
+        timer.SetPaused(true);
         while(countdownTime>0)
         {
             countdownDisplay.text = countdownTime.ToString();
@@ -34,6 +33,7 @@ public class CountDownManager : MonoBehaviour
         countdownDisplay.text = "GO!";
         yield return new WaitForSeconds(1);
         countdownDisplay.text = "";
+        timer.SetPaused(false);
 
     }
 
