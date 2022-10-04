@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/trending.unity
     guid: 23cfa3f8812194bb983023f1d48b40c9
+  - enabled: 1
+    path: Assets/Scenes/sell2.unity
+    guid: 6fad71143670f4894b30fcb5f5006d28
   m_configObjects: {}

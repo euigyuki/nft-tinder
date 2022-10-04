@@ -202,6 +202,14 @@ public class PriceManager : MonoBehaviour
         return totalVal;
     }
 
+    public static double getSelectedPortfolioValue(List<string> nftIds) {
+        double totalVal = 0.0;
+        foreach (string id in nftIds) {
+            totalVal += getNftPrice(id);
+        }
+        return totalVal;
+    }
+
     static string computeStrFromList(List<string> strList) {
         return string.Join(",", strList.ToArray());
     }
@@ -289,6 +297,19 @@ public class PriceManager : MonoBehaviour
         Debug.Log("Sell prob: " + sellProb().ToString());
     }
 
+<<<<<<< HEAD
+=======
+    // public static void sellNft() {
+    //     // double nftPrice = getNftPrice(nftId);
+    //     Nft currentNft = getCurrentNft();
+    //     string nftId = currentNft.nftId;
+    //     double nftPrice = currentNft.price;
+    //     nftsOwned.Remove(nftId);
+    //     walletValue += nftPrice;
+    //     setWalletValueOnUi();
+    // }
+
+>>>>>>> f819171936d69a3dfe0749e02c3bd5b21d4acdc3
     public static void sellNft(string nftId) {
         double nftPrice = getNftPrice(nftId);
         nftsOwned.Remove(nftId);
@@ -301,7 +322,11 @@ public class PriceManager : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     public static List<String> getNftsOwnedAsList() {
+=======
+    public static List<string> getNftsOwnedAsList() {
+>>>>>>> f819171936d69a3dfe0749e02c3bd5b21d4acdc3
         return nftsOwned.ToList();
     }
 
@@ -559,8 +584,9 @@ public class PriceManager : MonoBehaviour
 
     static double getPriceIncFactor(string nftId) {
         // Can implement changes to how the factor to increase the prices
-        double factor = Random.Range(5, 100) / 100;
-        return factor;
+        double factor = Random.Range(5, 100);
+        Debug.Log("Helooooo: " + factor / 100.0);
+        return factor / 100.0;
     }
 
     static void changePrice() {

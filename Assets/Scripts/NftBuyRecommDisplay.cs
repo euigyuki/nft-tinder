@@ -22,11 +22,7 @@ public class NftBuyRecommDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //setBuyRecommendation();
-        Debug.Log("Update");
         setRecommender();
-        //recommender.value= (float)n;
-        // setRecommender(PriceManager.sellProb());
     }
 
     // void setBuyRecommendation() {
@@ -35,7 +31,5 @@ public class NftBuyRecommDisplay : MonoBehaviour
     public void setRecommender(){
         double n = PriceManager.sellProb();
         recommender.value = (float)n;
-        Debug.Log("Recommender");
-        // Debug.Log(recommender.value);
     }
 }
