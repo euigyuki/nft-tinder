@@ -54,6 +54,7 @@ public class phoneBehavior : MonoBehaviour
         // firstCard.setNftPic();
         swapGen();
         hlMang.resetTimerBar();
+        hlMang.resetLevelBar();
     }
 
     public void phoneBuy(){
