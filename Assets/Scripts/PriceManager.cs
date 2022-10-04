@@ -297,19 +297,6 @@ public class PriceManager : MonoBehaviour
         Debug.Log("Sell prob: " + sellProb().ToString());
     }
 
-<<<<<<< HEAD
-=======
-    // public static void sellNft() {
-    //     // double nftPrice = getNftPrice(nftId);
-    //     Nft currentNft = getCurrentNft();
-    //     string nftId = currentNft.nftId;
-    //     double nftPrice = currentNft.price;
-    //     nftsOwned.Remove(nftId);
-    //     walletValue += nftPrice;
-    //     setWalletValueOnUi();
-    // }
-
->>>>>>> f819171936d69a3dfe0749e02c3bd5b21d4acdc3
     public static void sellNft(string nftId) {
         double nftPrice = getNftPrice(nftId);
         nftsOwned.Remove(nftId);
@@ -322,11 +309,7 @@ public class PriceManager : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
-    public static List<String> getNftsOwnedAsList() {
-=======
     public static List<string> getNftsOwnedAsList() {
->>>>>>> f819171936d69a3dfe0749e02c3bd5b21d4acdc3
         return nftsOwned.ToList();
     }
 
