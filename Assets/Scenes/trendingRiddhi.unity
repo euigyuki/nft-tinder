@@ -2515,19 +2515,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2887883656708964574, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
   m_PrefabInstance: {fileID: 5958720665269593946}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1940607678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4089087378050212121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48189e5c3a0443b8afdcee8721167d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recommender: {fileID: 0}
 --- !u!114 &1940607679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2972,7 +2959,6 @@ GameObject:
   m_Component:
   - component: {fileID: 685105386832143024}
   - component: {fileID: 6543054645600752000}
-  - component: {fileID: 1940607678}
   m_Layer: 0
   m_Name: NftBuyRecommendation
   m_TagString: Untagged

@@ -14,6 +14,7 @@ public class sellHelper : MonoBehaviour
     public Button[] bodies = new Button[4];
 
     public Button sellButton;
+    public Button sellAllButton;
 
     public TextMeshProUGUI totalNumNFTsOwned;
     public TextMeshProUGUI totalPortfolioValue;
@@ -87,6 +88,7 @@ public class sellHelper : MonoBehaviour
         
 
         sellButton.onClick.AddListener(SellSelectedNFTs);
+        sellAllButton.onClick.AddListener(SellAllNFTs);
 
     }
 
@@ -102,6 +104,12 @@ public class sellHelper : MonoBehaviour
             sellButton.GetComponent<Button>().interactable = true;
         } else {
             sellButton.GetComponent<Button>().interactable = false;
+        }
+
+        if(nftsOwned.Count > 0) {
+            sellAllButton.GetComponent<Button>().interactable = true;
+        } else {
+            sellAllButton.GetComponent<Button>().interactable = false;
         }
 
         faceIdMap = new Dictionary<int, List<string>>();
@@ -146,6 +154,25 @@ public class sellHelper : MonoBehaviour
 
     }
 
+    void SellAllNFTs() {
+        PriceManager.sellNftsFromList(nftsOwned);
+        nftsOwned = PriceManager.getNftsOwnedAsList();
+
+        for(int i=0;i<4;i++) {
+            if(faceSelected[i]==true) {
+                ButtonSelected("face", i);
+            }
+            if(hatSelected[i]==true) {
+                ButtonSelected("hat", i);
+            }
+            if(bodySelected[i]==true) {
+                ButtonSelected("body", i);
+            }
+        }
+
+        UpdateNftsToSell();
+    }
+
     void SellSelectedNFTs() {
         PriceManager.sellNftsFromList(toSellNFTIds);
         nftsOwned = PriceManager.getNftsOwnedAsList();
@@ -161,13 +188,6 @@ public class sellHelper : MonoBehaviour
             if(bodySelected[i]==true) {
                 ButtonSelected("body", i);
             }
-
-            // faceSelected[i] = false;
-            // faces[i].GetComponent<Image>().color = Color.white;
-            // hatSelected[i] = false;
-            // hats[i].GetComponent<Image>().color = Color.white;
-            // bodySelected[i] = false;
-            // bodies[i].GetComponent<Image>().color = Color.white;
         }
 
         UpdateNftsToSell();
