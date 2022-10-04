@@ -16,7 +16,10 @@ public class HypeLevelManager : MonoBehaviour
     public float levelCap = 100f;
     public float timeCap = 5f;
 
-    public float incPerBuy = 10f;
+    public float incPerBuy = 5f;
+    public float feverTime = 5f;
+    public float feverCD = 10f;
+    public bool isCD = false;
 
     public float decPerSec = 1f;
     public float decPerTO = 10f;
@@ -26,7 +29,7 @@ public class HypeLevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currLevel = levelCap;
+        resetLevelBar();
         resetTimerBar();
     }
 
@@ -34,20 +37,18 @@ public class HypeLevelManager : MonoBehaviour
     void Update()
     {
         currTime -= Time.deltaTime;
-        currLevel -= decPerSec*Time.deltaTime;
         if(currTime<=0){
             resetTimerBar();
-            currLevel -= decPerTO;
             phone.phonePass();
         }
-        if(currLevel <= 0){
-            GameOverMenu.SetActive(true);
-            enabled = false;
-            phone.disablePhone();
-            StaticAnalytics.toJson();
-        } 
-        setLevelBar();
         setTimerBar();
+        if(currLevel>=levelCap) StartCoroutine(feverMode());
+        // if(currLevel <= 0){
+        //     GameOverMenu.SetActive(true);
+        //     enabled = false;
+        //     phone.disablePhone();
+        //     StaticAnalytics.toJson();
+        // }
     }
 
     public void setLevelBar(){
@@ -61,14 +62,34 @@ public class HypeLevelManager : MonoBehaviour
         TimerBar.setBarColor(Color.Lerp(endColor,startColor,currTime/timeCap));
     }
 
+    public void resetLevelBar(){
+        currLevel = 0f;
+        setLevelBar();
+    }
+
     public void resetTimerBar(){
         currTime = timeCap;
         setTimerBar();
     }
 
     public void levelIncrease(){
-        currLevel += incPerBuy;
-        setLevelBar();
+        if(!isCD){
+            currLevel += incPerBuy;
+            setLevelBar();
+        }
+    }
+
+    IEnumerator feverMode(){
+        isCD = true;
+        float time = 0;
+        while(time<feverTime){
+            time += Time.deltaTime;
+            currLevel  = Mathf.SmoothStep(levelCap,0,time/feverTime);
+            setLevelBar();
+            yield return null;
+        }
+        yield return new WaitForSeconds(feverCD);
+        isCD = false;
     }
 
     private float Cap(float curr, float min, float max){
