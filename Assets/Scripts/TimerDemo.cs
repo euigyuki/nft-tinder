@@ -21,7 +21,9 @@ public class TimerDemo : MonoBehaviour
             Debug.Log(scene.name);
             if(scene.name == "trending") {
                 SceneManager.LoadScene("sell2");
-            } else{
+            } else if(scene.name == "sell2"){
+                SceneManager.LoadScene("trending");
+            } else {
                 GameOverMenu.SetActive(true);
             }
 
