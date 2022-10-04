@@ -14,11 +14,15 @@ public class phoneBehavior : MonoBehaviour
     [SerializeField] nftGenerator firstCard;
     [SerializeField] nftGenerator secondCard;
 
+    [SerializeField] MoneyBar mb; 
+    
+
     // Start is called before the first frame update
     void Start()
     {
         buy.SetActive(false);
         pass.SetActive(false);
+       
         PriceManager.setUp();
     }
 
@@ -39,6 +43,7 @@ public class phoneBehavior : MonoBehaviour
         // PriceManager.instance.passItem();
         // PriceManager.instance.passNft();
         // generator.randomGen();
+        
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         StaticAnalytics.leftPressIncrement();
         PriceManager.passNft();
@@ -58,6 +63,7 @@ public class phoneBehavior : MonoBehaviour
         // PriceManager.instance.SubstractMoney();
         // PriceManager.instance.buyNft();
         // generator.randomGen();
+        mb.ShowMoney();
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         StaticAnalytics.rightPressIncrement();
         PriceManager.buyNft();
