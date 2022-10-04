@@ -26,9 +26,12 @@ public class HypeLevelManager : MonoBehaviour
 
     public Color startColor;
     public Color endColor;
+
+    private Timer timer;
     // Start is called before the first frame update
     void Start()
     {
+        timer = FindObjectOfType<Timer>();
         resetLevelBar();
         resetTimerBar();
     }
@@ -36,6 +39,10 @@ public class HypeLevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timer.IsPaused)
+        {
+            return;
+        }
         currTime -= Time.deltaTime;
         if(currTime<=0){
             resetTimerBar();
