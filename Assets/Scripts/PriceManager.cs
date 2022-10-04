@@ -130,7 +130,6 @@ public class PriceManager : MonoBehaviour
 
     public static string recommendToBuy() {
         Nft currentNft = getCurrentNft();
-        
         if (futureTrendingFacePos == currentNft.imagePics[0] || futureTrendingHatPos == currentNft.imagePics[3] || futureTrendingBodyPos == currentNft.imagePics[2]) {
             return "May lead to profits!!";
         }
@@ -140,6 +139,44 @@ public class PriceManager : MonoBehaviour
         }
 
         return "";
+    }
+
+    public static double buyProb() {
+        Nft currentNft = getCurrentNft();
+
+        double total = 0;
+
+        if (futureTrendingFacePos == currentNft.imagePics[0]) {
+            total += 1;
+        }
+
+        if (futureTrendingHatPos == currentNft.imagePics[3]) {
+            total += 1;
+        }
+
+        if (futureTrendingBodyPos == currentNft.imagePics[2]) {
+            total += 1;
+        }
+        return total / 3.00;
+    }
+
+    public static double sellProb() {
+        Nft currentNft = getCurrentNft();
+
+        double total = 0;
+
+        if (futureTrendingFaceNeg == currentNft.imagePics[0]) {
+            total += 1;
+        }
+
+        if (futureTrendingHatNeg == currentNft.imagePics[3]) {
+            total += 1;
+        }
+
+        if (futureTrendingBodyNeg == currentNft.imagePics[2]) {
+            total += 1;
+        }
+        return total / 3.00;
     }
 
     // Update is called once per frame
@@ -256,17 +293,9 @@ public class PriceManager : MonoBehaviour
         // get next to nft to show
         Nft nextNftToShow = getNextNftToShow();
         // Debug.Log("Successfully bought: " + nftId);
+        Debug.Log("Buy prob: " + buyProb().ToString());
+        Debug.Log("Sell prob: " + sellProb().ToString());
     }
-
-    // public static void sellNft() {
-    //     // double nftPrice = getNftPrice(nftId);
-    //     Nft currentNft = getCurrentNft();
-    //     string nftId = currentNft.nftId;
-    //     double nftPrice = currentNft.price;
-    //     nftsOwned.Remove(nftId);
-    //     walletValue += nftPrice;
-    //     setWalletValueOnUi();
-    // }
 
     public static void sellNft(string nftId) {
         double nftPrice = getNftPrice(nftId);
@@ -660,6 +689,8 @@ public class PriceManager : MonoBehaviour
     }
 
     public static void passNft() {
+        Debug.Log("Buy prob: " + buyProb().ToString());
+        Debug.Log("Sell prob: " + sellProb().ToString());
         Nft nextNftToShow = getNextNftToShow();
     }
 
