@@ -29,7 +29,7 @@ public class NftBuyRecommDisplay : MonoBehaviour
     //     BuyRecommendation.text = PriceManager.recommendToBuy();
     // }
     public void setRecommender(){
-        double n = PriceManager.sellProb();
+        double n = PriceManager.buyProb();
         recommender.value = (float)n;
     }
 }
