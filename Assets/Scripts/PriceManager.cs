@@ -165,6 +165,14 @@ public class PriceManager : MonoBehaviour
         return totalVal;
     }
 
+    public static double getSelectedPortfolioValue(List<string> nftIds) {
+        double totalVal = 0.0;
+        foreach (string id in nftIds) {
+            totalVal += getNftPrice(id);
+        }
+        return totalVal;
+    }
+
     static string computeStrFromList(List<string> strList) {
         return string.Join(",", strList.ToArray());
     }
@@ -250,14 +258,34 @@ public class PriceManager : MonoBehaviour
         // Debug.Log("Successfully bought: " + nftId);
     }
 
-    public static void sellNft() {
-        // double nftPrice = getNftPrice(nftId);
-        Nft currentNft = getCurrentNft();
-        string nftId = currentNft.nftId;
-        double nftPrice = currentNft.price;
+    // public static void sellNft() {
+    //     // double nftPrice = getNftPrice(nftId);
+    //     Nft currentNft = getCurrentNft();
+    //     string nftId = currentNft.nftId;
+    //     double nftPrice = currentNft.price;
+    //     nftsOwned.Remove(nftId);
+    //     walletValue += nftPrice;
+    //     setWalletValueOnUi();
+    // }
+
+    public static void sellNft(string nftId) {
+        double nftPrice = getNftPrice(nftId);
         nftsOwned.Remove(nftId);
         walletValue += nftPrice;
-        setWalletValueOnUi();
+    }
+
+    public static void sellNftsFromList(List<string> nftsToSell) {
+        foreach (string nftIdStr in nftsToSell) {
+            sellNft(nftIdStr);
+        }
+    }
+
+    public static List<string> getNftsOwnedAsList() {
+        return nftsOwned.ToList();
+    }
+
+    public static Dictionary<string, Nft> getNftsDict() {
+        return nftsDict;
     }
 
     static Nft getNextNftToShow() {
@@ -510,8 +538,9 @@ public class PriceManager : MonoBehaviour
 
     static double getPriceIncFactor(string nftId) {
         // Can implement changes to how the factor to increase the prices
-        double factor = Random.Range(5, 100) / 100;
-        return factor;
+        double factor = Random.Range(5, 100);
+        Debug.Log("Helooooo: " + factor / 100.0);
+        return factor / 100.0;
     }
 
     static void changePrice() {

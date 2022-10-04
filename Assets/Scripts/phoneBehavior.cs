@@ -8,6 +8,7 @@ public class phoneBehavior : MonoBehaviour
     public GameObject buy;
     public GameObject pass;
     public int fadeTime;
+    public static int setCount = 0;
 
     [SerializeField] HypeLevelManager hlMang;
 
@@ -19,7 +20,10 @@ public class phoneBehavior : MonoBehaviour
     {
         buy.SetActive(false);
         pass.SetActive(false);
-        PriceManager.setUp();
+        if (setCount == 0) {
+            PriceManager.setUp();
+            setCount += 1;
+        }
     }
 
     // Update is called once per frame

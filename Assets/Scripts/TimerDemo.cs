@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimerDemo : MonoBehaviour
 {
@@ -16,8 +17,15 @@ public class TimerDemo : MonoBehaviour
         .SetDuration(Time)
         .OnEnd(() => {
             Debug.Log("Timer 1 ended");
+            Scene scene = SceneManager.GetActiveScene();
+            Debug.Log(scene.name);
+            if(scene.name == "trending") {
+                SceneManager.LoadScene("sell2");
+            } else{
+                GameOverMenu.SetActive(true);
+            }
+
             StaticAnalytics.toJson();
-            GameOverMenu.SetActive(true);
         })
         .Begin();
     }

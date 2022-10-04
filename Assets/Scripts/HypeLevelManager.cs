@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HypeLevelManager : MonoBehaviour
 {
@@ -41,7 +42,8 @@ public class HypeLevelManager : MonoBehaviour
             phone.phonePass();
         }
         if(currLevel <= 0){
-            GameOverMenu.SetActive(true);
+            // GameOverMenu.SetActive(true);
+            SceneManager.LoadScene("sell2");
             enabled = false;
             phone.disablePhone();
             StaticAnalytics.toJson();
