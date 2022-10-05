@@ -99,9 +99,10 @@ public class sellHelper : MonoBehaviour
     }
 
     public static void pushSellStats() {
-        Debug.Log("Positive Sells Count: " + posSells);
-        Debug.Log("Negative Sells Count: " + negSells);
-        Debug.Log("Total Sells Count: " + totalSells);
+        // Debug.Log("Positive Sells Count: " + posSells);
+        // Debug.Log("Negative Sells Count: " + negSells);
+        // Debug.Log("Total Sells Count: " + totalSells);
+        StaticAnalytics.postEachLevelSellData(totalSells, posSells, negSells);
     }
 
     // Update is called once per frame
@@ -296,10 +297,5 @@ public class sellHelper : MonoBehaviour
     void setSelectedPortfolioValue() {
         selectedPortfolioValue.text = String.Format("Value of Selected NFTs: ${0:0.##}", PriceManager.getSelectedPortfolioValue(toSellNFTIds));
     }
-
-    // public TextMeshProUGUI totalNumNFTsOwned;
-    // public TextMeshProUGUI totalPortfolioValue;
-    // public TextMeshProUGUI totalNumNFTsSelected;
-    // public TextMeshProUGUI selectedPortfolioValue;
 
 }

@@ -293,8 +293,8 @@ public class PriceManager : MonoBehaviour
         // get next to nft to show
         Nft nextNftToShow = getNextNftToShow();
         // Debug.Log("Successfully bought: " + nftId);
-        Debug.Log("Buy prob: " + buyProb().ToString());
-        Debug.Log("Sell prob: " + sellProb().ToString());
+        // Debug.Log("Buy prob: " + buyProb().ToString());
+        // Debug.Log("Sell prob: " + sellProb().ToString());
     }
 
     public static void sellNft(string nftId) {
