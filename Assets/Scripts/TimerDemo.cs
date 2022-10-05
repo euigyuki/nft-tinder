@@ -19,10 +19,10 @@ public class TimerDemo : MonoBehaviour
             Debug.Log("Timer 1 ended");
             Scene scene = SceneManager.GetActiveScene();
             Debug.Log(scene.name);
-            if(scene.name == "trendingSurili") {
+            if(scene.name == "trendingDerrick") {
                 SceneManager.LoadScene("sell2");
             } else if(scene.name == "sell2"){
-                SceneManager.LoadScene("trendingSurili");
+                SceneManager.LoadScene("trendingDerrick");
             } else {
                 GameOverMenu.SetActive(true);
             }
