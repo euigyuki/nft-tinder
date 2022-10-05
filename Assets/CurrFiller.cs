@@ -16,9 +16,6 @@ public class CurrFiller : MonoBehaviour
     void Update()
     {
         parsePriceManager();
-        // helper.currUpDown[0]=true;
-        // helper.currUpDown[1]=false;
-        // helper.currUpDown[2])=false;
         showTrends();
         
         
@@ -86,6 +83,7 @@ public class CurrFiller : MonoBehaviour
         else
         {
             show();
+            x=0;
         }
     }
 }
