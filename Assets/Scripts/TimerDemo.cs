@@ -22,7 +22,13 @@ public class TimerDemo : MonoBehaviour
             if(scene.name == "trendingSurili") {
                 SceneManager.LoadScene("sell2");
             } else if(scene.name == "sell2"){
-                SceneManager.LoadScene("trendingSurili");
+                sellHelper.pushSellStats();
+                if(PriceManager.currentDay==3){
+                    GameOverMenu.SetActive(true);
+                }
+                else {
+                    SceneManager.LoadScene("trendingSurili");
+                }
             } else {
                 GameOverMenu.SetActive(true);
             }

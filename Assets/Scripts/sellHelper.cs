@@ -41,9 +41,15 @@ public class sellHelper : MonoBehaviour
 
     List<string> toSellNFTIds = new List<string>();
 
+    public static int totalSells = 0;
+    public static int posSells = 0;
+    public static int negSells = 0;
+
     // Start is called before the first frame update
     void Start() {
-
+        totalSells = 0;
+        posSells = 0;
+        negSells = 0;
         PriceManager.setUp();
 
         // Faces
@@ -90,6 +96,12 @@ public class sellHelper : MonoBehaviour
         sellButton.onClick.AddListener(SellSelectedNFTs);
         sellAllButton.onClick.AddListener(SellAllNFTs);
 
+    }
+
+    public static void pushSellStats() {
+        Debug.Log("Positive Sells Count: " + posSells);
+        Debug.Log("Negative Sells Count: " + negSells);
+        Debug.Log("Total Sells Count: " + totalSells);
     }
 
     // Update is called once per frame
@@ -155,6 +167,19 @@ public class sellHelper : MonoBehaviour
     }
 
     void SellAllNFTs() {
+
+        foreach(string nftId in nftsOwned) {
+            int[] nftDetails = nftDict[nftId].imagePics;
+            // Face
+            totalSells += 1;
+            if(nftDetails[0] == PriceManager.currentTrendingFacePos || nftDetails[2] == PriceManager.currentTrendingHatPos || nftDetails[3] == PriceManager.currentTrendingBodyPos) {
+                posSells += 1;
+                
+            } else {
+                negSells += 1;
+            }
+        }
+
         PriceManager.sellNftsFromList(nftsOwned);
         nftsOwned = PriceManager.getNftsOwnedAsList();
 
@@ -174,9 +199,18 @@ public class sellHelper : MonoBehaviour
     }
 
     void SellSelectedNFTs() {
+        foreach(string nftId in toSellNFTIds) {
+            int[] nftDetails = nftDict[nftId].imagePics;
+            // Face
+            totalSells += 1;
+            if(nftDetails[0] == PriceManager.currentTrendingFacePos || nftDetails[2] == PriceManager.currentTrendingHatPos || nftDetails[3] == PriceManager.currentTrendingBodyPos) {
+                posSells += 1;
+                
+            } else {
+                negSells += 1;
+            }
+        }
         PriceManager.sellNftsFromList(toSellNFTIds);
-        nftsOwned = PriceManager.getNftsOwnedAsList();
-        
         
         for(int i=0;i<4;i++) {
             if(faceSelected[i]==true) {
