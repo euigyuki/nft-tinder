@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Proyecto26;
+using Random=UnityEngine.Random;
 
 public class StaticAnalytics : MonoBehaviour
 {
@@ -50,9 +51,10 @@ public class StaticAnalytics : MonoBehaviour
         //System.Random rnd = new System.Random();
         //int userId= rnd.Next();
 
-        if (userId == null) {
+        if (userId == 0) {
             System.Random rnd = new System.Random();
             userId= rnd.Next();
+            // userId = Random.Range(100000,1000000);
         }
         analyticsJson ajson = new analyticsJson();
         ajson.leftPress=analyticsData.leftPress;
@@ -104,6 +106,11 @@ public class StaticAnalytics : MonoBehaviour
 
     public static void postEachLevelSellData(int totalSellscount, int posSellcount, int negSellcount){
         Debug.Log("Sending data to firebase - sell data");
+        if (userId == 0) {
+            System.Random rnd = new System.Random();
+            userId= rnd.Next();
+            // userId = Random.Range(100000,1000000);
+        }
         sellDataJson sjson = new sellDataJson();
         sjson.totalSells = totalSellscount;
         sjson.posSell = posSellcount;
