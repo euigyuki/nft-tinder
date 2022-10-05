@@ -15,12 +15,16 @@ public class phoneBehavior : MonoBehaviour
     [SerializeField] nftGenerator firstCard;
     [SerializeField] nftGenerator secondCard;
 
-    [SerializeField] MoneyBar mb; 
-    
+    [SerializeField] MoneyBar mb;
+
+    private Timer timer;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        timer = FindObjectOfType<Timer>();
         buy.SetActive(false);
         pass.SetActive(false);
         if (setCount == 0) {
@@ -32,7 +36,11 @@ public class phoneBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("right")){
+        if (timer.IsPaused)
+        {
+            return;
+        }
+        if (Input.GetKeyDown("right")){
             phoneBuy();
         }
 
