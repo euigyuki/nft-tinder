@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Proyecto26;
+using Random=UnityEngine.Random;
 
 public class StaticAnalytics : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class StaticAnalytics : MonoBehaviour
 
     private const string projectId = "nft-tinder-b99da"; // You can find this in your Firebase project settings
     private static readonly string databaseURL = $"https://{projectId}.firebaseio.com/";
+    public static int levelCount = 0;
+    public static int userId;
+    
     //"https://nft-tinder-analytics-default-rtdb.firebaseio.com/buySell.json"
     void Start()
     {
@@ -44,31 +48,36 @@ public class StaticAnalytics : MonoBehaviour
         right=analyticsData.rightPress,
         time = analyticsData.timeUsed
         };
-    System.Random rnd = new System.Random();
-    int userId= rnd.Next();
-    analyticsJson ajson = new analyticsJson();
-    ajson.leftPress=analyticsData.leftPress;
-    ajson.rightPress=analyticsData.rightPress; 
-    ajson.timeUsed = analyticsData.timeUsed;
+        //System.Random rnd = new System.Random();
+        //int userId= rnd.Next();
+
+        if (userId == 0) {
+            System.Random rnd = new System.Random();
+            userId= rnd.Next();
+            // userId = Random.Range(100000,1000000);
+        }
+        analyticsJson ajson = new analyticsJson();
+        ajson.leftPress=analyticsData.leftPress;
+        ajson.rightPress=analyticsData.rightPress; 
+        ajson.timeUsed = analyticsData.timeUsed;
 
 
-    buyTrendDataJson bjson = new buyTrendDataJson();
-    bjson.totalBuys = buyTrendData.totalBuys;
-    bjson.posTrendingBuys = buyTrendData.posTrendingBuys;
-    bjson.negTrendingBuys = buyTrendData.negTrendingBuys;
-    bjson.neutralBuys = buyTrendData.neutralBuys;
+        buyTrendDataJson bjson = new buyTrendDataJson();
+        bjson.totalBuys = buyTrendData.totalBuys;
+        bjson.posTrendingBuys = buyTrendData.posTrendingBuys;
+        bjson.negTrendingBuys = buyTrendData.negTrendingBuys;
+        bjson.neutralBuys = buyTrendData.neutralBuys;
 
-    PostBuySellData(ajson,userId);
+        PostBuySellData(ajson,userId);
 
-    PostBuyTrendData(bjson, userId);
+        PostBuyTrendData(bjson, userId);
 
 
-    return JsonUtility.ToJson(ajson);
+        return JsonUtility.ToJson(ajson);
     }
 
 
     public static void PostBuySellData(analyticsJson data, int userId)
-    
     {
         //userId=userId.ToString();
         Debug.Log("Sending data to firebase");
@@ -92,10 +101,25 @@ public class StaticAnalytics : MonoBehaviour
     }
 
     public static void PostBuyTrendData(buyTrendDataJson data, int userId) {
-        Debug.Log("Sending data to firebase");
         RestClient.Patch<buyTrendDataJson>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/buyTrendsData/{userId}.json", data);
     }
+
+    public static void postEachLevelSellData(int totalSellscount, int posSellcount, int negSellcount){
+        Debug.Log("Sending data to firebase - sell data");
+        if (userId == 0) {
+            System.Random rnd = new System.Random();
+            userId= rnd.Next();
+            // userId = Random.Range(100000,1000000);
+        }
+        sellDataJson sjson = new sellDataJson();
+        sjson.totalSells = totalSellscount;
+        sjson.posSell = posSellcount;
+        sjson.negSell = negSellcount;
+        levelCount = levelCount + 1;
+        RestClient.Patch<sellDataJson>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/sellLevelsData/{userId}/{levelCount}.json", sjson);
+    }
 }
+
 
 
 [Serializable]
@@ -128,3 +152,17 @@ public class buyTrendDataJson{
     public int negTrendingBuys = 0;
     public int neutralBuys = 0;
 } 
+
+[Serializable]
+public class sellData{
+    public static int totalSells = 0;
+    public static int posSell = 0;
+    public static int negSell = 0;
+}
+
+[Serializable]
+public class sellDataJson{
+    public int totalSells = 0;
+    public int posSell = 0;
+    public int negSell = 0;
+}

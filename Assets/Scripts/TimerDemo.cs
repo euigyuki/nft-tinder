@@ -20,14 +20,21 @@ public class TimerDemo : MonoBehaviour
             Scene scene = SceneManager.GetActiveScene();
             Debug.Log(scene.name);
             if(scene.name == "trendingDerrick") {
-                SceneManager.LoadScene("sell2");
-            } else if(scene.name == "sell2"){
-                SceneManager.LoadScene("trendingDerrick");
+                SceneManager.LoadScene("SellUpdate");
+            } else if(scene.name == "SellUpdate"){
+                sellHelper.pushSellStats();
+                if(PriceManager.currentDay==3){
+                    StaticAnalytics.toJson();
+                    GameOverMenu.SetActive(true);
+                }
+                else {
+                    SceneManager.LoadScene("trendingDerrick");
+                }
             } else {
                 GameOverMenu.SetActive(true);
             }
 
-            StaticAnalytics.toJson();
+            
         })
         .Begin();
     }
