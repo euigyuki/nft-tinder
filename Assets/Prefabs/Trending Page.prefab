@@ -893,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4089087378375586722, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_Name
-      value: CurrentText
+      value: PosText
       objectReference: {fileID: 0}
     - target: {fileID: 5119939793508187449, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -909,19 +909,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5662080811351674320, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 146.7343
+      value: 326.5536
       objectReference: {fileID: 0}
     - target: {fileID: 5662080811351674320, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 45.2225
+      value: 54.1298
       objectReference: {fileID: 0}
     - target: {fileID: 5662080811351674320, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.14
+      value: 1.0391
       objectReference: {fileID: 0}
     - target: {fileID: 5662080811351674320, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.0445
       objectReference: {fileID: 0}
     - target: {fileID: 6543054646970925883, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_Color.a
@@ -941,11 +941,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6866448979829666088, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_text
-      value: Positive Trends
+      value: Future Positive Trends
       objectReference: {fileID: 0}
     - target: {fileID: 6866448979829666088, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_fontSize
-      value: 21.45
+      value: 32.55
       objectReference: {fileID: 0}
     - target: {fileID: 6866448979829666088, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_fontColor.b
@@ -1204,7 +1204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4089087378375586722, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_Name
-      value: FutureText
+      value: NegText
       objectReference: {fileID: 0}
     - target: {fileID: 5119939793508187449, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1220,19 +1220,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5662080811351674320, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 146.7343
+      value: 298.2673
       objectReference: {fileID: 0}
     - target: {fileID: 5662080811351674320, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 45.2225
+      value: 48.1916
       objectReference: {fileID: 0}
     - target: {fileID: 5662080811351674320, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.14
+      value: 0.8977
       objectReference: {fileID: 0}
     - target: {fileID: 5662080811351674320, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.0148
       objectReference: {fileID: 0}
     - target: {fileID: 6543054646970925883, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_Color.a
@@ -1252,11 +1252,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6866448979829666088, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_text
-      value: NegativeTrends
+      value: ' Future Negative Trends'
       objectReference: {fileID: 0}
     - target: {fileID: 6866448979829666088, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_fontSize
-      value: 20.85
+      value: 27.7
       objectReference: {fileID: 0}
     - target: {fileID: 6866448979829666088, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_fontColor.b
