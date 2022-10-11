@@ -20,6 +20,7 @@ public class sellHelper : MonoBehaviour
     public TextMeshProUGUI totalPortfolioValue;
     public TextMeshProUGUI totalNumNFTsSelected;
     public TextMeshProUGUI selectedPortfolioValue;
+    public TextMeshProUGUI walletValue;
 
     // Selected Color: RGB(0,0,0), 150
     public Color selectedColor;
@@ -112,6 +113,7 @@ public class sellHelper : MonoBehaviour
         setTotalPortfolioValue();
         setTotalNumNFTsSelected();
         setSelectedPortfolioValue();
+        setWalletValue();
 
         if(toSellNFTIds.Count > 0) {
             sellButton.GetComponent<Button>().interactable = true;
@@ -283,19 +285,23 @@ public class sellHelper : MonoBehaviour
     }
 
     void setTotalNumNFTsOwned() {
-        totalNumNFTsOwned.text = "Number of NFTs Owned: " + nftsOwned.Count;
+        totalNumNFTsOwned.text = "" + nftsOwned.Count;
     }
 
     void setTotalPortfolioValue() {
-        totalPortfolioValue.text = String.Format("Total Value of Portfolio: ${0:0.##}", PriceManager.getPortfolioValue());
+        totalPortfolioValue.text = String.Format("{0:0.##}", PriceManager.getPortfolioValue());
     }
 
     void setTotalNumNFTsSelected() {
-        totalNumNFTsSelected.text = "Number of NFTs Selected: " + toSellNFTIds.Count;
+        totalNumNFTsSelected.text = "" + toSellNFTIds.Count;
     }
 
     void setSelectedPortfolioValue() {
-        selectedPortfolioValue.text = String.Format("Value of Selected NFTs: ${0:0.##}", PriceManager.getSelectedPortfolioValue(toSellNFTIds));
+        selectedPortfolioValue.text = String.Format("{0:0.##}", PriceManager.getSelectedPortfolioValue(toSellNFTIds));
+    }
+
+    void setWalletValue() {
+        walletValue.text = String.Format("{0:0.##}", PriceManager.walletValue);
     }
 
 }

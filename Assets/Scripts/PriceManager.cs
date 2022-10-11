@@ -23,6 +23,7 @@ public class PriceManager : MonoBehaviour
 
     public static PriceManager instance {get; private set;}
     public static HashSet<string> nftsOwned = new HashSet<string>();
+    public static Dictionary<string, double> nftsBuyPrice = new Dictionary<string, double>();
     
     // trends
     // public Dictionary<string, List<string>> currentTrends = new Dictionary<string, List<string>>();
@@ -210,6 +211,14 @@ public class PriceManager : MonoBehaviour
         return totalVal;
     }
 
+    public static double getBuyPricePortfolioValueFromList(List<string> nftIds) {
+        double totalVal = 0.0;
+        foreach (string key in nftIds) {
+            totalVal += getNftBuyPrice(key);
+        }
+        return totalVal;
+    }
+
     static string computeStrFromList(List<string> strList) {
         return string.Join(",", strList.ToArray());
     }
@@ -225,6 +234,13 @@ public class PriceManager : MonoBehaviour
     static double getNftPrice(string nftId) {
         Nft nft = nftsDict[nftId];
         return nft.price;
+    }
+
+    static double getNftBuyPrice(string nftId) {
+        if (nftsBuyPrice.ContainsKey(nftId)) {
+            return nftsBuyPrice[nftId];
+        }
+        return 0;
     }
 
     static void setWalletValueOnUi() {
@@ -290,6 +306,14 @@ public class PriceManager : MonoBehaviour
         nftsOwned.Add(nftId);
         walletValue -= nftPrice;
         portfolioValue += nftPrice;
+
+        if (nftsBuyPrice.ContainsKey(nftId)) {
+            nftsBuyPrice[nftId] = nftPrice;
+        }
+        else {
+            nftsBuyPrice.Add(nftId, nftPrice);
+        }
+
         // get next to nft to show
         Nft nextNftToShow = getNextNftToShow();
         // Debug.Log("Successfully bought: " + nftId);
@@ -300,6 +324,9 @@ public class PriceManager : MonoBehaviour
     public static void sellNft(string nftId) {
         double nftPrice = getNftPrice(nftId);
         nftsOwned.Remove(nftId);
+        if (nftsBuyPrice.ContainsKey(nftId)) {
+            nftsBuyPrice.Remove(nftId);
+        }
         walletValue += nftPrice;
     }
 
