@@ -31,6 +31,8 @@ public class phoneBehavior : MonoBehaviour
             PriceManager.setUp();
             setCount += 1;
         }
+        PriceManager.passNft();
+        firstCard.setNftPic();
     }
 
     // Update is called once per frame
@@ -66,7 +68,6 @@ public class phoneBehavior : MonoBehaviour
         // firstCard.setNftPic();
         swapGen();
         hlMang.resetTimerBar();
-        hlMang.resetLevelBar();
     }
 
     public void phoneBuy(){
@@ -87,6 +88,15 @@ public class phoneBehavior : MonoBehaviour
         swapGen();
         hlMang.resetTimerBar();
         hlMang.levelIncrease();
+    }
+
+    public void setDuration(float newDuration){
+        firstCard.duration = newDuration;
+        secondCard.duration = newDuration;
+    }
+
+    public float getDuration(){
+        return firstCard.duration;
     }
 
     IEnumerator showAndHide(GameObject obj)
