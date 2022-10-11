@@ -14,7 +14,7 @@ public class HypeLevelManager : MonoBehaviour
     private float currTime;
 
     public float levelCap = 100f;
-    public float timeCap = 5f;
+    public float timeCap = 7f;
 
     public float incPerBuy = 5f;
     public float feverTime = 3f;
