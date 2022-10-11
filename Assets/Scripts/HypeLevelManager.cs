@@ -17,8 +17,8 @@ public class HypeLevelManager : MonoBehaviour
     public float timeCap = 5f;
 
     public float incPerBuy = 5f;
-    public float feverTime = 5f;
-    public float feverCD = 10f;
+    public float feverTime = 3f;
+    public float feverCD = 5f;
     public bool isCD = false;
 
     public float decPerSec = 1f;
@@ -46,16 +46,11 @@ public class HypeLevelManager : MonoBehaviour
         currTime -= Time.deltaTime;
         if(currTime<=0){
             resetTimerBar();
+            resetLevelBar();
             phone.phonePass();
         }
         setTimerBar();
         if(currLevel>=levelCap) StartCoroutine(feverMode());
-        // if(currLevel <= 0){
-        //     GameOverMenu.SetActive(true);
-        //     enabled = false;
-        //     phone.disablePhone();
-        //     StaticAnalytics.toJson();
-        // }
     }
 
     public void setLevelBar(){
@@ -88,6 +83,8 @@ public class HypeLevelManager : MonoBehaviour
 
     IEnumerator feverMode(){
         isCD = true;
+        float ogDuration = phone.getDuration();
+        phone.setDuration(ogDuration/4);
         float time = 0;
         while(time<feverTime){
             time += Time.deltaTime;
@@ -95,6 +92,7 @@ public class HypeLevelManager : MonoBehaviour
             setLevelBar();
             yield return null;
         }
+        phone.setDuration(ogDuration);
         yield return new WaitForSeconds(feverCD);
         isCD = false;
     }

@@ -151,11 +151,11 @@ public class PriceManager : MonoBehaviour
             total += 1;
         }
 
-        if (futureTrendingHatPos == currentNft.imagePics[3]) {
+        if (futureTrendingHatPos == currentNft.imagePics[2]) {
             total += 1;
         }
 
-        if (futureTrendingBodyPos == currentNft.imagePics[2]) {
+        if (futureTrendingBodyPos == currentNft.imagePics[3]) {
             total += 1;
         }
         return total / 3.00;
@@ -170,11 +170,11 @@ public class PriceManager : MonoBehaviour
             total += 1;
         }
 
-        if (futureTrendingHatNeg == currentNft.imagePics[3]) {
+        if (futureTrendingHatNeg == currentNft.imagePics[2]) {
             total += 1;
         }
 
-        if (futureTrendingBodyNeg == currentNft.imagePics[2]) {
+        if (futureTrendingBodyNeg == currentNft.imagePics[3]) {
             total += 1;
         }
         return total / 3.00;
