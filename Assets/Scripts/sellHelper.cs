@@ -22,6 +22,8 @@ public class sellHelper : MonoBehaviour
     public TextMeshProUGUI selectedPortfolioValue;
     public TextMeshProUGUI walletValue;
 
+    public TextMeshProUGUI profitLossText;
+
     // Selected Color: RGB(0,0,0), 150
     public Color selectedColor;
     // Inactive Color: RGB(255,255,255), 60
@@ -281,7 +283,24 @@ public class sellHelper : MonoBehaviour
         }
         
         UpdateNftsToSell();
+        setProfitLossText();
+    }
 
+    void setProfitLossText() {
+
+        double costPrice = PriceManager.getBuyPricePortfolioValueFromList(toSellNFTIds);
+        double sellPrice = PriceManager.getSelectedPortfolioValue(toSellNFTIds);
+
+        if(sellPrice > costPrice) {
+            profitLossText.text = String.Format("Profit ${0:0.##}", sellPrice - costPrice);
+            profitLossText.color = Color.green;
+        } else if(sellPrice < costPrice) {
+            profitLossText.text = String.Format("Loss ${0:0.##}", costPrice - sellPrice);
+            profitLossText.color = Color.red;
+        } else {
+            profitLossText.text = "";
+        }
+        
     }
 
     void setTotalNumNFTsOwned() {
