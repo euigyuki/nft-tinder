@@ -24,6 +24,13 @@ public class NftPriceDisplay : MonoBehaviour
     }
 
     void setNftPrice() {
-        Price.text = "$" + PriceManager.getCurrentNftPrice();
+        if (!PriceManager.offerDiscount) {
+            // Price.text = "$" + PriceManager.getCurrentNftPrice();
+            Price.text = String.Format("${0:0.##}", PriceManager.getCurrentNftPrice());
+        }
+        else {
+            // Price.text = "$" + PriceManager.getCurrentNftPrice() + " (-20%)";
+            Price.text = String.Format("${0:0.##} (-20%)", PriceManager.getCurrentNftPrice());
+        }
     }
 }

@@ -20,6 +20,8 @@ public class PriceManager : MonoBehaviour
     public static int currentNftIdx = 0;
     public static bool jsonLoaded = false;
     public static int currentDay = 0;
+    
+    public static bool offerDiscount = false;
 
     public static PriceManager instance {get; private set;}
     public static HashSet<string> nftsOwned = new HashSet<string>();
@@ -233,6 +235,9 @@ public class PriceManager : MonoBehaviour
 
     static double getNftPrice(string nftId) {
         Nft nft = nftsDict[nftId];
+        if (offerDiscount) {
+            return nft.price * 0.8;
+        }
         return nft.price;
     }
 
@@ -363,7 +368,7 @@ public class PriceManager : MonoBehaviour
                 foreach (string nftId in faceNftMapper[category]) {
                     double currentNftPrice = nftsDict[nftId].price;
                     string tempString = String.Format("Nft: {0} previous price: {1}", nftId, currentNftPrice);
-                    Debug.Log(tempString);
+                    // Debug.Log(tempString);
                     double priceIncFactor = getPriceIncFactor(nftId);
                     if (operation == "+") {
                         currentNftPrice += (currentNftPrice * priceIncFactor);
@@ -373,7 +378,7 @@ public class PriceManager : MonoBehaviour
                     }
                     nftsDict[nftId].price = currentNftPrice;
                     tempString = String.Format("Nft: {0} AFTER price: {1}", nftId, currentNftPrice);
-                    Debug.Log(tempString);
+                    // Debug.Log(tempString);
                 }
             }
         }
@@ -382,7 +387,7 @@ public class PriceManager : MonoBehaviour
                 foreach (string nftId in bodyNftMapper[category]) {
                     double currentNftPrice = nftsDict[nftId].price;
                     string tempString = String.Format("Nft: {0} previous price: {1}", nftId, currentNftPrice);
-                    Debug.Log(tempString);
+                    // Debug.Log(tempString);
                     double priceIncFactor = getPriceIncFactor(nftId);
                     if (operation == "+") {
                         currentNftPrice += (currentNftPrice * priceIncFactor);
@@ -392,7 +397,7 @@ public class PriceManager : MonoBehaviour
                     }
                     nftsDict[nftId].price = currentNftPrice;
                     tempString = String.Format("Nft: {0} AFTER price: {1}", nftId, currentNftPrice);
-                    Debug.Log(tempString);
+                    // Debug.Log(tempString);
                 }
             }
         }
@@ -401,7 +406,7 @@ public class PriceManager : MonoBehaviour
                 foreach (string nftId in headNftMapper[category]) {
                     double currentNftPrice = nftsDict[nftId].price;
                     string tempString = String.Format("Nft: {0} previous price: {1}", nftId, currentNftPrice);
-                    Debug.Log(tempString);
+                    // Debug.Log(tempString);
                     double priceIncFactor = getPriceIncFactor(nftId);
                     if (operation == "+") {
                         currentNftPrice += (currentNftPrice * priceIncFactor);
@@ -411,7 +416,7 @@ public class PriceManager : MonoBehaviour
                     }
                     nftsDict[nftId].price = currentNftPrice;
                     tempString = String.Format("Nft: {0} AFTER price: {1}", nftId, currentNftPrice);
-                    Debug.Log(tempString);
+                    // Debug.Log(tempString);
                 }
             }
         }
@@ -595,7 +600,7 @@ public class PriceManager : MonoBehaviour
     static double getPriceIncFactor(string nftId) {
         // Can implement changes to how the factor to increase the prices
         double factor = Random.Range(5, 100);
-        Debug.Log("Helooooo: " + factor / 100.0);
+        // Debug.Log("Helooooo: " + factor / 100.0);
         return factor / 100.0;
     }
 

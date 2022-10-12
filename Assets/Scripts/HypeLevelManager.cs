@@ -86,12 +86,14 @@ public class HypeLevelManager : MonoBehaviour
         float ogDuration = phone.getDuration();
         phone.setDuration(ogDuration/4);
         float time = 0;
+        PriceManager.offerDiscount = true;
         while(time<feverTime){
             time += Time.deltaTime;
             currLevel  = Mathf.SmoothStep(levelCap,0,time/feverTime);
             setLevelBar();
             yield return null;
         }
+        PriceManager.offerDiscount = false;
         phone.setDuration(ogDuration);
         yield return new WaitForSeconds(feverCD);
         isCD = false;

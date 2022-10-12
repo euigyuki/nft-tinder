@@ -23,6 +23,8 @@ public class DisplayMoney : MonoBehaviour
     }
 
     void setMoneyValue() {
-         Money.text = "Money: $" + PriceManager.walletValue;
+        //  Money.text = "Money: $" + PriceManager.walletValue;
+         
+         Money.text = String.Format("Money: ${0:0.##}", PriceManager.walletValue);
     }
 }
