@@ -15,7 +15,7 @@ public class PriceManager : MonoBehaviour
     // public TextMeshProUGUI Price;
 
     public static int price = 2;
-    public static double walletValue = 30000;
+    public static double walletValue = 10000;
     public static double portfolioValue = 0;
     public static int currentNftIdx = 0;
     public static bool jsonLoaded = false;
@@ -60,22 +60,22 @@ public class PriceManager : MonoBehaviour
     private void Awake() {
         // Debug.Log("In Awake for PriceManager");
 
-        if (instance == null) {
-            Debug.Log("Assigning to new instance");
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else {
-            Debug.Log("Destroying instance");
-            Destroy(gameObject);
-            // Destroy(this.NftsOwnedUiText)
-        }
+        // if (instance == null) {
+        //     Debug.Log("Assigning to new instance");
+        //     instance = this;
+        //     DontDestroyOnLoad(gameObject);
+        // }
+        // else {
+        //     Debug.Log("Destroying instance");
+        //     Destroy(gameObject);
+        //     // Destroy(this.NftsOwnedUiText)
+        // }
 
-        // All the steps needed for each day/level
-        populateFromJson();
-        pickNftsToShow();
-        changePrice();
-        currentNftIdx = 0;
+        // // All the steps needed for each day/level
+        // populateFromJson();
+        // pickNftsToShow();
+        // changePrice();
+        // currentNftIdx = 0;
     }
 
     void Start() {
@@ -84,7 +84,7 @@ public class PriceManager : MonoBehaviour
 
     public static void resetEverything() {
         price = 2;
-        walletValue = 30000;
+        walletValue = 10000;
         portfolioValue = 0;
         currentNftIdx = 0;
         // jsonLoaded = false;
@@ -187,7 +187,7 @@ public class PriceManager : MonoBehaviour
     }
 
     public static void setUp() {
-        Debug.Log("Starting now!");
+        Debug.Log("SetUp called now!");
         currentDay += 1;
         populateFromJson();
         pickNftsToShow();
@@ -296,8 +296,6 @@ public class PriceManager : MonoBehaviour
         double nftPrice = currentNft.price;
         // Debug.Log("Buying the nft: " + nftId);
         // TODO: Uncomment Weyei code once confirming that the scene is the latest one
-        // RectTransform transform = MoneyBar.instance.picture;
-        // transform.anchoredPosition =  new Vector2(transform.anchoredPosition.x - (float)(nftPrice/30000) *0.489f, transform.anchoredPosition.y);
         if (walletValue - nftPrice < 0) {
             Debug.Log("Not enough money to buy Nft");
             return;
@@ -306,7 +304,9 @@ public class PriceManager : MonoBehaviour
         nftsOwned.Add(nftId);
         walletValue -= nftPrice;
         portfolioValue += nftPrice;
-
+        // RectTransform transform = MoneyBar.instance.picture;
+        // transform.anchoredPosition =  new Vector2(transform.anchoredPosition.x - (float)(walletValue/6000), transform.anchoredPosition.y);
+        
         if (nftsBuyPrice.ContainsKey(nftId)) {
             nftsBuyPrice[nftId] = nftPrice;
         }
@@ -606,6 +606,9 @@ public class PriceManager : MonoBehaviour
 
     static void pickNftsToShow() {
         // Debug.Log("Entering pickNftsToShow");
+        if (nftsToShow.Count > 0) {
+            return;
+        }
         int pickedNftsCount = 0;
         HashSet<string> nftsPickedSet = new HashSet<string>();
         int totalNftCount = nftsList.nfts.Length;
@@ -716,8 +719,8 @@ public class PriceManager : MonoBehaviour
     }
 
     public static void passNft() {
-        Debug.Log("Buy prob: " + buyProb().ToString());
-        Debug.Log("Sell prob: " + sellProb().ToString());
+        // Debug.Log("Buy prob: " + buyProb().ToString());
+        // Debug.Log("Sell prob: " + sellProb().ToString());
         Nft nextNftToShow = getNextNftToShow();
     }
 
