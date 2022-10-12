@@ -80,10 +80,10 @@ public class phoneBehavior : MonoBehaviour
         // PriceManager.instance.SubstractMoney();
         // PriceManager.instance.buyNft();
         // generator.randomGen();
-        mb.ShowMoney();
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         StaticAnalytics.rightPressIncrement();
         PriceManager.buyNft();
+        mb.ShowMoney();
 
         firstCard.swipe(false);
         if(PriceManager.sellProb()>0.4f){
