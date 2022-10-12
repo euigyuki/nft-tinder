@@ -64,9 +64,9 @@ public class phoneBehavior : MonoBehaviour
         PriceManager.passNft();
         
         firstCard.swipe(true);
-        // if(PriceManager.buyProb()>0.4f){
-        //     bot.BotBuy();
-        // }
+        if(PriceManager.buyProb()>0.4f){
+            bot.BotBuy();
+        }
         secondCard.setNftPic();
         secondCard.moveCard();
         
@@ -86,9 +86,9 @@ public class phoneBehavior : MonoBehaviour
         PriceManager.buyNft();
 
         firstCard.swipe(false);
-        // if(PriceManager.sellProb()>0.4f){
-        //     bot.BotPass();
-        // }
+        if(PriceManager.sellProb()>0.4f){
+            bot.BotPass();
+        }
         secondCard.setNftPic();
         secondCard.moveCard();
         
