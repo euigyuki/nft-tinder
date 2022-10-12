@@ -26,7 +26,8 @@ public class GameOverMenuDemo : MonoBehaviour
     public void RestartGame() {
         Debug.Log("Restart Button Clicked");
         PriceManager.resetEverything();
-        SceneManager.LoadScene("trending");
+        phoneBehavior.setCount = 0;
+        SceneManager.LoadScene("trendingDerrick");
     }
 
     public void QuitGame() {
