@@ -12,6 +12,8 @@ public class phoneBehavior : MonoBehaviour
 
     [SerializeField] HypeLevelManager hlMang;
 
+    [SerializeField] BotManager bot; 
+
     [SerializeField] nftGenerator firstCard;
     [SerializeField] nftGenerator secondCard;
 
@@ -62,6 +64,9 @@ public class phoneBehavior : MonoBehaviour
         PriceManager.passNft();
         
         firstCard.swipe(true);
+        if(PriceManager.buyProb()>0.4f){
+            bot.BotBuy();
+        }
         secondCard.setNftPic();
         secondCard.moveCard();
         
@@ -81,6 +86,9 @@ public class phoneBehavior : MonoBehaviour
         PriceManager.buyNft();
 
         firstCard.swipe(false);
+        if(PriceManager.sellProb()>0.4f){
+            bot.BotPass();
+        }
         secondCard.setNftPic();
         secondCard.moveCard();
         
@@ -93,6 +101,7 @@ public class phoneBehavior : MonoBehaviour
     public void setDuration(float newDuration){
         firstCard.duration = newDuration;
         secondCard.duration = newDuration;
+        bot.duration = newDuration;
     }
 
     public float getDuration(){
