@@ -20,8 +20,8 @@ public class TimerDemo : MonoBehaviour
             Scene scene = SceneManager.GetActiveScene();
             Debug.Log(scene.name);
             if(scene.name == "trendingDerrick") {
-                SceneManager.LoadScene("SellUpdate");
-            } else if(scene.name == "SellUpdate"){
+                SceneManager.LoadScene("SellCardUpdate");
+            } else if(scene.name == "SellCardUpdate"){
                 sellHelper.pushSellStats();
                 if(PriceManager.currentDay==3){
                     StaticAnalytics.toJson();

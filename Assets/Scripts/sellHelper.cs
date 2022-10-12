@@ -13,6 +13,10 @@ public class sellHelper : MonoBehaviour
     public Button[] hats = new Button[4];
     public Button[] bodies = new Button[4];
 
+    public sellCard[] faceCards = new sellCard[4];
+    public sellCard[] hatCards = new sellCard[4];
+    public sellCard[] bodyCards = new sellCard[4];
+
     public Button sellButton;
     public Button sellAllButton;
 
@@ -24,8 +28,13 @@ public class sellHelper : MonoBehaviour
 
     public TextMeshProUGUI profitLossText;
 
+    
+    public Texture checkMark;
+
     // Selected Color: RGB(0,0,0), 150
     public Color selectedColor;
+    public Color goodColor;
+    public Color badColor;
     // Inactive Color: RGB(255,255,255), 60
     // public Color inactiveColor;
 
@@ -99,6 +108,12 @@ public class sellHelper : MonoBehaviour
         sellButton.onClick.AddListener(SellSelectedNFTs);
         sellAllButton.onClick.AddListener(SellAllNFTs);
 
+        for(int i=0;i<4;i++) {
+            faceCards[i].checkMarkImg.texture = null;
+            hatCards[i].checkMarkImg.texture = null;
+            bodyCards[i].checkMarkImg.texture = null;
+        }
+
     }
 
     public static void pushSellStats() {
@@ -160,14 +175,19 @@ public class sellHelper : MonoBehaviour
             
             if(faceIdMap[i].Count == 0) {
                 faces[i].GetComponent<Button>().interactable = false;
+                faceCards[i].background.color = Color.gray;
             }
             if(hatIdMap[i].Count == 0) {
                 hats[i].GetComponent<Button>().interactable = false;
+                hatCards[i].background.color = Color.gray;
             }
             if(bodyIdMap[i].Count == 0) {
                 bodies[i].GetComponent<Button>().interactable = false;
+                bodyCards[i].background.color = Color.gray;
             }
         }
+
+        refreshCards();
 
     }
 
@@ -261,29 +281,119 @@ public class sellHelper : MonoBehaviour
         if(type.Equals("face")) {
             faceSelected[k] = !faceSelected[k];
             if(faceSelected[k]) {
-                faces[k].GetComponent<Image>().color = selectedColor;
+                faceCards[k].checkMarkImg.texture = checkMark;
             }
             else {
-                faces[k].GetComponent<Image>().color = Color.white;
+                faceCards[k].checkMarkImg.texture = null;
             }
         } else if(type.Equals("hat")) {
             hatSelected[k] = !hatSelected[k];
             if(hatSelected[k]){
-                hats[k].GetComponent<Image>().color = selectedColor;
+                hatCards[k].checkMarkImg.texture = checkMark;
             } else {
-                hats[k].GetComponent<Image>().color = Color.white;
+                hatCards[k].checkMarkImg.texture = null;
             }
         } else if(type.Equals("body")) {
             bodySelected[k] = !bodySelected[k];
             if(bodySelected[k]){
-                bodies[k].GetComponent<Image>().color = selectedColor;
+                bodyCards[k].checkMarkImg.texture = checkMark;
             } else {
-                bodies[k].GetComponent<Image>().color = Color.white;
+                bodyCards[k].checkMarkImg.texture = null;
             }
         }
         
         UpdateNftsToSell();
         setProfitLossText();
+
+    }
+
+    int checkForProfit(List<string> nftIds) {
+        double costPrice = PriceManager.getBuyPricePortfolioValueFromList(nftIds);
+        double sellPrice = PriceManager.getSelectedPortfolioValue(nftIds);
+
+        if((sellPrice - costPrice) > 0) {
+            return 1;
+        } else if((sellPrice - costPrice) < 0) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    void refreshCards() {
+
+        for(int i=0;i<4;i++) {
+
+            // Debug.Log("Index: " + i);
+
+            // Card Background color check
+            int faceProfitStatus = checkForProfit(faceIdMap[i]);
+            if(faceProfitStatus == 1) {
+                faceCards[i].background.color = goodColor;
+            } else if(faceProfitStatus == -1) {
+                faceCards[i].background.color = badColor;
+            } else {
+                faceCards[i].background.color = Color.white;
+            }
+            // Card Background color check
+            int hatProfitStatus = checkForProfit(hatIdMap[i]);
+            if(hatProfitStatus == 1) {
+                hatCards[i].background.color = goodColor;
+            } else if(hatProfitStatus == -1) {
+                hatCards[i].background.color = badColor;
+            } else {
+                hatCards[i].background.color = Color.white;
+            }
+            // Card Background color check
+            int bodyProfitStatus = checkForProfit(bodyIdMap[i]);
+            if(bodyProfitStatus == 1) {
+                bodyCards[i].background.color = goodColor;
+            } else if(bodyProfitStatus == -1) {
+                bodyCards[i].background.color = badColor;
+            } else {
+                bodyCards[i].background.color = Color.white;
+            }
+
+            faceCards[i].nftCount.text = "" + faceIdMap[i].Count;
+            hatCards[i].nftCount.text = "" + hatIdMap[i].Count;
+            bodyCards[i].nftCount.text = "" + bodyIdMap[i].Count;
+
+            // Debug.Log(faceIdMap[i].Count);
+            // Debug.Log(hatIdMap[i].Count);
+            // Debug.Log(bodyIdMap[i].Count);
+
+            double faceNftsPrice = 0;
+            double hatNftsPrice = 0;
+            double bodyNftsPrice = 0;
+
+            foreach (string nftID in faceIdMap[i]) {
+                faceNftsPrice += nftDict[nftID].price;
+            }
+            faceCards[i].nftsTotalPrice.text = String.Format("${0:0.##}", faceNftsPrice);
+
+            foreach (string nftID in hatIdMap[i]) {
+                hatNftsPrice += nftDict[nftID].price;
+            }
+            hatCards[i].nftsTotalPrice.text = String.Format("${0:0.##}", hatNftsPrice);
+
+            foreach (string nftID in bodyIdMap[i]) {
+                bodyNftsPrice += nftDict[nftID].price;
+            }
+            bodyCards[i].nftsTotalPrice.text = String.Format("${0:0.##}", bodyNftsPrice);
+
+        }
+
+
+        // face1Card.nftCount.text = "" + faceIdMap[0].Count;
+        // double nftsPrice = 0;
+        // foreach (string nftID in faceIdMap[0]) {
+        //     nftsPrice += nftDict[nftID].price;
+        // }
+
+        // face1Card.nftsTotalPrice.text = String.Format("${0:0.##}", nftsPrice);
+        // // Green
+        // face1Card.background.color = goodColor;
+        // face1Card.background.color = Color.green;
     }
 
     void setProfitLossText() {
@@ -323,4 +433,15 @@ public class sellHelper : MonoBehaviour
         walletValue.text = String.Format("{0:0.##}", PriceManager.walletValue);
     }
 
+}
+
+[System.Serializable]
+public class sellCard {
+    public TextMeshProUGUI nftCount;
+    public TextMeshProUGUI nftsTotalPrice;
+    public RawImage imagePart;
+    public RawImage background;
+    public RawImage checkMarkImg;
+    public bool selected;
+    // public Texture[] imageTextures = new Texture[4];
 }
