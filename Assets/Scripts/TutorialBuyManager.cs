@@ -24,6 +24,7 @@ public class TutorialBuyManager : MonoBehaviour
     public Vector3 upPos;
 
     public TextMeshProUGUI dialogueText;
+    public TextAsset asset;
     public String[] dialogues;
     public GameObject dialogueBox;
     public TextMeshProUGUI popUpText;
@@ -60,7 +61,7 @@ public class TutorialBuyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogues = System.IO.File.ReadAllLines("./Assets/Scripts/resources/tutorialBuyScript.txt");
+        dialogues = asset.text.Split('\n');
         changeDialogue(index++);
         recommender.value = 0;
         price = Random.Range(10,100);
