@@ -9,7 +9,6 @@ public class phoneBehavior : MonoBehaviour
     public GameObject pass;
     public int fadeTime;
     public static int setCount = 0;
-    public static phoneBehavior instance;
     [SerializeField] HypeLevelManager hlMang;
 
     [SerializeField] BotManager bot; 
@@ -26,7 +25,6 @@ public class phoneBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
         timer = FindObjectOfType<Timer>();
         buy.SetActive(false);
         pass.SetActive(false);
