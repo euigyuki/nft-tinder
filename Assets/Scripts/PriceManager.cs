@@ -160,7 +160,7 @@ public class PriceManager : MonoBehaviour
         if (futureTrendingBodyPos == currentNft.imagePics[3]) {
             total += 1;
         }
-        return total / 3.00;
+        return total / Math.Min(currentDay, 3.00);
     }
 
     public static double sellProb() {
@@ -369,11 +369,13 @@ public class PriceManager : MonoBehaviour
                     double currentNftPrice = nftsDict[nftId].price;
                     string tempString = String.Format("Nft: {0} previous price: {1}", nftId, currentNftPrice);
                     // Debug.Log(tempString);
-                    double priceIncFactor = getPriceIncFactor(nftId);
+                    double priceIncFactor;
                     if (operation == "+") {
+                        priceIncFactor = getPriceIncFactor(nftId, "+");
                         currentNftPrice += (currentNftPrice * priceIncFactor);
                     }
                     else {
+                        priceIncFactor = getPriceIncFactor(nftId, "-");
                         currentNftPrice = currentNftPrice * priceIncFactor;
                     }
                     nftsDict[nftId].price = currentNftPrice;
@@ -388,11 +390,13 @@ public class PriceManager : MonoBehaviour
                     double currentNftPrice = nftsDict[nftId].price;
                     string tempString = String.Format("Nft: {0} previous price: {1}", nftId, currentNftPrice);
                     // Debug.Log(tempString);
-                    double priceIncFactor = getPriceIncFactor(nftId);
+                    double priceIncFactor;
                     if (operation == "+") {
+                        priceIncFactor = getPriceIncFactor(nftId, "+");
                         currentNftPrice += (currentNftPrice * priceIncFactor);
                     }
                     else {
+                        priceIncFactor = getPriceIncFactor(nftId, "-");
                         currentNftPrice = currentNftPrice * priceIncFactor;
                     }
                     nftsDict[nftId].price = currentNftPrice;
@@ -407,11 +411,13 @@ public class PriceManager : MonoBehaviour
                     double currentNftPrice = nftsDict[nftId].price;
                     string tempString = String.Format("Nft: {0} previous price: {1}", nftId, currentNftPrice);
                     // Debug.Log(tempString);
-                    double priceIncFactor = getPriceIncFactor(nftId);
+                    double priceIncFactor;
                     if (operation == "+") {
+                        priceIncFactor = getPriceIncFactor(nftId, "+");
                         currentNftPrice += (currentNftPrice * priceIncFactor);
                     }
                     else {
+                        priceIncFactor = getPriceIncFactor(nftId, "-");
                         currentNftPrice = currentNftPrice * priceIncFactor;
                     }
                     nftsDict[nftId].price = currentNftPrice;
@@ -489,16 +495,31 @@ public class PriceManager : MonoBehaviour
             prevFutureTrendingHatNeg.Add(futureTrendingHatNeg);
         }
         
-        futureTrendingFacePos = randomFacePosIdx;
-        futureTrendingFaceNeg = randomFaceNegIdx;
+        if (currentDay >= 1) {
+            futureTrendingFacePos = randomFacePosIdx;
+            futureTrendingFaceNeg = randomFaceNegIdx;
+        }
 
-        futureTrendingBodyPos = randomBodyPosIdx;
-        futureTrendingBodyNeg = randomBodyNegIdx;
+        if (currentDay >= 2) {
+            futureTrendingBodyPos = randomBodyPosIdx;
+            futureTrendingBodyNeg = randomBodyNegIdx;
+        }
 
-        futureTrendingHatPos = randomHatPosIdx;
-        futureTrendingHatNeg = randomHatNegIdx;
-
-        int incPriceFor = Random.Range(0, 2);
+        if (currentDay >= 3) {
+            futureTrendingHatPos = randomHatPosIdx;
+            futureTrendingHatNeg = randomHatNegIdx;
+        }
+        int incPriceFor;
+        if (currentDay <= 1) {
+            incPriceFor = 0;
+        }
+        else if (currentDay <= 2) {
+            incPriceFor = Random.Range(0, 1);
+        }
+        else {
+            incPriceFor = Random.Range(0, 2);
+        }
+        // int incPriceFor = Random.Range(0, 2);
 
         if (incPriceFor == 0) {
             // inc for face
@@ -534,11 +555,21 @@ public class PriceManager : MonoBehaviour
             }
         }
 
-        int decPriceFor = Random.Range(0, 2);
-
-        while (incPriceFor == decPriceFor) {
+        int decPriceFor;
+        if (currentDay <= 1) {
+            decPriceFor = 0;
+        }
+        else if (currentDay <= 2) {
+            decPriceFor = Random.Range(0, 1);
+        }
+        else {
             decPriceFor = Random.Range(0, 2);
         }
+        // int decPriceFor = Random.Range(0, 2);
+
+        // while (incPriceFor == decPriceFor) {
+        //     decPriceFor = Random.Range(0, 2);
+        // }
 
         if (decPriceFor == 0) {
             // inc for face
@@ -597,9 +628,16 @@ public class PriceManager : MonoBehaviour
     }
 
 
-    static double getPriceIncFactor(string nftId) {
+    static double getPriceIncFactor(string nftId, string operation) {
+
         // Can implement changes to how the factor to increase the prices
-        double factor = Random.Range(5, 100);
+        double factor;
+        if (operation == "-") {
+            factor = Random.Range(5, 100);
+        }
+        else {
+            factor = Random.Range(5, 1000);
+        }
         // Debug.Log("Helooooo: " + factor / 100.0);
         return factor / 100.0;
     }
