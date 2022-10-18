@@ -11,19 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/working scenes/tutorial.unity
     guid: 38a20059def874f1f8f9df2a43e4f882
-  - enabled: 0
-    path: Assets/Scenes/trending.unity
-    guid: 23cfa3f8812194bb983023f1d48b40c9
-  - enabled: 0
-    path: Assets/Scenes/sell2.unity
-    guid: 6fad71143670f4894b30fcb5f5006d28
-  - enabled: 0
-    path: Assets/Scenes/trendingSurili.unity
-    guid: cf10561f0b48f46488913ca6b225993b
   - enabled: 1
     path: Assets/Scenes/working scenes/trendingDerrick.unity
     guid: b1a8afa8714d241129844004a248d2d0
   - enabled: 1
-    path: Assets/Scenes/working scenes/SellUpdate.unity
-    guid: be0e554000c384288aba94e6fdc1fe9e
+    path: Assets/Scenes/SellCardUpdate.unity
+    guid: aa2df45d6e6724ebb9c65dec1c342e5e
   m_configObjects: {}
