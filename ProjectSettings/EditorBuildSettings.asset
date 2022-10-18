@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/trendingSurili.unity
     guid: cf10561f0b48f46488913ca6b225993b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/working scenes/trendingDerrick.unity
     guid: b1a8afa8714d241129844004a248d2d0
   - enabled: 0
@@ -32,8 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/sellSummary.unity
     guid: 059bed9180f36469e8f5047aa8455a8d
-    path: Assets/Scenes/Tutorial/NewTutorialSell.unity
-    guid: a1b3b36af1b3d4fc480660a688211ad7
   - enabled: 1
     path: Assets/Scenes/Tutorial/NewTutorialBuy.unity
     guid: b37c63949ca034375ab4f9947c86c555

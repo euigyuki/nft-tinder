@@ -28,7 +28,6 @@ public class TimerDemo : MonoBehaviour
                     GameOverMenu.SetActive(true);
                 }
                 else {
-                    // TODO: Add intermediate scene here
                     SceneManager.LoadScene("sellSummary");
                     // SceneManager.LoadScene("trendingDerrick");
                 }
