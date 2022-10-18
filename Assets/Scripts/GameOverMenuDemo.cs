@@ -45,16 +45,16 @@ public class GameOverMenuDemo : MonoBehaviour
         Application.Quit();
     }
      void setScoreText() {
-        Debug.Log("Money"+PriceManager.walletValue);
+        // Debug.Log("Money"+PriceManager.walletValue);
         profit = PriceManager.walletValue-5000;
         if(profit>0)
         {
-            Debug.Log("Positive profit" + profit);
+            // Debug.Log("Positive profit" + profit);
             textMesh.text="Congratulations you have made an overall profit of " + string.Format("{0:0.##}", profit + " $");
         }
         else
         {
-            Debug.Log("Negative loss" + Math.Abs(profit));
+            // Debug.Log("Negative loss" + Math.Abs(profit));
             textMesh.text="So Sorry you have encurred an overall loss of " + string.Format("{0:0.##}",  Math.Abs(profit) + " $");
 
         }

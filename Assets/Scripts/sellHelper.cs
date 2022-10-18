@@ -122,7 +122,9 @@ public class sellHelper : MonoBehaviour
         // Debug.Log("Positive Sells Count: " + posSells);
         // Debug.Log("Negative Sells Count: " + negSells);
         // Debug.Log("Total Sells Count: " + totalSells);
+        Debug.Log("sellHelper pushingSellStats");
         StaticAnalytics.postEachLevelSellData(totalSells, posSells, negSells);
+        StaticAnalytics.toJson();
     }
 
     // Update is called once per frame
@@ -207,7 +209,7 @@ public class sellHelper : MonoBehaviour
             }
         }
 
-        totalProfitLoss += getProfitLossValue();
+        totalProfitLoss += getProfitLossValue(nftsOwned);
 
         PriceManager.sellNftsFromList(nftsOwned);
         nftsOwned = PriceManager.getNftsOwnedAsList();
@@ -240,7 +242,7 @@ public class sellHelper : MonoBehaviour
             }
         }
 
-        totalProfitLoss += getProfitLossValue();
+        totalProfitLoss += getProfitLossValue(toSellNFTIds);
         // Debug.Log(getProfitLossValue());
         // Debug.Log(String.Format("Total Profit or Loss ${0:0.##}", totalProfitLoss));
 
@@ -406,7 +408,7 @@ public class sellHelper : MonoBehaviour
         // face1Card.background.color = Color.green;
     }
 
-    double getProfitLossValue() {
+    double getProfitLossValue(List<string> toSellNFTIds) {
         double costPrice = PriceManager.getBuyPricePortfolioValueFromList(toSellNFTIds);
         double sellPrice = PriceManager.getSelectedPortfolioValue(toSellNFTIds);
 
@@ -419,7 +421,7 @@ public class sellHelper : MonoBehaviour
         double costPrice = PriceManager.getBuyPricePortfolioValueFromList(toSellNFTIds);
         double sellPrice = PriceManager.getSelectedPortfolioValue(toSellNFTIds);
 
-        double profitLossValue = getProfitLossValue();
+        double profitLossValue = getProfitLossValue(toSellNFTIds);
 
         if(profitLossValue > 0) {
             profitLossText.text = String.Format("Profit ${0:0.##}", profitLossValue);
