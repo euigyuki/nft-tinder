@@ -16,7 +16,7 @@ public class phoneBehavior : MonoBehaviour
     [SerializeField] nftGenerator firstCard;
     [SerializeField] nftGenerator secondCard;
 
-    [SerializeField] MoneyBar mb;
+    // [SerializeField] MoneyBar mb;
 
     private Timer timer;
 
@@ -89,7 +89,7 @@ public class phoneBehavior : MonoBehaviour
             bot.BotPass();
         }
         PriceManager.buyNft();
-        mb.ShowMoney();
+        // mb.ShowMoney();
 
         firstCard.swipe(false);
         secondCard.setNftPic();

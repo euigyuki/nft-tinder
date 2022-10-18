@@ -19,9 +19,9 @@ public class TimerDemo : MonoBehaviour
             Debug.Log("Timer 1 ended");
             Scene scene = SceneManager.GetActiveScene();
             Debug.Log(scene.name);
-            if(scene.name == "trendingDerrick") {
-                SceneManager.LoadScene("SellCardUpdate");
-            } else if(scene.name == "SellCardUpdate"){
+            if(scene.name == "MidtermBuyPage") {
+                SceneManager.LoadScene("MidtermSellPage");
+            } else if(scene.name == "MidtermSellPage"){
                 sellHelper.pushSellStats();
                 if(PriceManager.currentDay==6){
                     StaticAnalytics.toJson();
