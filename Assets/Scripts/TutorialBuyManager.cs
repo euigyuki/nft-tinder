@@ -13,7 +13,7 @@ public class TutorialBuyManager : MonoBehaviour
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI priceText;
 
-    private double money = 3000;
+    private double money = 5000;
     private double price;
 
     public GameObject[] arrows = new GameObject[5];
@@ -80,16 +80,16 @@ public class TutorialBuyManager : MonoBehaviour
         showMoney();
         showPrice();
         if(Input.GetMouseButtonDown(0) || Input.GetKeyDown("return") || Input.GetKeyDown("space") && !isWaiting ){
-            if(new []{4, 6, 11, 14, 17}.Contains(index)){
+            if(new []{5, 7, 12, 15, 18}.Contains(index)){
                 paused = true;
                 green.enabled = true;
                 red.enabled =true;
                 dialogueBox.SetActive(false);
                 hideArrows();
-                if(index == 17) StartCoroutine(feverMode());
+                if(index == 18) StartCoroutine(feverMode());
             }
-            if(index == 20) SceneManager.LoadScene("NewTutorialSell");
-            if(!paused) changeDialogue(index++ %dialogues.Length);
+            if(index == 21) SceneManager.LoadScene("NewTutorialSell");
+            if(!paused && index!=21) changeDialogue(index++ %dialogues.Length);
         }
 
         if(Input.GetKeyDown("right")){
@@ -113,20 +113,23 @@ public class TutorialBuyManager : MonoBehaviour
         dialogueText.text = dialogues[index];
         dialogueBox.transform.position = downPos;
         hideArrows();
-        if(new []{8, 9, 10}.Contains(index)){
+        if(index == 3){
+            showArrow(5);
+        }
+        if(new []{9, 10, 11}.Contains(index)){
             showArrow(0);
             showArrow(1);
             dialogueBox.transform.position = upPos;
-        }else if(new []{11, 12, 13}.Contains(index)){
+        }else if(new []{12, 13, 14}.Contains(index)){
             showArrow(2);
             dialogueBox.transform.position = upPos;
-        }else if(new []{14, 15, 16}.Contains(index)){
+        }else if(new []{15, 16, 17}.Contains(index)){
             showArrow(3);
-        }else if(index == 18){
+        }else if(index == 19){
             showArrow(4);
             dialogueBox.transform.position = upPos;
             timer = true;
-        }else if(index>18){
+        }else if(index>19){
             timer = false;
             resetTimerBar();
             setTimerBar();
@@ -136,7 +139,7 @@ public class TutorialBuyManager : MonoBehaviour
     public void buy(){
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         if(isWaiting || !paused) return;
-        if(index == 6){
+        if(index == 7){
             showPopUp("you should've passed");
             return;
         }
@@ -150,21 +153,21 @@ public class TutorialBuyManager : MonoBehaviour
         randomGenNFT(firstCard);
         price = Random.Range(10,100);
         swapGen();
-        if(index == 4){
+        if(index == 5){
                 showDialogueBox();
         }
-        if(index == 11 || index == 14){
+        if(index == 12 || index == 15){
             if(currRecVal < 0.3f) showPopUp("you should've passed");
             else showPopUp("good job!");
-            if(index==11 && --buyCount <=0) showDialogueBox();
-            if(index==14 && currLevel >99f) showDialogueBox();
+            if(index==12 && --buyCount <=0) showDialogueBox();
+            if(index==15 && currLevel >99f) showDialogueBox();
         }
     }
 
     public void pass(){
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         if(isWaiting || !paused) return;
-        if(index == 4){
+        if(index == 5){
             showPopUp("you should've bought");
             return;
         }
@@ -175,10 +178,10 @@ public class TutorialBuyManager : MonoBehaviour
         randomGenNFT(firstCard);
         price = Random.Range(10,100);
         swapGen();
-        if(index == 6){
+        if(index == 7){
                 showDialogueBox();
         }
-        if(index == 11 || index == 14){
+        if(index == 12 || index == 15){
             if(currRecVal > 0) showPopUp("you should've bought");
             else showPopUp("good job!");
             if(index==11&&buyCount--<=0) showDialogueBox();
