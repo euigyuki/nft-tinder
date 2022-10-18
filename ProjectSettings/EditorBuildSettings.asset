@@ -20,10 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/trendingSurili.unity
     guid: cf10561f0b48f46488913ca6b225993b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/working scenes/trendingDerrick.unity
     guid: b1a8afa8714d241129844004a248d2d0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/working scenes/SellUpdate.unity
     guid: be0e554000c384288aba94e6fdc1fe9e
   - enabled: 1

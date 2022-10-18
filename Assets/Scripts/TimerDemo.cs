@@ -23,7 +23,7 @@ public class TimerDemo : MonoBehaviour
                 SceneManager.LoadScene("SellCardUpdate");
             } else if(scene.name == "SellCardUpdate"){
                 sellHelper.pushSellStats();
-                if(PriceManager.currentDay==3){
+                if(PriceManager.currentDay==6){
                     StaticAnalytics.toJson();
                     GameOverMenu.SetActive(true);
                 }
