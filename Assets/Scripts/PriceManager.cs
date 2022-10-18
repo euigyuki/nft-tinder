@@ -13,9 +13,8 @@ public class PriceManager : MonoBehaviour
     
     // public TextMeshProUGUI Money;
     // public TextMeshProUGUI Price;
-
     public static int price = 2;
-    public static double walletValue = 10000;
+    public static double walletValue = 5000;
     public static double portfolioValue = 0;
     public static int currentNftIdx = 0;
     public static bool jsonLoaded = false;
@@ -53,6 +52,8 @@ public class PriceManager : MonoBehaviour
     public static List<int> prevFutureTrendingBodyNeg = new List<int>();
     public static List<int> prevFutureTrendingHatPos = new List<int>();
     public static List<int> prevFutureTrendingHatNeg = new List<int>();
+
+    
 
     // nfts to show
     public static int totalNftsToPick = 50;
@@ -300,9 +301,16 @@ public class PriceManager : MonoBehaviour
         string nftId = currentNft.nftId;
         double nftPrice = currentNft.price;
         // Debug.Log("Buying the nft: " + nftId);
-        // TODO: Uncomment Weyei code once confirming that the scene is the latest one
+        RectTransform transform = MoneyBar.instance.picture;
+        transform.anchoredPosition =  new Vector2(transform.anchoredPosition.x - (float)(nftPrice/5000) *2.36514f, transform.anchoredPosition.y);
+        GameObject image = PopWindows.instance.image;
+        GameObject button = PopWindows.instance.button;
+        
         if (walletValue - nftPrice < 0) {
             Debug.Log("Not enough money to buy Nft");
+            image.SetActive(true);
+            button.SetActive(true);
+           
             return;
         }
         sendBuyTrendsToFirebase();
