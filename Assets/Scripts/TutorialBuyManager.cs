@@ -6,6 +6,7 @@ using System.Linq;
 using System;
 using TMPro;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class TutorialBuyManager : MonoBehaviour
 {
@@ -87,7 +88,7 @@ public class TutorialBuyManager : MonoBehaviour
                 hideArrows();
                 if(index == 17) StartCoroutine(feverMode());
             }
-            if(index == 20) Debug.Log("move to sell scene");
+            if(index == 20) SceneManager.LoadScene("NewTutorialSell");
             if(!paused) changeDialogue(index++ %dialogues.Length);
         }
 
@@ -150,13 +151,13 @@ public class TutorialBuyManager : MonoBehaviour
         price = Random.Range(10,100);
         swapGen();
         if(index == 4){
-                StartCoroutine(wait(0.5f));
+                showDialogueBox();
         }
         if(index == 11 || index == 14){
             if(currRecVal < 0.3f) showPopUp("you should've passed");
             else showPopUp("good job!");
-            if(index==11 && --buyCount <=0) StartCoroutine(wait(0.2f));
-            if(index==14 && currLevel >99f) StartCoroutine(wait(0.2f));
+            if(index==11 && --buyCount <=0) showDialogueBox();
+            if(index==14 && currLevel >99f) showDialogueBox();
         }
     }
 
@@ -175,12 +176,12 @@ public class TutorialBuyManager : MonoBehaviour
         price = Random.Range(10,100);
         swapGen();
         if(index == 6){
-                StartCoroutine(wait(0.5f));
+                showDialogueBox();
         }
         if(index == 11 || index == 14){
             if(currRecVal > 0) showPopUp("you should've bought");
             else showPopUp("good job!");
-            if(index==11&&buyCount--<=0) StartCoroutine(wait(0.5f));
+            if(index==11&&buyCount--<=0) showDialogueBox();
         }
     }
 
@@ -226,10 +227,14 @@ public class TutorialBuyManager : MonoBehaviour
         popUpText.text = text;
         StartCoroutine(showAndHide(popUp));
     }
+    
+    void showDialogueBox(){
+        paused = false;
+        StartCoroutine(wait(0.5f));
+    }
 
     IEnumerator wait(float duration)
     {
-        paused = false;
         green.enabled = false;
         red.enabled =false;
         isWaiting = true;
@@ -295,7 +300,7 @@ public class TutorialBuyManager : MonoBehaviour
         firstCard.duration = ogDuration;
         secondCard.duration = ogDuration;
         isCD = false;
-        StartCoroutine(wait(0.2f));
+        showDialogueBox();
     }
 
     private float Cap(float curr, float min, float max){
