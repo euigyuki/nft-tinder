@@ -22,6 +22,7 @@ public class TimerDemo : MonoBehaviour
             if(scene.name == "MidtermBuyPage") {
                 SceneManager.LoadScene("MidtermSellPage");
             } else if(scene.name == "MidtermSellPage"){
+                Debug.Log("MidtermSellPage pushing sell states");
                 sellHelper.pushSellStats();
                 if(PriceManager.currentDay==6){
                     StaticAnalytics.toJson();

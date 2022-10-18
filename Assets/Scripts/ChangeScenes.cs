@@ -21,6 +21,11 @@ public class ChangeScenes : MonoBehaviour
         if(PriceManager.currentDay==6){
             return;
         }
+        // sellHelper.pushSellStats();
+        Debug.Log("Scenenaem: " + sceneName);
+        if (sceneName == "sellSummary") {
+            sellHelper.pushSellStats();
+        }
         SceneManager.LoadScene(sceneName);
     }
 }

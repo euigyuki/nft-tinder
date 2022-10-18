@@ -122,7 +122,9 @@ public class sellHelper : MonoBehaviour
         // Debug.Log("Positive Sells Count: " + posSells);
         // Debug.Log("Negative Sells Count: " + negSells);
         // Debug.Log("Total Sells Count: " + totalSells);
+        Debug.Log("sellHelper pushingSellStats");
         StaticAnalytics.postEachLevelSellData(totalSells, posSells, negSells);
+        StaticAnalytics.toJson();
     }
 
     // Update is called once per frame

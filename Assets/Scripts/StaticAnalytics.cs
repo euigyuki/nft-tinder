@@ -72,7 +72,6 @@ public class StaticAnalytics : MonoBehaviour
 
         PostBuyTrendData(bjson, userId);
 
-
         return JsonUtility.ToJson(ajson);
     }
 
@@ -80,7 +79,7 @@ public class StaticAnalytics : MonoBehaviour
     public static void PostBuySellData(analyticsJson data, int userId)
     {
         //userId=userId.ToString();
-        Debug.Log("Sending data to firebase");
+        Debug.Log("Sending data to firebase - PostBuySellData");
         RestClient.Patch<analyticsJson>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/buySellLatest/{userId}.json", data);
     }
 
@@ -101,6 +100,7 @@ public class StaticAnalytics : MonoBehaviour
     }
 
     public static void PostBuyTrendData(buyTrendDataJson data, int userId) {
+        Debug.Log("Sending data to firebase - PostBuyTrendData");
         RestClient.Patch<buyTrendDataJson>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/buyTrendsData/{userId}.json", data);
     }
 
@@ -117,7 +117,24 @@ public class StaticAnalytics : MonoBehaviour
         sjson.negSell = negSellcount;
         levelCount = levelCount + 1;
         RestClient.Patch<sellDataJson>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/sellLevelsData/{userId}/{levelCount}.json", sjson);
+        postEachLevelWalletPortfolioValue();
     }
+
+    public static void postEachLevelWalletPortfolioValue() {
+        Debug.Log("Sending data to firebase - postEachLevelWalletPortfolioValue data");
+        if (userId == 0) {
+            System.Random rnd = new System.Random();
+            userId= rnd.Next();
+            // userId = Random.Range(100000,1000000);
+        }
+
+        walletPortfolioValueData data = new walletPortfolioValueData();
+        data.walletValue = PriceManager.walletValue;
+        data.portfolioValue = PriceManager.getPortfolioValue();
+        RestClient.Patch<walletPortfolioValueData>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/walletPortfolioValueData/{userId}/{levelCount}.json", data);
+    }
+
+
 }
 
 
@@ -165,4 +182,10 @@ public class sellDataJson{
     public int totalSells = 0;
     public int posSell = 0;
     public int negSell = 0;
+}
+
+[Serializable]
+public class walletPortfolioValueData {
+    public double walletValue = 0;
+    public double portfolioValue = 0;
 }
