@@ -57,6 +57,8 @@ public class sellHelper : MonoBehaviour
     public static int posSells = 0;
     public static int negSells = 0;
 
+    public static double totalProfitLoss = 0.0;
+
     // Start is called before the first frame update
     void Start() {
         totalSells = 0;
@@ -205,6 +207,8 @@ public class sellHelper : MonoBehaviour
             }
         }
 
+        totalProfitLoss += getProfitLossValue();
+
         PriceManager.sellNftsFromList(nftsOwned);
         nftsOwned = PriceManager.getNftsOwnedAsList();
 
@@ -235,6 +239,11 @@ public class sellHelper : MonoBehaviour
                 negSells += 1;
             }
         }
+
+        totalProfitLoss += getProfitLossValue();
+        // Debug.Log(getProfitLossValue());
+        // Debug.Log(String.Format("Total Profit or Loss ${0:0.##}", totalProfitLoss));
+
         PriceManager.sellNftsFromList(toSellNFTIds);
         
         for(int i=0;i<4;i++) {
@@ -249,6 +258,7 @@ public class sellHelper : MonoBehaviour
             }
         }
 
+        
         UpdateNftsToSell();
 
     }
@@ -396,16 +406,26 @@ public class sellHelper : MonoBehaviour
         // face1Card.background.color = Color.green;
     }
 
+    double getProfitLossValue() {
+        double costPrice = PriceManager.getBuyPricePortfolioValueFromList(toSellNFTIds);
+        double sellPrice = PriceManager.getSelectedPortfolioValue(toSellNFTIds);
+
+        return sellPrice - costPrice;
+
+    }
+
     void setProfitLossText() {
 
         double costPrice = PriceManager.getBuyPricePortfolioValueFromList(toSellNFTIds);
         double sellPrice = PriceManager.getSelectedPortfolioValue(toSellNFTIds);
 
-        if(sellPrice > costPrice) {
-            profitLossText.text = String.Format("Profit ${0:0.##}", sellPrice - costPrice);
+        double profitLossValue = getProfitLossValue();
+
+        if(profitLossValue > 0) {
+            profitLossText.text = String.Format("Profit ${0:0.##}", profitLossValue);
             profitLossText.color = Color.green;
-        } else if(sellPrice < costPrice) {
-            profitLossText.text = String.Format("Loss ${0:0.##}", costPrice - sellPrice);
+        } else if(profitLossValue < 0) {
+            profitLossText.text = String.Format("Loss ${0:0.##}", -1 * profitLossValue);
             profitLossText.color = Color.red;
         } else {
             profitLossText.text = "";
