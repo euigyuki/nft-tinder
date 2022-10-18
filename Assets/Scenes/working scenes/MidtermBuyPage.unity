@@ -532,6 +532,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
+--- !u!114 &341162632 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 165774460202016738, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
+  m_PrefabInstance: {fileID: 5958720665269593946}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &395366125
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +720,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48e04a7176e7744f3a3dbe052ec7065f, type: 3}
+--- !u!114 &467359196 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4490844993920303700, guid: 8f86b05c5490141388f7adf5e595ac92, type: 3}
+  m_PrefabInstance: {fileID: 1461048892}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,6 +2105,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4568574654310889385, guid: 1d7aac7768082473492e69130ab6c02b, type: 3}
   m_PrefabInstance: {fileID: 749822802}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1197801907 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4851031653547459787, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
+  m_PrefabInstance: {fileID: 5958720665269593946}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1221035208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2792,6 +2825,9 @@ MonoBehaviour:
   popWindow: {fileID: 749822806}
   firstCard: {fileID: 1812956292}
   secondCard: {fileID: 1812956293}
+  redButton: {fileID: 341162632}
+  greenButton: {fileID: 1197801907}
+  skipButton: {fileID: 467359196}
 --- !u!1 &1850450919
 GameObject:
   m_ObjectHideFlags: 0
