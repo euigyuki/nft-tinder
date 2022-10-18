@@ -16,6 +16,10 @@ public class phoneBehavior : MonoBehaviour
 
     [SerializeField] nftGenerator firstCard;
     [SerializeField] nftGenerator secondCard;
+
+    public Button redButton;
+    public Button greenButton;
+    public Button skipButton;
     
 
     // [SerializeField] MoneyBar mb;
@@ -43,8 +47,14 @@ public class phoneBehavior : MonoBehaviour
     {
         if (timer.IsPaused)
         {
+            redButton.enabled = false;
+            greenButton.enabled = false;
+            skipButton.enabled = false;
             return;
         }
+        redButton.enabled = true;
+        greenButton.enabled = true;
+        skipButton.enabled = true;
         if (Input.GetKeyDown("right")){
             phoneBuy();
         }
