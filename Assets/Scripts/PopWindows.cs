@@ -5,16 +5,11 @@ using UnityEngine;
 public class PopWindows : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject pop;
     public GameObject image;
-    public GameObject button;
     
-    public static PopWindows instance;
     void Start()
     {
-       instance = this;
        image.SetActive(false); 
-       button.SetActive(false); 
     }
 
     // Update is called once per frame

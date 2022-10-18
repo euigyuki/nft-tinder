@@ -12,11 +12,13 @@ public class phoneBehavior : MonoBehaviour
     [SerializeField] HypeLevelManager hlMang;
 
     [SerializeField] BotManager bot; 
+    [SerializeField] PopWindows popWindow;
 
     [SerializeField] nftGenerator firstCard;
     [SerializeField] nftGenerator secondCard;
+    
 
-    [SerializeField] MoneyBar mb;
+    // [SerializeField] MoneyBar mb;
 
     private Timer timer;
 
@@ -60,12 +62,12 @@ public class phoneBehavior : MonoBehaviour
         
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         StaticAnalytics.leftPressIncrement();
-        PriceManager.passNft();
-        
-        firstCard.swipe(true);
         if(PriceManager.buyProb()>0.4f){
             bot.BotBuy();
         }
+        PriceManager.passNft();
+        
+        firstCard.swipe(true);
         secondCard.setNftPic();
         secondCard.moveCard();
         
@@ -81,17 +83,17 @@ public class phoneBehavior : MonoBehaviour
         // generator.randomGen();
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         if(PriceManager.getCurrentNftPrice()>PriceManager.walletValue){
-             PopWindows.instance.showmessage();
+             popWindow.showmessage();
              return;
          }
         StaticAnalytics.rightPressIncrement();
-        PriceManager.buyNft();
-        mb.ShowMoney();
-
-        firstCard.swipe(false);
         if(PriceManager.sellProb()>0.4f){
             bot.BotPass();
         }
+        PriceManager.buyNft();
+        // mb.ShowMoney();
+
+        firstCard.swipe(false);
         secondCard.setNftPic();
         secondCard.moveCard();
         

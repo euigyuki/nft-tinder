@@ -26,6 +26,8 @@ public class GameOverMenuDemo : MonoBehaviour
 
     public void GoToMenu() {
         Debug.Log("Menu Button Clicked");
+        PriceManager.resetEverything();
+        phoneBehavior.setCount = 0;
         SceneManager.LoadScene("MenuScene");
     }
 
@@ -33,7 +35,9 @@ public class GameOverMenuDemo : MonoBehaviour
         Debug.Log("Restart Button Clicked");
         PriceManager.resetEverything();
         phoneBehavior.setCount = 0;
-        SceneManager.LoadScene("trendingDerrick");
+        // SceneManager.LoadScene("trendingDerrick");
+        SceneManager.LoadScene("MidtermBuyPage");
+
     }
 
     public void QuitGame() {
