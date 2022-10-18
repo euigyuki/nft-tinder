@@ -303,14 +303,9 @@ public class PriceManager : MonoBehaviour
         // Debug.Log("Buying the nft: " + nftId);
         RectTransform transform = MoneyBar.instance.picture;
         transform.anchoredPosition =  new Vector2(transform.anchoredPosition.x - (float)(nftPrice/5000) *2.36514f, transform.anchoredPosition.y);
-        GameObject image = PopWindows.instance.image;
-        GameObject button = PopWindows.instance.button;
         
         if (walletValue - nftPrice < 0) {
             Debug.Log("Not enough money to buy Nft");
-            image.SetActive(true);
-            button.SetActive(true);
-           
             return;
         }
         sendBuyTrendsToFirebase();
