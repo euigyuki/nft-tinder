@@ -3381,6 +3381,63 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1001 &2802659363769571045
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 478636623798727367, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 478636623798727367, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 478636623798727367, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 478636623798727367, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 478636623798727367, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 478636623798727367, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 478636623798727367, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 478636623798727367, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 478636623798727367, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 478636623798727367, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 478636623798727367, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3806202268632078562, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
+      propertyPath: m_Name
+      value: NewsBox
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9db28f1e4f49547f3be8cd4ea136fd73, type: 3}
 --- !u!1 &4089087378050212121
 GameObject:
   m_ObjectHideFlags: 0
@@ -3531,6 +3588,10 @@ PrefabInstance:
       propertyPath: phone
       value: 
       objectReference: {fileID: 1815922475}
+    - target: {fileID: 642178725478362312, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 1699083440}
     - target: {fileID: 642178725478362312, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
       propertyPath: decPerSec
       value: 5

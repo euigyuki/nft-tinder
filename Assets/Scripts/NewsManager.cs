@@ -16,16 +16,16 @@ public class NewsManager : MonoBehaviour
     void Update()
     {
         if(PriceManager.currentDay==2) {
-            textShow.text = "A new body was added";
+            textShow.text = "A new Trend was added. Look out for the Body parts!";
         }
         else if(PriceManager.currentDay==3) {
-            textShow.text = "A new body was added";
+            textShow.text = "A new Trend was added. Look out for the Hat parts!";
         }
         else if(PriceManager.currentDay==4) {
-            textShow.text = "Recommender is noew only Shown during fever mode";
+            textShow.text = "The Recommender is now only shown during Fever Mode.";
         }
         else if(PriceManager.currentDay==5) {
-            textShow.text = "You have shorter time to make decisions";
+            textShow.text = "You now have shorter time to make decisions";
         }
     }
 }

@@ -9,6 +9,7 @@ public class HypeLevelManager : MonoBehaviour
     [SerializeField] phoneBehavior phone;
 
     public GameObject GameOverMenu;
+    public GameObject slider;
 
     private float currLevel;
     private float currTime;
@@ -32,8 +33,13 @@ public class HypeLevelManager : MonoBehaviour
     void Start()
     {
         timer = FindObjectOfType<Timer>();
+        if(PriceManager.currentDay==5) timeCap = 4f;
         resetLevelBar();
         resetTimerBar();
+
+        if(PriceManager.currentDay>=4){
+            slider.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -87,6 +93,9 @@ public class HypeLevelManager : MonoBehaviour
         phone.setDuration(ogDuration/4);
         float time = 0;
         PriceManager.offerDiscount = true;
+        if(PriceManager.currentDay>=4){
+            slider.SetActive(true);
+        }
         while(time<feverTime){
             time += Time.deltaTime;
             currLevel  = Mathf.SmoothStep(levelCap,0,time/feverTime);
@@ -94,6 +103,9 @@ public class HypeLevelManager : MonoBehaviour
             yield return null;
         }
         PriceManager.offerDiscount = false;
+        if(PriceManager.currentDay>=4){
+            slider.SetActive(false);
+        }
         phone.setDuration(ogDuration);
         yield return new WaitForSeconds(feverCD);
         isCD = false;
