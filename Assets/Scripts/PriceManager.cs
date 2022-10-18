@@ -87,7 +87,7 @@ public class PriceManager : MonoBehaviour
 
     public static void resetEverything() {
         price = 2;
-        walletValue = 10000;
+        walletValue = 5000;
         portfolioValue = 0;
         currentNftIdx = 0;
         // jsonLoaded = false;

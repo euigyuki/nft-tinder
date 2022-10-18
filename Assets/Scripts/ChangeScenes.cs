@@ -18,6 +18,9 @@ public class ChangeScenes : MonoBehaviour
     }
 
     public void LoadScene(string sceneName){
+        if(PriceManager.currentDay==6){
+            return;
+        }
         SceneManager.LoadScene(sceneName);
     }
 }
