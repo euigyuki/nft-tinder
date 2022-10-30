@@ -53,7 +53,12 @@ public class PriceManager : MonoBehaviour
     public static List<int> prevFutureTrendingHatPos = new List<int>();
     public static List<int> prevFutureTrendingHatNeg = new List<int>();
 
-    
+    public static double dayOneScore = 7000.00;
+    public static double dayTwoScore = 7000.00;
+    public static double dayThreeScore = 12000.00;
+    public static double dayFourScore = 20000.00;
+    public static double dayFiveScore = 50000.00;
+    public static double daySixScore = 150000.00;
 
     // nfts to show
     public static int totalNftsToPick = 50;
@@ -83,6 +88,34 @@ public class PriceManager : MonoBehaviour
 
     void Start() {
         
+    }
+
+    public static bool levelPassed() {
+        if (currentDay == 1) {
+            return true;
+        }
+
+        else if (currentDay == 2) {
+            return walletValue + getPortfolioValue() >= dayTwoScore;
+        }
+
+        else if (currentDay == 3) {
+            return walletValue + getPortfolioValue() >= dayThreeScore;
+        }
+
+        else if (currentDay == 4) {
+            return walletValue + getPortfolioValue() >= dayFourScore;
+        }
+
+        else if (currentDay == 5) {
+            return walletValue + getPortfolioValue() >= dayFiveScore;
+        }
+
+        else if (currentDay == 6) {
+            return walletValue + getPortfolioValue() >= daySixScore;
+        }
+
+        return true;
     }
 
     public static void resetEverything() {
