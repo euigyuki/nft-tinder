@@ -13,16 +13,28 @@ public class daySellSummary : MonoBehaviour
     public TextMeshProUGUI portfolioValue;
     public TextMeshProUGUI walletValue;
     public TextMeshProUGUI dayProfitLossValueText;
+    public GameObject GameOverMenu;
     public Button goToNextDayButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        walletValue.text = String.Format("Wallet Value = ${0:0.##}", PriceManager.walletValue);
-        portfolioValue.text = String.Format("Portfolio Value = ${0:0.##}", PriceManager.getPortfolioValue());
+        GameOverMenu.SetActive(false);
 
-        setProfitLossText();
-        goToNextDayButton.onClick.AddListener(loadBuyScene);
+        if(!PriceManager.levelPassed()) {
+            walletValue.text = "";
+            portfolioValue.text = "";
+            dayProfitLossValueText.text = "";
+            goToNextDayButton.gameObject.SetActive(false);
+            GameOverMenu.SetActive(true);
+        } else {
+            walletValue.text = String.Format("Wallet Value = ${0:0.##}", PriceManager.walletValue);
+            portfolioValue.text = String.Format("Portfolio Value = ${0:0.##}", PriceManager.getPortfolioValue());
+
+            setProfitLossText();
+            goToNextDayButton.onClick.AddListener(loadBuyScene);
+        }
+
     }
 
     // Update is called once per frame
@@ -45,7 +57,7 @@ public class daySellSummary : MonoBehaviour
     void loadBuyScene() {
         sellHelper.totalProfitLoss = 0.0;
         // SceneManager.LoadScene("trendingDerrick");
-        SceneManager.LoadScene("MidtermBuyPage");
+        SceneManager.LoadScene("ObjectiveBuyPage");
 
     }
 }

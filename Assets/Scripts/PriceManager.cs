@@ -90,32 +90,52 @@ public class PriceManager : MonoBehaviour
         
     }
 
+    public static double getLevelObjective(int day) {
+        if (day == 0) {
+            return dayOneScore;
+        } else if(day == 1) {
+            return dayTwoScore;
+        } else if(day == 2) {
+            return dayThreeScore;
+        } else if(day == 3) {
+            return dayFourScore;
+        } else if (day == 4) {
+            return dayFiveScore;
+        } else if (day == 5) {
+            return daySixScore;
+        } else {
+            return 0;
+        }
+    }
+
     public static bool levelPassed() {
         if (currentDay == 1) {
             return true;
+        } else {
+            return walletValue + getPortfolioValue() >= getLevelObjective(currentDay - 1);
         }
 
-        else if (currentDay == 2) {
-            return walletValue + getPortfolioValue() >= dayTwoScore;
-        }
+        // else if (currentDay == 2) {
+        //     return walletValue + getPortfolioValue() >= dayTwoScore;
+        // }
 
-        else if (currentDay == 3) {
-            return walletValue + getPortfolioValue() >= dayThreeScore;
-        }
+        // else if (currentDay == 3) {
+        //     return walletValue + getPortfolioValue() >= dayThreeScore;
+        // }
 
-        else if (currentDay == 4) {
-            return walletValue + getPortfolioValue() >= dayFourScore;
-        }
+        // else if (currentDay == 4) {
+        //     return walletValue + getPortfolioValue() >= dayFourScore;
+        // }
 
-        else if (currentDay == 5) {
-            return walletValue + getPortfolioValue() >= dayFiveScore;
-        }
+        // else if (currentDay == 5) {
+        //     return walletValue + getPortfolioValue() >= dayFiveScore;
+        // }
 
-        else if (currentDay == 6) {
-            return walletValue + getPortfolioValue() >= daySixScore;
-        }
+        // else if (currentDay == 6) {
+        //     return walletValue + getPortfolioValue() >= daySixScore;
+        // }
 
-        return true;
+        // return true;
     }
 
     public static void resetEverything() {
