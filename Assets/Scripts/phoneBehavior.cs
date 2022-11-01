@@ -17,6 +17,10 @@ public class phoneBehavior : MonoBehaviour
     [SerializeField] nftGenerator firstCard;
     [SerializeField] nftGenerator secondCard;
 
+    [SerializeField]  AudioSource rightSoundEffect;
+    [SerializeField]  AudioSource leftSoundEffect;
+
+
     public Button redButton;
     public Button greenButton;
     public Button skipButton;
@@ -25,6 +29,15 @@ public class phoneBehavior : MonoBehaviour
     // [SerializeField] MoneyBar mb;
 
     private Timer timer;
+
+    private AudioSource[] allAudioSources;
+ 
+    void StopAllAudio() {
+     allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+     foreach( AudioSource audioS in allAudioSources) {
+         audioS.Stop();
+     }
+    }
 
 
 
@@ -56,20 +69,21 @@ public class phoneBehavior : MonoBehaviour
         greenButton.enabled = true;
         skipButton.enabled = true;
         if (Input.GetKeyDown("right")){
+           
             phoneBuy();
         }
 
         if(Input.GetKeyDown("left")){
+            
             phonePass();
         }
     }
 
-    public void phonePass(){
-        // StartCoroutine(showAndHide(pass));
-        // PriceManager.instance.passItem();
-        // PriceManager.instance.passNft();
-        // generator.randomGen();
+    public void phonePass()
+    {
+       
         
+
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         StaticAnalytics.leftPressIncrement();
         if(PriceManager.buyProb()>0.4f){
@@ -81,16 +95,14 @@ public class phoneBehavior : MonoBehaviour
         secondCard.setNftPic();
         secondCard.moveCard();
         
-        // firstCard.setNftPic();
+        
+        rightSoundEffect.Play();
         swapGen();
         hlMang.resetTimerBar();
     }
 
     public void phoneBuy(){
-        // StartCoroutine(showAndHide(buy));
-        // PriceManager.instance.SubstractMoney();
-        // PriceManager.instance.buyNft();
-        // generator.randomGen();
+       
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         if(PriceManager.getCurrentNftPrice()>PriceManager.walletValue){
              popWindow.showmessage();
@@ -108,6 +120,7 @@ public class phoneBehavior : MonoBehaviour
         secondCard.moveCard();
         
         // firstCard.setNftPic();
+        leftSoundEffect.Play();
         swapGen();
         hlMang.resetTimerBar();
         hlMang.levelIncrease();
@@ -131,6 +144,7 @@ public class phoneBehavior : MonoBehaviour
     }
 
     public void swapGen(){
+        
         nftGenerator temp = firstCard;
         firstCard = secondCard;
         secondCard = temp;
