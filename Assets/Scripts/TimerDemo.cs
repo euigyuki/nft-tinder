@@ -19,10 +19,10 @@ public class TimerDemo : MonoBehaviour
             Debug.Log("Timer 1 ended");
             Scene scene = SceneManager.GetActiveScene();
             Debug.Log(scene.name);
-            if(scene.name == "MidtermBuyPage") {
-                SceneManager.LoadScene("MidtermSellPage");
-            } else if(scene.name == "MidtermSellPage"){
-                Debug.Log("MidtermSellPage pushing sell states");
+            if(scene.name == "ObjectiveBuyPage") {
+                SceneManager.LoadScene("ObjectiveSellPage");
+            } else if(scene.name == "ObjectiveSellPage"){
+                Debug.Log("ObjectiveSellPage pushing sell states");
                 sellHelper.pushSellStats();
                 if(PriceManager.currentDay==6){
                     StaticAnalytics.toJson();

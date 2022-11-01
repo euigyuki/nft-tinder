@@ -17,13 +17,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial/NewTutorialSell.unity
     guid: a1b3b36af1b3d4fc480660a688211ad7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/working scenes/MidtermBuyPage.unity
     guid: d0a1d2d5f0e7646e1a6b1f8334e94536
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/working scenes/MidtermSellPage.unity
     guid: 61cc4163bf42e408d8d09d29a8980f60
   - enabled: 1
     path: Assets/Scenes/working scenes/sellSummary.unity
     guid: 059bed9180f36469e8f5047aa8455a8d
+  - enabled: 1
+    path: Assets/Scenes/ObjectiveBuyPage.unity
+    guid: 7df61693e6b644073a147f9ee4e5ea70
+  - enabled: 1
+    path: Assets/Scenes/ObjectiveSellPage.unity
+    guid: 3af11fb17d9d5485e8a6d8d23e5fa636
   m_configObjects: {}

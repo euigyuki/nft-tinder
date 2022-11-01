@@ -43,6 +43,6 @@ public class TutorialManager : MonoBehaviour
     }
 
     public void startGame(){
-        SceneManager.LoadScene("MidtermBuyPage");
+        SceneManager.LoadScene("ObjectiveBuyPage");
     }
 }
