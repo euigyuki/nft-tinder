@@ -232,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4490844993920303700, guid: 8f86b05c5490141388f7adf5e595ac92, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: ObjectiveBuyPage
+      value: MidtermBuyPage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f86b05c5490141388f7adf5e595ac92, type: 3}
