@@ -3666,7 +3666,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1699083440}
     - target: {fileID: 642178725478362312, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
+      propertyPath: feverCD
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 642178725478362312, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
       propertyPath: decPerSec
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 642178725478362312, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
+      propertyPath: feverTime
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 642178725478362312, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
