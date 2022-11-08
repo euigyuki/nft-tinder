@@ -217,6 +217,44 @@ public class PriceManager : MonoBehaviour
         return total / Math.Min(currentDay, 3.00);
     }
 
+    public static double buyProb(string nftId) {
+        Nft currentNft = nftsDict[nftId];
+
+        double total = 0;
+
+        if (futureTrendingFacePos == currentNft.imagePics[0]) {
+            total += 1;
+        }
+
+        if (futureTrendingHatPos == currentNft.imagePics[2]) {
+            total += 1;
+        }
+
+        if (futureTrendingBodyPos == currentNft.imagePics[3]) {
+            total += 1;
+        }
+        return total / Math.Min(currentDay, 3.00);
+    }
+
+    public static double sellProb(string nftId) {
+        Nft currentNft = nftsDict[nftId];
+
+        double total = 0;
+
+        if (futureTrendingFaceNeg == currentNft.imagePics[0]) {
+            total += 1;
+        }
+
+        if (futureTrendingHatNeg == currentNft.imagePics[2]) {
+            total += 1;
+        }
+
+        if (futureTrendingBodyNeg == currentNft.imagePics[3]) {
+            total += 1;
+        }
+        return total / Math.Min(currentDay, 3.00);
+    }
+
     public static double sellProb() {
         Nft currentNft = getCurrentNft();
 
@@ -233,7 +271,7 @@ public class PriceManager : MonoBehaviour
         if (futureTrendingBodyNeg == currentNft.imagePics[3]) {
             total += 1;
         }
-        return total / 3.00;
+        return total / Math.Min(currentDay, 3.00);
     }
 
     // Update is called once per frame
@@ -417,6 +455,29 @@ public class PriceManager : MonoBehaviour
         return nftsDict[nftIdString];
     }
 
+    static void changePricesForNfts2() {
+
+        foreach (string nftId in nftsDict.Keys.ToArray()) {
+            double sellProbability = sellProb(nftId);
+            double buyProbability = buyProb(nftId);
+            double priceIncFactor;
+            double currentNftPrice = nftsDict[nftId].price;
+            string tempString = String.Format("Nft: {0} previous price: {1}", nftId, currentNftPrice);
+            Debug.Log(tempString);
+            if (buyProbability > sellProbability) {
+                priceIncFactor = getPriceIncFactor(nftId, "+");
+                currentNftPrice += (currentNftPrice * priceIncFactor);
+            } else if (buyProbability < sellProbability) {
+                priceIncFactor = getPriceIncFactor(nftId, "-");
+                currentNftPrice = currentNftPrice * priceIncFactor;
+            }
+            nftsDict[nftId].price = currentNftPrice;
+            tempString = String.Format("Nft: {0} AFTER price: {1}", nftId, currentNftPrice);
+            Debug.Log(tempString);
+        }
+
+    }
+
     static void changePricesForNfts(string type, string operation, int category) {
 
         if (type == "face") {
@@ -550,6 +611,8 @@ public class PriceManager : MonoBehaviour
         if (futureTrendingHatNeg != -1) {
             prevFutureTrendingHatNeg.Add(futureTrendingHatNeg);
         }
+
+        changePricesForNfts2();
         
         if (currentDay >= 1) {
             futureTrendingFacePos = randomFacePosIdx;
@@ -565,101 +628,101 @@ public class PriceManager : MonoBehaviour
             futureTrendingHatPos = randomHatPosIdx;
             futureTrendingHatNeg = randomHatNegIdx;
         }
-        int incPriceFor;
-        if (currentDay <= 1) {
-            incPriceFor = 0;
-        }
-        else if (currentDay <= 2) {
-            incPriceFor = Random.Range(0, 1);
-        }
-        else {
-            incPriceFor = Random.Range(0, 2);
-        }
-        // int incPriceFor = Random.Range(0, 2);
+        // int incPriceFor;
+        // if (currentDay <= 1) {
+        //     incPriceFor = 0;
+        // }
+        // else if (currentDay <= 2) {
+        //     incPriceFor = Random.Range(0, 1);
+        // }
+        // else {
+        //     incPriceFor = Random.Range(0, 2);
+        // }
+        // // int incPriceFor = Random.Range(0, 2);
 
-        if (incPriceFor == 0) {
-            // inc for face
-            if (prevFutureTrendingFacePos.Count != 0) {
-                int categoryToInc = Random.Range(0, prevFutureTrendingFacePos.Count-1);
-                categoryToInc = prevFutureTrendingFacePos[categoryToInc];
-                changePricesForNfts("face", "+", categoryToInc);
-                currentTrendingFacePos = categoryToInc;
-                currentTrendingBodyPos = -1;
-                currentTrendingHatPos = -1;
-            }
-        }
-        else if (incPriceFor == 1) {
-            // inc for body
-            if (prevFutureTrendingBodyPos.Count != 0) {
-                int categoryToInc = Random.Range(0, prevFutureTrendingBodyPos.Count-1);
-                categoryToInc = prevFutureTrendingBodyPos[categoryToInc];
-                changePricesForNfts("body", "+", categoryToInc);
-                currentTrendingFacePos = -1;
-                currentTrendingBodyPos = categoryToInc;
-                currentTrendingHatPos = -1;
-            }
-        }
-        else {
-            // inc for head
-            if (prevFutureTrendingHatPos.Count != 0) {
-                int categoryToInc = Random.Range(0, prevFutureTrendingHatPos.Count-1);
-                categoryToInc = prevFutureTrendingHatPos[categoryToInc];
-                changePricesForNfts("head", "+", categoryToInc);
-                currentTrendingFacePos = -1;
-                currentTrendingBodyPos = -1;
-                currentTrendingHatPos = categoryToInc;
-            }
-        }
-
-        int decPriceFor;
-        if (currentDay <= 1) {
-            decPriceFor = 0;
-        }
-        else if (currentDay <= 2) {
-            decPriceFor = Random.Range(0, 1);
-        }
-        else {
-            decPriceFor = Random.Range(0, 2);
-        }
-        // int decPriceFor = Random.Range(0, 2);
-
-        // while (incPriceFor == decPriceFor) {
-        //     decPriceFor = Random.Range(0, 2);
+        // if (incPriceFor == 0) {
+        //     // inc for face
+        //     if (prevFutureTrendingFacePos.Count != 0) {
+        //         int categoryToInc = Random.Range(0, prevFutureTrendingFacePos.Count-1);
+        //         categoryToInc = prevFutureTrendingFacePos[categoryToInc];
+        //         changePricesForNfts("face", "+", categoryToInc);
+        //         currentTrendingFacePos = categoryToInc;
+        //         currentTrendingBodyPos = -1;
+        //         currentTrendingHatPos = -1;
+        //     }
+        // }
+        // else if (incPriceFor == 1) {
+        //     // inc for body
+        //     if (prevFutureTrendingBodyPos.Count != 0) {
+        //         int categoryToInc = Random.Range(0, prevFutureTrendingBodyPos.Count-1);
+        //         categoryToInc = prevFutureTrendingBodyPos[categoryToInc];
+        //         changePricesForNfts("body", "+", categoryToInc);
+        //         currentTrendingFacePos = -1;
+        //         currentTrendingBodyPos = categoryToInc;
+        //         currentTrendingHatPos = -1;
+        //     }
+        // }
+        // else {
+        //     // inc for head
+        //     if (prevFutureTrendingHatPos.Count != 0) {
+        //         int categoryToInc = Random.Range(0, prevFutureTrendingHatPos.Count-1);
+        //         categoryToInc = prevFutureTrendingHatPos[categoryToInc];
+        //         changePricesForNfts("head", "+", categoryToInc);
+        //         currentTrendingFacePos = -1;
+        //         currentTrendingBodyPos = -1;
+        //         currentTrendingHatPos = categoryToInc;
+        //     }
         // }
 
-        if (decPriceFor == 0) {
-            // inc for face
-            if (prevFutureTrendingFaceNeg.Count != 0) {
-                int categoryToDec = Random.Range(0, prevFutureTrendingFaceNeg.Count-1);
-                categoryToDec = prevFutureTrendingFaceNeg[categoryToDec];
-                changePricesForNfts("face", "-", categoryToDec);
-                currentTrendingFaceNeg = categoryToDec;
-                currentTrendingBodyNeg = -1;
-                currentTrendingHatNeg = -1;
-            }
-        }
-        else if (decPriceFor == 1) {
-            // dec for body
-            if (prevFutureTrendingBodyNeg.Count != 0) {
-                int categoryToDec = Random.Range(0, prevFutureTrendingBodyNeg.Count-1);
-                categoryToDec = prevFutureTrendingBodyNeg[categoryToDec];
-                changePricesForNfts("body", "-", categoryToDec);
-                currentTrendingFaceNeg = -1;
-                currentTrendingBodyNeg = categoryToDec;
-                currentTrendingHatNeg = -1;
-            }
-        }
-        else {
-            // dec for head
-            if (prevFutureTrendingHatNeg.Count != 0) {
-                int categoryToDec = Random.Range(0, prevFutureTrendingHatNeg.Count-1);
-                categoryToDec = prevFutureTrendingHatNeg[categoryToDec];
-                changePricesForNfts("head", "-", categoryToDec);
-                currentTrendingFaceNeg = -1;
-                currentTrendingBodyNeg = -1;
-                currentTrendingHatNeg = categoryToDec;
-            }
-        }
+        // int decPriceFor;
+        // if (currentDay <= 1) {
+        //     decPriceFor = 0;
+        // }
+        // else if (currentDay <= 2) {
+        //     decPriceFor = Random.Range(0, 1);
+        // }
+        // else {
+        //     decPriceFor = Random.Range(0, 2);
+        // }
+        // // int decPriceFor = Random.Range(0, 2);
+
+        // // while (incPriceFor == decPriceFor) {
+        // //     decPriceFor = Random.Range(0, 2);
+        // // }
+
+        // if (decPriceFor == 0) {
+        //     // inc for face
+        //     if (prevFutureTrendingFaceNeg.Count != 0) {
+        //         int categoryToDec = Random.Range(0, prevFutureTrendingFaceNeg.Count-1);
+        //         categoryToDec = prevFutureTrendingFaceNeg[categoryToDec];
+        //         changePricesForNfts("face", "-", categoryToDec);
+        //         currentTrendingFaceNeg = categoryToDec;
+        //         currentTrendingBodyNeg = -1;
+        //         currentTrendingHatNeg = -1;
+        //     }
+        // }
+        // else if (decPriceFor == 1) {
+        //     // dec for body
+        //     if (prevFutureTrendingBodyNeg.Count != 0) {
+        //         int categoryToDec = Random.Range(0, prevFutureTrendingBodyNeg.Count-1);
+        //         categoryToDec = prevFutureTrendingBodyNeg[categoryToDec];
+        //         changePricesForNfts("body", "-", categoryToDec);
+        //         currentTrendingFaceNeg = -1;
+        //         currentTrendingBodyNeg = categoryToDec;
+        //         currentTrendingHatNeg = -1;
+        //     }
+        // }
+        // else {
+        //     // dec for head
+        //     if (prevFutureTrendingHatNeg.Count != 0) {
+        //         int categoryToDec = Random.Range(0, prevFutureTrendingHatNeg.Count-1);
+        //         categoryToDec = prevFutureTrendingHatNeg[categoryToDec];
+        //         changePricesForNfts("head", "-", categoryToDec);
+        //         currentTrendingFaceNeg = -1;
+        //         currentTrendingBodyNeg = -1;
+        //         currentTrendingHatNeg = categoryToDec;
+        //     }
+        // }
 
         // Debug.Log("Future Trends After");
         // Debug.Log("futureTrendingFacePos: " + futureTrendingFacePos.ToString());
