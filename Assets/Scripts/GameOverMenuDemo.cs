@@ -40,6 +40,15 @@ public class GameOverMenuDemo : MonoBehaviour
 
     }
 
+    public void ScoreBoad() {
+        Debug.Log("High Score Show");
+        PriceManager.resetEverything();
+        phoneBehavior.setCount = 0;
+        SceneManager.LoadScene("HighScorePage");
+        
+
+    }
+
     public void QuitGame() {
         Debug.Log("Quit Button Clicked");
         Application.Quit();
