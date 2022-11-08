@@ -252,7 +252,7 @@ public class PriceManager : MonoBehaviour
         if (futureTrendingBodyNeg == currentNft.imagePics[3]) {
             total += 1;
         }
-        return total / 3.00;
+        return total / Math.Min(currentDay, 3.00);
     }
 
     public static double sellProb() {
@@ -271,7 +271,7 @@ public class PriceManager : MonoBehaviour
         if (futureTrendingBodyNeg == currentNft.imagePics[3]) {
             total += 1;
         }
-        return total / 3.00;
+        return total / Math.Min(currentDay, 3.00);
     }
 
     // Update is called once per frame
