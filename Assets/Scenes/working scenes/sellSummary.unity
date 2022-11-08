@@ -1352,7 +1352,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1229089036
@@ -1519,7 +1519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.99215686, g: 0, b: 0.008139165, a: 1}
+  m_Color: {r: 0, g: 0.010311391, b: 0.99215686, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1539,7 +1539,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Quit
+  m_Text: SBoard
 --- !u!222 &1264791402
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2197,7 +2197,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1380841216}
         m_TargetAssemblyTypeName: GameOverMenuDemo, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: ScoreBoad
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
