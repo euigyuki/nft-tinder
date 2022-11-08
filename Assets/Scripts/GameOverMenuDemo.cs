@@ -35,14 +35,13 @@ public class GameOverMenuDemo : MonoBehaviour
         Debug.Log("Restart Button Clicked");
         PriceManager.resetEverything();
         phoneBehavior.setCount = 0;
-        // SceneManager.LoadScene("trendingDerrick");
-        SceneManager.LoadScene("ObjectiveBuyPage");
+        SceneManager.LoadScene("ObjectiveBuyDerrick");
 
     }
 
     public void QuitGame() {
-        Debug.Log("Quit Button Clicked");
-        Application.Quit();
+        // Debug.Log("Quit Button Clicked");
+        // Application.Quit();
     }
      void setScoreText() {
         // Debug.Log("Money"+PriceManager.walletValue);

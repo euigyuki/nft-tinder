@@ -25,7 +25,6 @@ public class TimerDemo : MonoBehaviour
             //    SceneManager.LoadScene("ObjectiveSellPage");
             } 
             else if(scene.name == "ObjectiveSellDerrick"){
-            //else if(scene.name == "ObjectiveSellPage"){
                 Debug.Log("ObjectiveSellPage pushing sell states");
                 sellHelper.pushSellStats();
                 if(PriceManager.currentDay==6){

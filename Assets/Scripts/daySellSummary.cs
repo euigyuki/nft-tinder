@@ -56,8 +56,7 @@ public class daySellSummary : MonoBehaviour
 
     void loadBuyScene() {
         sellHelper.totalProfitLoss = 0.0;
-        // SceneManager.LoadScene("trendingDerrick");
-        SceneManager.LoadScene("ObjectiveBuyPage");
+        SceneManager.LoadScene("ObjectiveBuyDerrick");
 
     }
 }

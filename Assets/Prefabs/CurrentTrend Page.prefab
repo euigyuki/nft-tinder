@@ -911,6 +911,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8502124394647952061}
     m_Modifications:
+    - target: {fileID: 2765544032432038152, guid: 3076b527186bb4b88a6052ec235fc52a, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2765544032432038154, guid: 3076b527186bb4b88a6052ec235fc52a, type: 3}
       propertyPath: m_Name
       value: NFTParts
