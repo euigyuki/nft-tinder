@@ -17,6 +17,9 @@ public class phoneBehavior : MonoBehaviour
     [SerializeField] nftGenerator firstCard;
     [SerializeField] nftGenerator secondCard;
 
+    [SerializeField] AudioSource rightSoundEffect;
+    [SerializeField] AudioSource leftSoundEffect;
+
     public Button redButton;
     public Button greenButton;
     public Button skipButton;
@@ -82,6 +85,7 @@ public class phoneBehavior : MonoBehaviour
         secondCard.moveCard();
         
         // firstCard.setNftPic();
+        leftSoundEffect.Play();
         swapGen();
         hlMang.resetTimerBar();
     }
@@ -108,6 +112,7 @@ public class phoneBehavior : MonoBehaviour
         secondCard.moveCard();
         
         // firstCard.setNftPic();
+        rightSoundEffect.Play();
         swapGen();
         hlMang.resetTimerBar();
         hlMang.levelIncrease();

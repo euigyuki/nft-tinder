@@ -19,9 +19,13 @@ public class TimerDemo : MonoBehaviour
             Debug.Log("Timer 1 ended");
             Scene scene = SceneManager.GetActiveScene();
             Debug.Log(scene.name);
-            if(scene.name == "ObjectiveBuyPage") {
-                SceneManager.LoadScene("ObjectiveSellPage");
-            } else if(scene.name == "ObjectiveSellPage"){
+            if(scene.name == "ObjectiveBuyDerrick") {
+                SceneManager.LoadScene("ObjectiveSellDerrick");
+            //if(scene.name == "ObjectiveBuyPage") {
+            //    SceneManager.LoadScene("ObjectiveSellPage");
+            } 
+            else if(scene.name == "ObjectiveSellDerrick"){
+            //else if(scene.name == "ObjectiveSellPage"){
                 Debug.Log("ObjectiveSellPage pushing sell states");
                 sellHelper.pushSellStats();
                 if(PriceManager.currentDay==6){
@@ -29,8 +33,8 @@ public class TimerDemo : MonoBehaviour
                     GameOverMenu.SetActive(true);
                 }
                 else {
+                    //SceneManager.LoadScene("ObjectiveSellDerrick");
                     SceneManager.LoadScene("sellSummary");
-                    // SceneManager.LoadScene("trendingDerrick");
                 }
             } else {
                 GameOverMenu.SetActive(true);
