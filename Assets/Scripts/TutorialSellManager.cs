@@ -198,9 +198,21 @@ public class TutorialSellManager : MonoBehaviour
 
     void updateCards(){
         for(int i =0;i<4;i++){
+            colorchange();
             setEachCard(faceCards[i]);
             setEachCard(bodyCards[i]);
             setEachCard(hatCards[i]);
+        }
+    }
+    void colorchange()
+    {
+        if(ClickMode.Mode=="Normal"){
+            goodColor= new Color (0.38f,0.81f,0.43f,1.0f);
+            badColor= new Color (0.81f,0.41f,0.38f,1.0f);
+        }
+        if(ClickMode.Mode=="ColorBlind"){
+            goodColor=new Color(0.047f,0.48f,0.863f,1.0f);
+            badColor=new Color(1.0f,0.76f,0.039f,1.0f);
         }
     }
 

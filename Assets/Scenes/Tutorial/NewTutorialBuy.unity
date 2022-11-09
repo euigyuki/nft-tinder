@@ -2280,6 +2280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recommender: {fileID: 1699083443}
+  Fill: {fileID: 0}
 --- !u!114 &1699083443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3121,6 +3122,10 @@ PrefabInstance:
     - target: {fileID: 1539844162428354829, guid: 2882999f6ae7342cdb0b9b77b200577a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3692828266081470266, guid: 2882999f6ae7342cdb0b9b77b200577a, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3692828266281665435, guid: 2882999f6ae7342cdb0b9b77b200577a, type: 3}
       propertyPath: m_Texture

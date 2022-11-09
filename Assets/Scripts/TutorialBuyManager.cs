@@ -69,6 +69,7 @@ public class TutorialBuyManager : MonoBehaviour
         popUp.SetActive(false);
         green.enabled = false;
         red.enabled =false;
+        
         hideArrows();
         setLevelBar();
         resetTimerBar();
