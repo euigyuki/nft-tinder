@@ -8,8 +8,8 @@ public class NFTParts : MonoBehaviour
 
     public imageHolder[] imageParts = new imageHolder[5];
     public RawImage background;
-    public Color goodColor;
-    public Color badColor;
+    public static Color goodColor;
+    public static Color badColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +23,15 @@ public class NFTParts : MonoBehaviour
     }
 
     public void SetBackGround(bool isGood){
+        if(ClickMode.Mode=="Normal"){
+            goodColor= new Color (0.38f,0.81f,0.43f,1.0f);
+            badColor= new Color (0.81f,0.41f,0.38f,1.0f);
+        }
+        if(ClickMode.Mode=="ColorBlind"){
+            goodColor=new Color(0.047f,0.48f,0.863f,1.0f);
+            badColor=new Color(1.0f,0.76f,0.039f,1.0f);
+        }
+
         if(isGood) background.color = goodColor;
         else background.color = badColor;
     }
