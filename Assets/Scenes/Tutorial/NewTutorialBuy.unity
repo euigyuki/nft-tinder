@@ -2576,6 +2576,46 @@ MonoBehaviour:
   redButton: {fileID: 0}
   greenButton: {fileID: 0}
   skipButton: {fileID: 0}
+--- !u!114 &1815922476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815922472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d8cfb19284b46a680432582357da06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 0}
+  priceText: {fileID: 0}
+  arrows:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  green: {fileID: 150087032}
+  red: {fileID: 1271101326}
+  downPos: {x: 0, y: 0, z: 0}
+  upPos: {x: 0, y: 0, z: 0}
+  dialogueText: {fileID: 0}
+  asset: {fileID: 0}
+  dialogues: []
+  dialogueBox: {fileID: 0}
+  popUpText: {fileID: 0}
+  popUp: {fileID: 0}
+  firstCard: {fileID: 0}
+  secondCard: {fileID: 0}
+  recommender: {fileID: 0}
+  Fill: {fileID: 395366127}
+  HypeBar: {fileID: 0}
+  TimerBar: {fileID: 0}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
+  endColor: {r: 0, g: 0, b: 0, a: 0}
+  BG1: {fileID: 0}
+  BG2: {fileID: 0}
 --- !u!1 &1854387322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 478546213094762174, guid: 1aa1089363cb348b4b5555f57400c130, type: 3}
@@ -2882,10 +2922,13 @@ MonoBehaviour:
   firstCard: {fileID: 1812956292}
   secondCard: {fileID: 1812956293}
   recommender: {fileID: 1699083443}
+  Fill: {fileID: 0}
   HypeBar: {fileID: 588528432}
   TimerBar: {fileID: 1921988385}
   startColor: {r: 0.20392157, g: 0.7529412, b: 1, a: 1}
   endColor: {r: 1, g: 0.51269007, b: 0.28773582, a: 1}
+  BG1: {fileID: 0}
+  BG2: {fileID: 0}
 --- !u!4 &2020097373
 Transform:
   m_ObjectHideFlags: 0
@@ -3233,6 +3276,73 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2882999f6ae7342cdb0b9b77b200577a, type: 3}
+--- !u!1 &1539844161522023049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1539844162428354827, guid: 2882999f6ae7342cdb0b9b77b200577a, type: 3}
+  m_PrefabInstance: {fileID: 1539844161522023048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1539844161522023050 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3692828267204065037, guid: 2882999f6ae7342cdb0b9b77b200577a, type: 3}
+  m_PrefabInstance: {fileID: 1539844161522023048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1539844161522023051 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3692828266442098570, guid: 2882999f6ae7342cdb0b9b77b200577a, type: 3}
+  m_PrefabInstance: {fileID: 1539844161522023048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1539844161522023052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539844161522023049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d8cfb19284b46a680432582357da06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 0}
+  priceText: {fileID: 0}
+  arrows:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  green: {fileID: 0}
+  red: {fileID: 0}
+  downPos: {x: 0, y: 0, z: 0}
+  upPos: {x: 0, y: 0, z: 0}
+  dialogueText: {fileID: 0}
+  asset: {fileID: 0}
+  dialogues: []
+  dialogueBox: {fileID: 0}
+  popUpText: {fileID: 0}
+  popUp: {fileID: 0}
+  firstCard: {fileID: 0}
+  secondCard: {fileID: 0}
+  recommender: {fileID: 0}
+  Fill: {fileID: 0}
+  HypeBar: {fileID: 0}
+  TimerBar: {fileID: 0}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
+  endColor: {r: 0, g: 0, b: 0, a: 0}
+  BG1: {fileID: 1539844161522023051}
+  BG2: {fileID: 1539844161522023050}
 --- !u!1 &1788550381230355427
 GameObject:
   m_ObjectHideFlags: 0
@@ -3998,6 +4108,96 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
+--- !u!1 &5958720665269593947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4181264907316770487, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
+  m_PrefabInstance: {fileID: 5958720665269593946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5958720665269593948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5958720665269593947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d8cfb19284b46a680432582357da06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 0}
+  priceText: {fileID: 0}
+  arrows:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  green: {fileID: 150087032}
+  red: {fileID: 0}
+  downPos: {x: 0, y: 0, z: 0}
+  upPos: {x: 0, y: 0, z: 0}
+  dialogueText: {fileID: 0}
+  asset: {fileID: 0}
+  dialogues: []
+  dialogueBox: {fileID: 0}
+  popUpText: {fileID: 0}
+  popUp: {fileID: 0}
+  firstCard: {fileID: 0}
+  secondCard: {fileID: 0}
+  recommender: {fileID: 0}
+  Fill: {fileID: 0}
+  HypeBar: {fileID: 0}
+  TimerBar: {fileID: 0}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
+  endColor: {r: 0, g: 0, b: 0, a: 0}
+  BG1: {fileID: 0}
+  BG2: {fileID: 0}
+--- !u!1 &5958720665269593949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8815887585343366743, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
+  m_PrefabInstance: {fileID: 5958720665269593946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5958720665269593950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5958720665269593949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d8cfb19284b46a680432582357da06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 0}
+  priceText: {fileID: 0}
+  arrows:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  green: {fileID: 0}
+  red: {fileID: 1271101326}
+  downPos: {x: 0, y: 0, z: 0}
+  upPos: {x: 0, y: 0, z: 0}
+  dialogueText: {fileID: 0}
+  asset: {fileID: 0}
+  dialogues: []
+  dialogueBox: {fileID: 0}
+  popUpText: {fileID: 0}
+  popUp: {fileID: 0}
+  firstCard: {fileID: 0}
+  secondCard: {fileID: 0}
+  recommender: {fileID: 0}
+  Fill: {fileID: 0}
+  HypeBar: {fileID: 0}
+  TimerBar: {fileID: 0}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
+  endColor: {r: 0, g: 0, b: 0, a: 0}
+  BG1: {fileID: 0}
+  BG2: {fileID: 0}
 --- !u!1 &6388445612379397186
 GameObject:
   m_ObjectHideFlags: 0
