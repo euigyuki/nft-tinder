@@ -1693,6 +1693,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5016417010372958132, guid: b02e15e10a36a4b4f9808c915551a2b0, type: 3}
+      propertyPath: redColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016417010372958132, guid: b02e15e10a36a4b4f9808c915551a2b0, type: 3}
+      propertyPath: redColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016417010372958132, guid: b02e15e10a36a4b4f9808c915551a2b0, type: 3}
+      propertyPath: redColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016417010372958132, guid: b02e15e10a36a4b4f9808c915551a2b0, type: 3}
+      propertyPath: greenColor.b
+      value: 0.109375305
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016417010372958132, guid: b02e15e10a36a4b4f9808c915551a2b0, type: 3}
+      propertyPath: greenColor.g
+      value: 0.6792453
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016417010372958132, guid: b02e15e10a36a4b4f9808c915551a2b0, type: 3}
+      propertyPath: greenColor.r
+      value: 0.06087574
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016417010372958132, guid: b02e15e10a36a4b4f9808c915551a2b0, type: 3}
+      propertyPath: orangeColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016417010372958132, guid: b02e15e10a36a4b4f9808c915551a2b0, type: 3}
+      propertyPath: orangeColor.g
+      value: 0.5789586
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016417010372958132, guid: b02e15e10a36a4b4f9808c915551a2b0, type: 3}
+      propertyPath: orangeColor.r
+      value: 0.990566
+      objectReference: {fileID: 0}
     - target: {fileID: 5016417010372958133, guid: b02e15e10a36a4b4f9808c915551a2b0, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7346967

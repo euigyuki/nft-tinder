@@ -463,7 +463,7 @@ public class PriceManager : MonoBehaviour
             double priceIncFactor;
             double currentNftPrice = nftsDict[nftId].price;
             string tempString = String.Format("Nft: {0} previous price: {1}", nftId, currentNftPrice);
-            Debug.Log(tempString);
+            // Debug.Log(tempString);
             if (buyProbability > sellProbability) {
                 priceIncFactor = getPriceIncFactor(nftId, "+");
                 currentNftPrice += (currentNftPrice * priceIncFactor);
@@ -473,7 +473,7 @@ public class PriceManager : MonoBehaviour
             }
             nftsDict[nftId].price = currentNftPrice;
             tempString = String.Format("Nft: {0} AFTER price: {1}", nftId, currentNftPrice);
-            Debug.Log(tempString);
+            // Debug.Log(tempString);
         }
 
     }
