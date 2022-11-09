@@ -107,15 +107,12 @@ public class Timer : MonoBehaviour {
          uiFillImage.GetComponent<Image>().color = new Color32(16,173,28,255);
       } 
       else if (remainingTimePercentage <= 0.5 && remainingTimePercentage>=0.2) {
-         Debug.Log("IN HERE");
          uiFillImage.GetComponent<Image>().color = new Color32(253,148,0,255);
       } else {
-         Debug.Log("IN HERE 2");
          uiFillImage.GetComponent<Image>().color = new Color32(255,0,0,255);
       }
 
       uiFillImage.fillAmount = Mathf.InverseLerp (0, Duration, seconds) ;
-      
    }
 
    public void End () {
