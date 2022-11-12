@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class TimerDemo : MonoBehaviour
 {
     [SerializeField] Timer timer1 ;
+    [SerializeField] phoneBehavior phone;
     public GameObject GameOverMenu;
+    public TextMeshProUGUI countdownDisplay;
     public int Time;
 
     // Start is called before the first frame update
@@ -20,7 +23,8 @@ public class TimerDemo : MonoBehaviour
             Scene scene = SceneManager.GetActiveScene();
             Debug.Log(scene.name);
             if(scene.name == "ObjectiveBuyDerrick") {
-                SceneManager.LoadScene("ObjectiveSellDerrick");
+                endBuy();
+                // SceneManager.LoadScene("ObjectiveSellDerrick");
             //if(scene.name == "ObjectiveBuyPage") {
             //    SceneManager.LoadScene("ObjectiveSellPage");
             } 
@@ -48,5 +52,17 @@ public class TimerDemo : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void endBuy(){
+        timer1.SetPaused(true);
+        phone.disablePhone();
+        countdownDisplay.text = "FINISHED!";
+        StartCoroutine(moveToSell());
+    }
+
+    IEnumerator moveToSell(){
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("ObjectiveSellDerrick");
     }
 }

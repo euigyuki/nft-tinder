@@ -116,4 +116,9 @@ public class HypeLevelManager : MonoBehaviour
         else if(curr>max) return max;
         return curr;
     }
+
+    public void disableHype(){
+        PriceManager.offerDiscount = false;
+        enabled = false;
+    }
 }

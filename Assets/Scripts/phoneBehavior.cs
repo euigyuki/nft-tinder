@@ -154,6 +154,10 @@ public class phoneBehavior : MonoBehaviour
     }
 
     public void disablePhone(){
-        enabled =false;
+        enabled = false;
+        redButton.enabled = false;
+        greenButton.enabled = false;
+        skipButton.enabled = false;
+        hlMang.enabled = false;
     }
 }
