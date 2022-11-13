@@ -194,6 +194,17 @@ public class sellHelper : MonoBehaviour
         refreshCards();
 
     }
+    public void changeColorSell()
+    {
+        if(ClickMode.Mode=="Normal"){
+            goodColor= new Color (0.38f,0.81f,0.43f,1.0f);
+            badColor= new Color (0.81f,0.41f,0.38f,1.0f);
+        }
+        if(ClickMode.Mode=="ColorBlind"){
+            goodColor=new Color(0.047f,0.48f,0.863f,1.0f);
+            badColor=new Color(1.0f,0.76f,0.039f,1.0f);
+        }
+    }
 
     void SellAllNFTs() {
 
@@ -333,6 +344,7 @@ public class sellHelper : MonoBehaviour
     }
 
     void refreshCards() {
+        changeColorSell();
 
         for(int i=0;i<4;i++) {
 
@@ -415,8 +427,10 @@ public class sellHelper : MonoBehaviour
         return sellPrice - costPrice;
 
     }
+   
 
     void setProfitLossText() {
+        changeColorSell();
 
         double costPrice = PriceManager.getBuyPricePortfolioValueFromList(toSellNFTIds);
         double sellPrice = PriceManager.getSelectedPortfolioValue(toSellNFTIds);
@@ -425,10 +439,10 @@ public class sellHelper : MonoBehaviour
 
         if(profitLossValue > 0) {
             profitLossText.text = String.Format("Profit ${0:0.##}", profitLossValue);
-            profitLossText.color = Color.green;
+            profitLossText.color = goodColor;
         } else if(profitLossValue < 0) {
             profitLossText.text = String.Format("Loss ${0:0.##}", -1 * profitLossValue);
-            profitLossText.color = Color.red;
+            profitLossText.color = badColor;
         } else {
             profitLossText.text = "";
         }

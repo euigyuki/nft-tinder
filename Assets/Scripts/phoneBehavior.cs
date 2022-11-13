@@ -48,6 +48,7 @@ public class phoneBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        changeColor();
         if (timer.IsPaused)
         {
             redButton.enabled = false;
@@ -64,6 +65,17 @@ public class phoneBehavior : MonoBehaviour
 
         if(Input.GetKeyDown("left")){
             phonePass();
+        }
+    }
+    public void changeColor()
+    {
+        if(ClickMode.Mode=="Normal"){
+            redButton.GetComponent<Image>().color=new Color (0.81f,0.41f,0.38f,1.0f);
+            greenButton.GetComponent<Image>().color=new Color (0.38f,0.81f,0.43f,1.0f);
+        }
+        if(ClickMode.Mode=="ColorBlind"){
+            greenButton.GetComponent<Image>().color=new Color(0.047f,0.48f,0.863f,1.0f);
+            redButton.GetComponent<Image>().color=new Color(1.0f,0.76f,0.039f,1.0f);
         }
     }
 
@@ -142,6 +154,10 @@ public class phoneBehavior : MonoBehaviour
     }
 
     public void disablePhone(){
-        enabled =false;
+        enabled = false;
+        redButton.enabled = false;
+        greenButton.enabled = false;
+        skipButton.enabled = false;
+        hlMang.enabled = false;
     }
 }

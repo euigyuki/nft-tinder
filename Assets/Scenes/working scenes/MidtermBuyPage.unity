@@ -2670,6 +2670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recommender: {fileID: 1699083443}
+  Fill: {fileID: 395366127}
 --- !u!114 &1699083443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2825,6 +2826,8 @@ MonoBehaviour:
   popWindow: {fileID: 749822806}
   firstCard: {fileID: 1812956292}
   secondCard: {fileID: 1812956293}
+  rightSoundEffect: {fileID: 0}
+  leftSoundEffect: {fileID: 0}
   redButton: {fileID: 341162632}
   greenButton: {fileID: 1197801907}
   skipButton: {fileID: 467359196}
