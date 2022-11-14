@@ -362,7 +362,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer1: {fileID: 2119379726}
+  phone: {fileID: 0}
   GameOverMenu: {fileID: 0}
+  countdownDisplay: {fileID: 0}
   Time: 60
 --- !u!4 &193672406
 Transform:
@@ -1618,6 +1620,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7104491868484087003, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
   m_PrefabInstance: {fileID: 5958720665269593946}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1059239606 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3692828267204065037, guid: 2882999f6ae7342cdb0b9b77b200577a, type: 3}
+  m_PrefabInstance: {fileID: 1539844161522023048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1084091437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2882,10 +2895,13 @@ MonoBehaviour:
   firstCard: {fileID: 1812956292}
   secondCard: {fileID: 1812956293}
   recommender: {fileID: 1699083443}
+  Fill: {fileID: 395366127}
   HypeBar: {fileID: 588528432}
   TimerBar: {fileID: 1921988385}
   startColor: {r: 0.20392157, g: 0.7529412, b: 1, a: 1}
   endColor: {r: 1, g: 0.51269007, b: 0.28773582, a: 1}
+  BG1: {fileID: 2138869705}
+  BG2: {fileID: 1059239606}
 --- !u!4 &2020097373
 Transform:
   m_ObjectHideFlags: 0
@@ -2910,6 +2926,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0d3d52f4ba1648aeb5f10f98c558655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2138869705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3692828266442098570, guid: 2882999f6ae7342cdb0b9b77b200577a, type: 3}
+  m_PrefabInstance: {fileID: 1539844161522023048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2146938917

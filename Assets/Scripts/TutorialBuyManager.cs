@@ -40,12 +40,15 @@ public class TutorialBuyManager : MonoBehaviour
     [SerializeField] nftGenerator secondCard;
 
     public Slider recommender;
+    public Image Fill;
 
     [SerializeField] BarManager HypeBar;
     [SerializeField] BarManager TimerBar;
 
     public Color startColor;
     public Color endColor;
+    public RawImage BG1;
+    public RawImage BG2;
 
     private float levelCap = 100f;
     private float timeCap = 7f;
@@ -62,6 +65,9 @@ public class TutorialBuyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        changecolorButton();
+        changeFillcolor();
+        changeColor();
         dialogues = asset.text.Split('\n');
         changeDialogue(index++);
         recommender.value = 0;
@@ -311,5 +317,40 @@ public class TutorialBuyManager : MonoBehaviour
         if(curr<min) return min;
         else if(curr>max) return max;
         return curr;
+    }
+
+    void changeColor()
+    {
+         if(ClickMode.Mode=="Normal"){
+            BG1.color= new Color (0.38f,0.81f,0.43f,1.0f);
+            BG2.color= new Color (0.81f,0.41f,0.38f,1.0f);
+        }
+        if(ClickMode.Mode=="ColorBlind"){
+            BG1.color=new Color(0.047f,0.48f,0.863f,1.0f);
+            BG2.color=new Color(1.0f,0.76f,0.039f,1.0f);
+        }
+    }
+
+    void changecolorButton()
+    {
+        if(ClickMode.Mode=="Normal"){
+            green.GetComponent<Image>().color= new Color (0.38f,0.81f,0.43f,1.0f);
+            red.GetComponent<Image>().color= new Color (0.81f,0.41f,0.38f,1.0f);
+        }
+        if(ClickMode.Mode=="ColorBlind"){
+            green.GetComponent<Image>().color=new Color(0.047f,0.48f,0.863f,1.0f);
+            red.GetComponent<Image>().color=new Color(1.0f,0.76f,0.039f,1.0f);
+        }
+
+    }
+    void changeFillcolor()
+    {
+         if(ClickMode.Mode=="Normal"){
+            Fill.color=new Color (0.38f,0.81f,0.43f,1.0f);
+         }
+         if(ClickMode.Mode=="ColorBlind"){
+            Fill.color=new Color (0.047f,0.48f,0.863f,1.0f);
+         }
+
     }
 }
