@@ -24,13 +24,13 @@ EditorBuildSettings:
     path: Assets/Scenes/working scenes/sellSummary.unity
     guid: 059bed9180f36469e8f5047aa8455a8d
   - enabled: 0
-    path: Assets/Scenes/ObjectiveBuyPage.unity
+    path: Assets/Scenes/PastScenes/ObjectiveBuyPage.unity
     guid: 7df61693e6b644073a147f9ee4e5ea70
   - enabled: 1
     path: Assets/Scenes/HighScorePage2.unity
     guid: 7f62960b228f2481c92d93e0016147de
   - enabled: 0
-    path: Assets/Scenes/ObjectiveSellPage.unity
+    path: Assets/Scenes/PastScenes/ObjectiveSellPage.unity
     guid: 3af11fb17d9d5485e8a6d8d23e5fa636
   - enabled: 1
     path: Assets/Scenes/HighScorePage.unity

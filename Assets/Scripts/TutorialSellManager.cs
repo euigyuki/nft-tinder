@@ -67,6 +67,8 @@ public class TutorialSellManager : MonoBehaviour
     bool[] hatSelected = {false, false, false, false};
     bool[] bodySelected = {false, false, false, false};
 
+    [SerializeField] AudioSource soundEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -129,6 +131,7 @@ public class TutorialSellManager : MonoBehaviour
     void Update()
     {
          if(Input.GetMouseButtonDown(0) || Input.GetKeyDown("return") || Input.GetKeyDown("space") && !isWaiting ){
+            soundEffect.Play();
             if(new []{8,10,15}.Contains(index)){
                 paused = true;
                 dialogueBox.SetActive(false);
