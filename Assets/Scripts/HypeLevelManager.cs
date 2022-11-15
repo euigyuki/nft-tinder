@@ -7,6 +7,7 @@ public class HypeLevelManager : MonoBehaviour
     [SerializeField] BarManager HypeBar;
     [SerializeField] BarManager TimerBar;
     [SerializeField] phoneBehavior phone;
+    public static string countdownTimerStr = "";
 
     public GameObject GameOverMenu;
     public GameObject slider;
@@ -107,14 +108,31 @@ public class HypeLevelManager : MonoBehaviour
             slider.SetActive(false);
         }
         phone.setDuration(ogDuration);
-        yield return new WaitForSeconds(feverCD);
+
+        time = 1;
+        Debug.Log("time: " + time);
+        while(time < 6)
+        {
+            time += Time.deltaTime;
+            countdownTimerStr = "Hype starts in " + getExactCountdownTime(time).ToString();
+            // yield return new WaitForSeconds(1);
+            yield return null;
+        } 
+        countdownTimerStr = "";
+
+        // yield return new WaitForSeconds(feverCD);
         isCD = false;
+        yield return new WaitForSeconds(0f);
     }
 
     private float Cap(float curr, float min, float max){
         if(curr<min) return min;
         else if(curr>max) return max;
         return curr;
+    }
+
+    private int getExactCountdownTime(float time) {
+        return 6 - (int) time;
     }
 
     public void disableHype(){
