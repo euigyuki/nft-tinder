@@ -13,7 +13,7 @@ public class LeaderBoardManager : MonoBehaviour
     // Start is called before the first frame update
     double PlayerScore = PriceManager.walletValue;
     public int ID;
-    int MaxScores = 3;
+    int MaxScores = 10;
     public TextMeshProUGUI[] Entries;
     public TextMeshProUGUI scoreText;
     
@@ -23,7 +23,12 @@ public class LeaderBoardManager : MonoBehaviour
             if(response.success) {
                 LootLockerLeaderboardMember[] scores = response.items;
                 for(int i =0;i<scores.Length;i++) {
-                    Entries[i].text = (scores[i].rank +".place is  "+ scores[i].member_id +"\r\n" + " Wallet Value = $" +scores[i].score);
+                    //Entries[i].text = (scores[i].rank + scores[i].member_id + "                                  " +scores[i].score);
+                    Entries[i].text = scores[i].rank.ToString() + "." + scores[i].member_id;
+                    for(int j=0;j<65-scores[i].member_id.Length-scores[i].score.ToString().Length-scores[i].rank.ToString().Length;j++) {
+                        Entries[i].text = Entries[i].text + " ";
+                    }
+                    Entries[i].text = Entries[i].text + scores[i].score;
                 }
                 if(scores.Length<MaxScores) {
                     for(int i=scores.Length;i<MaxScores;i++) {
