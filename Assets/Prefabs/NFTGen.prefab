@@ -278,7 +278,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2765544032432038155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,10 +317,10 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 6890c6b48c82e4ce18e01a0f8b6ee78c, type: 3}
   - imagePart: {fileID: 2765544032608412088}
     imageTextures:
-    - {fileID: 2800000, guid: f4c1055e6d6564cebac35190a2e0840a, type: 3}
-    - {fileID: 2800000, guid: 2d7f05b199414486d8a2a8bd6ea849a3, type: 3}
+    - {fileID: 2800000, guid: 60c4d1caa3854444f8ed82f52d7431df, type: 3}
+    - {fileID: 2800000, guid: 0b0af5230a89847f0b6a5c2b42c1a08e, type: 3}
     - {fileID: 2800000, guid: 543a527f0e2674b60b714191b59a28a5, type: 3}
-    - {fileID: 2800000, guid: ddf7f511f236747cfa617a4ba8e2a597, type: 3}
+    - {fileID: 2800000, guid: 9ad14918dfbcf4797a59746fefc873f3, type: 3}
   - imagePart: {fileID: 2765544032964329866}
     imageTextures:
     - {fileID: 2800000, guid: ae895ee44e5704578b4772fa492ff3a5, type: 3}
@@ -410,7 +410,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: f4c1055e6d6564cebac35190a2e0840a, type: 3}
+  m_Texture: {fileID: 2800000, guid: 60c4d1caa3854444f8ed82f52d7431df, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
