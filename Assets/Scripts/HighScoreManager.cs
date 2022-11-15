@@ -14,7 +14,7 @@ public class HighScoreManager : MonoBehaviour
     public TMP_InputField MemberID;
     double PlayerScore = PriceManager.walletValue;
     public int ID;
-    int MaxScores = 10;
+    int MaxScores = 3;
     public TextMeshProUGUI scoreText;
     
     private void Awake() {
