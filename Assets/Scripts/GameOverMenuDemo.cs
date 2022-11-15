@@ -10,6 +10,8 @@ public class GameOverMenuDemo : MonoBehaviour
 {
     public Text textMesh;
     public double profit;
+    public AudioSource gameOver;
+    public AudioClip clip;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,7 @@ public class GameOverMenuDemo : MonoBehaviour
         // Debug.Log("Money"+PriceManager.walletValue);
         string s = "";
         if(!PriceManager.levelPassed()) {
+            gameOver.PlayOneShot(clip);
             textMesh.text = "Did not meet Daily Objective.\n";
             textMesh.text += string.Format("Objective: $ {0:0.##}", PriceManager.getLevelObjective(PriceManager.currentDay-1)) + "\n";
             textMesh.text += string.Format("Wallet + Portfolio Value: $ {0:0.##}", PriceManager.walletValue + PriceManager.getPortfolioValue());
