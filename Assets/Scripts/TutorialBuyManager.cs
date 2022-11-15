@@ -61,6 +61,9 @@ public class TutorialBuyManager : MonoBehaviour
     private bool isCD = false;
 
     private bool timer = false;
+    [SerializeField] AudioSource rightSoundEffect;
+    [SerializeField] AudioSource leftSoundEffect;
+    [SerializeField] AudioSource soundEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +90,7 @@ public class TutorialBuyManager : MonoBehaviour
         showMoney();
         showPrice();
         if(Input.GetMouseButtonDown(0) || Input.GetKeyDown("return") || Input.GetKeyDown("space") && !isWaiting ){
+            soundEffect.Play();
             if(new []{5, 7, 12, 15, 18}.Contains(index)){
                 paused = true;
                 green.enabled = true;
@@ -159,6 +163,7 @@ public class TutorialBuyManager : MonoBehaviour
         recommender.value = tempRecVal;
         randomGenNFT(firstCard);
         price = Random.Range(10,100);
+        rightSoundEffect.Play();
         swapGen();
         if(index == 5){
                 showDialogueBox();
@@ -172,6 +177,7 @@ public class TutorialBuyManager : MonoBehaviour
     }
 
     public void pass(){
+        
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         if(isWaiting || !paused) return;
         if(index == 5){
@@ -184,6 +190,7 @@ public class TutorialBuyManager : MonoBehaviour
         recommender.value = tempRecVal;
         randomGenNFT(firstCard);
         price = Random.Range(10,100);
+        leftSoundEffect.Play();
         swapGen();
         if(index == 7){
                 showDialogueBox();
