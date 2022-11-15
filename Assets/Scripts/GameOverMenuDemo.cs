@@ -31,6 +31,14 @@ public class GameOverMenuDemo : MonoBehaviour
         SceneManager.LoadScene("MenuScene");
     }
 
+    public void ScoreBoad() {
+        Debug.Log("High Score Show");
+        SceneManager.LoadScene("HighScorePage");
+        
+
+    }
+
+
     public void RestartGame() {
         Debug.Log("Restart Button Clicked");
         PriceManager.resetEverything();
