@@ -80,10 +80,6 @@ public class phoneBehavior : MonoBehaviour
     }
 
     public void phonePass(){
-        // StartCoroutine(showAndHide(pass));
-        // PriceManager.instance.passItem();
-        // PriceManager.instance.passNft();
-        // generator.randomGen();
         
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         StaticAnalytics.leftPressIncrement();

@@ -7,6 +7,8 @@ public class TutorialManager : MonoBehaviour
 {
     public GameObject[] tutorialCards = new GameObject[4];
     private int index=0; 
+
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,6 @@ public class TutorialManager : MonoBehaviour
     }
 
     public void startGame(){
-        SceneManager.LoadScene("ObjectiveBuyPage");
+        SceneManager.LoadScene("ObjectiveBuy");
     }
 }

@@ -18,7 +18,7 @@ public class MenuScript : MonoBehaviour
     }
 
     public void SwitchToGame() {
-        SceneManager.LoadScene("NewTutorialBuy");
+        SceneManager.LoadScene("NewestTutorialBuy");
     }
      public void SwitchToOptions() {
         SceneManager.LoadScene("Options");

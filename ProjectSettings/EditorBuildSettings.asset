@@ -11,28 +11,40 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PastScenes/tutorial.unity
     guid: 38a20059def874f1f8f9df2a43e4f882
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tutorial/NewTutorialBuy.unity
     guid: b37c63949ca034375ab4f9947c86c555
   - enabled: 1
+    path: Assets/Scenes/Tutorial/NewestTutorialSell.unity
+    guid: 2634d8eeb9e18488caa7ea48b53ebac3
+  - enabled: 1
     path: Assets/Scenes/Tutorial/NewTutorialSell.unity
     guid: a1b3b36af1b3d4fc480660a688211ad7
-  - enabled: 1
-    path: Assets/Scenes/ObjectiveSellDerrick.unity
+  - enabled: 0
+    path: Assets/Scenes/PastScenes/OldObjectiveBuysAndSells/ObjectiveSellDerrick.unity
     guid: a4e85cfc3c487480ba6e12e25ea84b0c
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/NewestTutorialBuy.unity
+    guid: 778b4d9e2b22b4d578e29fa97efda9ba
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/working scenes/sellSummary.unity
     guid: 059bed9180f36469e8f5047aa8455a8d
   - enabled: 0
-    path: Assets/Scenes/ObjectiveBuyPage.unity
+    path: Assets/Scenes/PastScenes/OldObjectiveBuysAndSells/ObjectiveBuyPage.unity
     guid: 7df61693e6b644073a147f9ee4e5ea70
   - enabled: 0
-    path: Assets/Scenes/ObjectiveSellPage.unity
+    path: Assets/Scenes/PastScenes/OldObjectiveBuysAndSells/ObjectiveSellPage.unity
     guid: 3af11fb17d9d5485e8a6d8d23e5fa636
-  - enabled: 1
-    path: Assets/Scenes/ObjectiveBuyDerrick.unity
+  - enabled: 0
+    path: Assets/Scenes/PastScenes/OldObjectiveBuysAndSells/ObjectiveBuyDerrick.unity
     guid: 8744c2e7ca96b49e4a40eac981ab4cae
   - enabled: 1
     path: Assets/Scenes/working scenes/Options.unity
     guid: 3c74e857fdc2c4348988eec1bf35dd01
+  - enabled: 1
+    path: Assets/Scenes/ObjectiveSell.unity
+    guid: 0e0e3181245654012825681a5757933c
   m_configObjects: {}

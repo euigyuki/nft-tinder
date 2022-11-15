@@ -61,6 +61,9 @@ public class TutorialBuyManager : MonoBehaviour
     private bool isCD = false;
 
     private bool timer = false;
+    
+    [SerializeField] AudioSource rightSoundEffect;
+    [SerializeField] AudioSource leftSoundEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -95,7 +98,7 @@ public class TutorialBuyManager : MonoBehaviour
                 hideArrows();
                 if(index == 18) StartCoroutine(feverMode());
             }
-            if(index == 21) SceneManager.LoadScene("NewTutorialSell");
+            if(index == 21) SceneManager.LoadScene("NewestTutorialSell");
             if(!paused && index!=21) changeDialogue(index++ %dialogues.Length);
         }
 
@@ -144,6 +147,9 @@ public class TutorialBuyManager : MonoBehaviour
     }
 
     public void buy(){
+        
+        rightSoundEffect.Play();
+
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         if(isWaiting || !paused) return;
         if(index == 7){
@@ -172,6 +178,8 @@ public class TutorialBuyManager : MonoBehaviour
     }
 
     public void pass(){
+        
+        leftSoundEffect.Play();
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
         if(isWaiting || !paused) return;
         if(index == 5){

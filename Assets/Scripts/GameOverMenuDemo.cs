@@ -35,7 +35,7 @@ public class GameOverMenuDemo : MonoBehaviour
         Debug.Log("Restart Button Clicked");
         PriceManager.resetEverything();
         phoneBehavior.setCount = 0;
-        SceneManager.LoadScene("ObjectiveBuyDerrick");
+        SceneManager.LoadScene("ObjectiveBuy");
 
     }
 
