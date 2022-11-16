@@ -7,6 +7,7 @@ public class nftGenerator : MonoBehaviour
 {
     // face, bg, head, body, face wear
     public imageHolder[] imageParts = new imageHolder[5];
+    public GameObject star;
 
     public float duration = 0.5f;
     public int rotAngle = 45;
@@ -20,6 +21,7 @@ public class nftGenerator : MonoBehaviour
     {
         originalScale = transform.localScale;
         originalPos = transform.localPosition;
+        star.SetActive(false);
     }
 
     // Update is called once per frame
@@ -81,6 +83,11 @@ public class nftGenerator : MonoBehaviour
         transform.eulerAngles = new Vector3(0,0,0);
     }
 
+    public void setStar(bool bo)
+    {
+        star.SetActive(bo);
+    }
+
     IEnumerator setFirstCard(){
         float time = 0;
         isCoroutine = true;
@@ -120,6 +127,7 @@ public class nftGenerator : MonoBehaviour
             yield return null;
         }
         setSecondCard();
+        setStar(false);
         isCoroutine = false;
     }
 }

@@ -91,9 +91,12 @@ public class phoneBehavior : MonoBehaviour
             bot.BotBuy();
         }
         PriceManager.passNft();
-        
         firstCard.swipe(true);
         secondCard.setNftPic();
+        if(PriceManager.getCurrentNftPrice()>=10000)
+        {
+            secondCard.setStar(true);
+        }
         secondCard.moveCard();
         
         // firstCard.setNftPic();
@@ -121,6 +124,10 @@ public class phoneBehavior : MonoBehaviour
 
         firstCard.swipe(false);
         secondCard.setNftPic();
+        if(PriceManager.getCurrentNftPrice()>=10000)
+        {
+            secondCard.setStar(true);
+        }
         secondCard.moveCard();
         
         // firstCard.setNftPic();
