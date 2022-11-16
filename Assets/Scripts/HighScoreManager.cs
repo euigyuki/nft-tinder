@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using TMPro;
-using LootLocker.Requests;
+// using LootLocker.Requests;
 using UnityEngine.SceneManagement;
 
 public class HighScoreManager : MonoBehaviour
@@ -19,14 +19,14 @@ public class HighScoreManager : MonoBehaviour
     
     private void Awake() {
         //scoreText.text = "Enter Score..." + PriceManager.walletValue;
-        LootLockerSDKManager.StartGuestSession((response)=>{
-            if(response.success) {
-                Debug.Log("success");
-            }
-            else {
-                Debug.Log("fail");
-            }
-        });
+        // LootLockerSDKManager.StartGuestSession((response)=>{
+        //     if(response.success) {
+        //         Debug.Log("success");
+        //     }
+        //     else {
+        //         Debug.Log("fail");
+        //     }
+        // });
     }
     public void Play() {
         Debug.Log("Restart Button Clicked");
@@ -35,14 +35,14 @@ public class HighScoreManager : MonoBehaviour
         SceneManager.LoadScene("ObjectiveBuyDerrick");
     }
     public void GoToPage2() {
-        LootLockerSDKManager.SubmitScore(MemberID.text, (int)PlayerScore,ID,(response)=>{
-            if(response.success) {
-                Debug.Log("success");
-            }
-            else {
-                Debug.Log("fail");
-            }
-        });
+        // LootLockerSDKManager.SubmitScore(MemberID.text, (int)PlayerScore,ID,(response)=>{
+        //     if(response.success) {
+        //         Debug.Log("success");
+        //     }
+        //     else {
+        //         Debug.Log("fail");
+        //     }
+        // });
         SceneManager.LoadScene("HighScorePage2");
         
     }
