@@ -32,6 +32,10 @@ public class ClickMode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Mode=="ColorBlind")
+        {
+            CBMode.isOn=true;
+        }
        
         
     }
