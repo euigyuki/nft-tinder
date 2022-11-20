@@ -93,7 +93,7 @@ public class phoneBehavior : MonoBehaviour
         PriceManager.passNft();
         firstCard.swipe(true);
         secondCard.setNftPic();
-        if(PriceManager.getCurrentNftPrice()>=10000)
+        if(PriceManager.getCurrentNftPrice()>=5000)
         {
             secondCard.setStar(true);
         }
@@ -124,7 +124,7 @@ public class phoneBehavior : MonoBehaviour
 
         firstCard.swipe(false);
         secondCard.setNftPic();
-        if(PriceManager.getCurrentNftPrice()>=10000)
+        if(PriceManager.getCurrentNftPrice()>=5000)
         {
             secondCard.setStar(true);
         }

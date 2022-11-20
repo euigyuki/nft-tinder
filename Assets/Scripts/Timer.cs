@@ -104,12 +104,22 @@ public class Timer : MonoBehaviour {
       float remainingTimePercentage = ((float)seconds / (float) Duration);
 
       if (remainingTimePercentage > 0.5) {
-         uiFillImage.GetComponent<Image>().color = new Color32(16,173,28,255);
+         if(ClickMode.Mode=="Normal"){
+            uiFillImage.GetComponent<Image>().color = new Color32(16,173,28,255);
+         }
+          if(ClickMode.Mode=="ColorBlind"){
+            uiFillImage.GetComponent<Image>().color = new Color(0.047f,0.48f,0.863f,1.0f);
+          }
+        
       } 
       else if (remainingTimePercentage <= 0.5 && remainingTimePercentage>=0.2) {
          uiFillImage.GetComponent<Image>().color = new Color32(253,148,0,255);
       } else {
-         uiFillImage.GetComponent<Image>().color = new Color32(255,0,0,255);
+          if(ClickMode.Mode=="Normal"){
+         uiFillImage.GetComponent<Image>().color = new Color32(255,0,0,255);}
+          if(ClickMode.Mode=="ColorBlind"){
+            uiFillImage.GetComponent<Image>().color = new Color(1.0f,0.76f,0.039f,1.0f);
+          }
       }
 
       uiFillImage.fillAmount = Mathf.InverseLerp (0, Duration, seconds) ;
