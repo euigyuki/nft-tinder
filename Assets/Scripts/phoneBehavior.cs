@@ -19,6 +19,7 @@ public class phoneBehavior : MonoBehaviour
 
     [SerializeField] AudioSource rightSoundEffect;
     [SerializeField] AudioSource leftSoundEffect;
+    [SerializeField] AudioSource superNFTSound;
 
     public Button redButton;
     public Button greenButton;
@@ -95,6 +96,7 @@ public class phoneBehavior : MonoBehaviour
         secondCard.setNftPic();
         if(PriceManager.getCurrentNftPrice()>=5000)
         {
+            superNFTSound.Play();
             secondCard.setStar(true);
         }
         secondCard.moveCard();
@@ -126,6 +128,7 @@ public class phoneBehavior : MonoBehaviour
         secondCard.setNftPic();
         if(PriceManager.getCurrentNftPrice()>=5000)
         {
+            superNFTSound.Play();
             secondCard.setStar(true);
         }
         secondCard.moveCard();
