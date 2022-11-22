@@ -8674,6 +8674,7 @@ MonoBehaviour:
   secondCard: {fileID: 0}
   rightSoundEffect: {fileID: 0}
   leftSoundEffect: {fileID: 0}
+  superNFTSound: {fileID: 0}
   redButton: {fileID: 0}
   greenButton: {fileID: 0}
   skipButton: {fileID: 0}
@@ -9156,8 +9157,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2549814089286336539, guid: 1aa1089363cb348b4b5555f57400c130, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.00962823
+      objectReference: {fileID: 0}
+    - target: {fileID: 2549814089286336539, guid: 1aa1089363cb348b4b5555f57400c130, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.048911296
+      objectReference: {fileID: 0}
+    - target: {fileID: 2549814089286336539, guid: 1aa1089363cb348b4b5555f57400c130, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.040978726
+      objectReference: {fileID: 0}
+    - target: {fileID: 2549814089286336539, guid: 1aa1089363cb348b4b5555f57400c130, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.612
+      value: -0.598
       objectReference: {fileID: 0}
     - target: {fileID: 5203877764102074707, guid: 1aa1089363cb348b4b5555f57400c130, type: 3}
       propertyPath: m_SizeDelta.x

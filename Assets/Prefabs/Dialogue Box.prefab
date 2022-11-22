@@ -186,6 +186,13 @@ MonoBehaviour:
   arrow: {fileID: 478546212091261650}
   yDelta: 2
   freq: 1.5
+  imagePart: {fileID: 4818946022788890030}
+  imageSprites:
+  - {fileID: 21300000, guid: 977418d67ae6f4044a03313fbfacb7a9, type: 3}
+  - {fileID: 21300000, guid: b4be28f2e21124eca9812f208658b0c9, type: 3}
+  - {fileID: 21300000, guid: 3897248bd66a54e34acebf5724e73e08, type: 3}
+  - {fileID: 21300000, guid: 6544a881d8ba04d24b95f05428cc9dd0, type: 3}
+  - {fileID: 21300000, guid: 96749c38c3da74f39aa16e1fde4f3243, type: 3}
 --- !u!1 &4711624000864224820
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,8 +218,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4711624000864224820}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.613, y: 0, z: 1.550636}
-  m_LocalScale: {x: 0.045254722, y: 0.22989346, z: 0.19260871}
+  m_LocalPosition: {x: -0.599, y: -0.000000091171, z: 1.550636}
+  m_LocalScale: {x: 0.009631264, y: 0.04892671, z: 0.04099164}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 478546213094762172}
@@ -259,7 +266,7 @@ SpriteRenderer:
   m_SortingLayerID: 545293519
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a4d5869a0c5ca42879d6ea2534a96ffa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3897248bd66a54e34acebf5724e73e08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -462,6 +469,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6866448979829666088, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 72b23df58195d40e294fb29b10d2bc6b, type: 2}
+    - target: {fileID: 6866448979829666088, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_fontColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -477,6 +488,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 6866448979829666088, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2915515466078955452, guid: 72b23df58195d40e294fb29b10d2bc6b, type: 2}
     - target: {fileID: 6866448979829666088, guid: cbe842c06ea5e40d399adfe95b67dc5f, type: 3}
       propertyPath: m_enableAutoSizing
       value: 0

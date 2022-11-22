@@ -28,7 +28,10 @@ public class TutorialBuyManager : MonoBehaviour
     public TextAsset asset;
     public String[] dialogues;
     public GameObject dialogueBox;
+    [SerializeField] DialogueBox DB;
     public TextMeshProUGUI popUpText;
+    public SpriteRenderer popUpFace;
+    public Sprite[] popUpSprites = new Sprite[2];
     public GameObject popUp;
     private int index = 0;
     private bool paused = false;
@@ -99,7 +102,7 @@ public class TutorialBuyManager : MonoBehaviour
                 hideArrows();
                 if(index == 18) StartCoroutine(feverMode());
             }
-            if(index == 21) SceneManager.LoadScene("NewTutorialSell");
+            if(index >= 21) SceneManager.LoadScene("NewTutorialSell");
             if(!paused && index!=21) changeDialogue(index++ %dialogues.Length);
         }
 
@@ -120,12 +123,23 @@ public class TutorialBuyManager : MonoBehaviour
         }
     }
 
+    // 0 ang, 1 dis, 2 happy, 3 laugh, 4 sad
     void changeDialogue(int index){
         dialogueText.text = dialogues[index];
         dialogueBox.transform.position = downPos;
         hideArrows();
+        DB.changeEmotion(2);
         if(index == 3){
             showArrow(5);
+        }
+        if(index == 5){
+            DB.changeEmotion(3);
+        }
+        if(index == 7){
+            DB.changeEmotion(1);
+        }
+        if(index == 8){
+            DB.changeEmotion(3);
         }
         if(new []{9, 10, 11}.Contains(index)){
             showArrow(0);
@@ -138,6 +152,7 @@ public class TutorialBuyManager : MonoBehaviour
             showArrow(3);
         }else if(index == 19){
             showArrow(4);
+            DB.changeEmotion(4);
             dialogueBox.transform.position = upPos;
             timer = true;
         }else if(index>19){
@@ -149,7 +164,7 @@ public class TutorialBuyManager : MonoBehaviour
 
     public void buy(){
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
-        if(isWaiting || !paused) return;
+        if(!paused) return;
         if(index == 7){
             showPopUp("you should've passed");
             return;
@@ -179,7 +194,7 @@ public class TutorialBuyManager : MonoBehaviour
     public void pass(){
         
         if(firstCard.isCoroutine || secondCard.isCoroutine) return;
-        if(isWaiting || !paused) return;
+        if(!paused) return;
         if(index == 5){
             showPopUp("you should've bought");
             return;
@@ -198,7 +213,7 @@ public class TutorialBuyManager : MonoBehaviour
         if(index == 12 || index == 15){
             if(currRecVal > 0) showPopUp("you should've bought");
             else showPopUp("good job!");
-            if(index==11&&buyCount--<=0) showDialogueBox();
+            if(index==11&& --buyCount<=0) showDialogueBox();
         }
     }
 
@@ -241,6 +256,11 @@ public class TutorialBuyManager : MonoBehaviour
     }
 
     void showPopUp(String text){
+        if(text == "you should've bought" || text == "you should've passed"){
+            popUpFace.sprite = popUpSprites[0];
+        }else{
+            popUpFace.sprite = popUpSprites[1];
+        }
         popUpText.text = text;
         StartCoroutine(showAndHide(popUp));
     }
@@ -259,6 +279,7 @@ public class TutorialBuyManager : MonoBehaviour
         dialogueBox.SetActive(true);
         changeDialogue(index++ %dialogues.Length);
         isWaiting = false;
+        paused = false;
     }
 
     IEnumerator showAndHide(GameObject obj)
