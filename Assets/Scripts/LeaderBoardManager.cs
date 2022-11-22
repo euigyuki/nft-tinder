@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using TMPro;
-// using LootLocker.Requests;
+using PlayFab;
+using PlayFab.ClientModels;
 using UnityEngine.SceneManagement;
 
 public class LeaderBoardManager : MonoBehaviour
@@ -19,6 +20,9 @@ public class LeaderBoardManager : MonoBehaviour
     
     void  Awake() 
     {
+
+       GetLeaderBoard();
+
         // LootLockerSDKManager.GetScoreList(ID,MaxScores,(response)=>{
         //     if(response.success) {
         //         LootLockerLeaderboardMember[] scores = response.items;
@@ -48,6 +52,31 @@ public class LeaderBoardManager : MonoBehaviour
     void Update()
     {
         
+    }
+    void OnError(PlayFabError error) {
+        Debug.Log("Error while getting data");
+        Debug.Log(error.GenerateErrorReport());
+    }
+
+    public void GetLeaderBoard() {
+        var request = new GetLeaderboardRequest {
+            StatisticName ="highScore",
+            StartPosition = 0,
+            MaxResultsCount = 10
+        };
+        PlayFabClientAPI.GetLeaderboard(request,OnLeaderboardGet,OnError);
+    }
+    void OnLeaderboardGet(GetLeaderboardResult result) {
+        int i =0;
+        foreach (var item in result.Leaderboard) {
+            Entries[i].text = item.Position + "." + item.Profile.DisplayName + "                                                     " + item.StatValue;
+            i++;
+        }
+        //if(i<MaxScores) {
+        //    for(int j=i;j<MaxScores;j++) {
+        //         Entries[j].text = (j).ToString() + ".                                                     none";
+        //    }
+        //}
     }
     public void GoToMenu() {
         PriceManager.resetEverything();
