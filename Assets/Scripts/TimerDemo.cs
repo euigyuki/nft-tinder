@@ -42,7 +42,7 @@ public class TimerDemo : MonoBehaviour
             } else {
                 GameOverMenu.SetActive(true);
             }
-
+            HypeLevelManager.countdownTimerStr = "";
             
         })
         .Begin();

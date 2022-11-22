@@ -64,6 +64,7 @@ public class sellHelper : MonoBehaviour
         totalSells = 0;
         posSells = 0;
         negSells = 0;
+        HypeLevelManager.countdownTimerStr = "";
         PriceManager.setUp();
 
         // Faces

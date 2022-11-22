@@ -169,6 +169,7 @@ public class PriceManager : MonoBehaviour
         prevFutureTrendingHatNeg = new List<int>();
 
         nftsToShow = new List<string>();
+        HypeLevelManager.countdownTimerStr = "";
 
         // nftsList = new Nfts();
         // NftsJson = Resources.Load<TextAsset>("nfts");
@@ -287,6 +288,7 @@ public class PriceManager : MonoBehaviour
         pickNftsToShow();
         changePrice();
         currentNftIdx = 0;
+        HypeLevelManager.countdownTimerStr = "";
     }
 
     public static double getPortfolioValue() {
