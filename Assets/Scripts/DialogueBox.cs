@@ -23,7 +23,7 @@ public class DialogueBox : MonoBehaviour
         arrow.transform.localPosition =new Vector3( arrow.transform.localPosition.x,yPos + (yDelta* (1+Mathf.Sin(2f*Mathf.PI*freq*Time.timeSinceLevelLoad) ) ), arrow.transform.localPosition.z);
     }
 
-    // 0 ang, 1 dis, 2 happy, 3 laugh, 4 sad
+    // 0 ang, 1 dis, 2 happy, 3 laugh, 4 sad, 5 spark
     public void changeEmotion(int index){
         imagePart.sprite = imageSprites[index];
     }

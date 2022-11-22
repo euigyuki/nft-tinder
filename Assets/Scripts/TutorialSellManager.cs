@@ -14,6 +14,7 @@ public class TutorialSellManager : MonoBehaviour
     public String[] dialogues;
     public GameObject[] arrows = new GameObject[5];
     public GameObject dialogueBox;
+    [SerializeField] DialogueBox DB;
     private int index = 0;
 
     public Vector3 downPos;
@@ -152,10 +153,22 @@ public class TutorialSellManager : MonoBehaviour
         }
     }
 
+    // 0 ang, 1 dis, 2 happy, 3 laugh, 4 sad, 5 spark
     void changeDialogue(int index){
         dialogueText.text = dialogues[index];
         dialogueBox.transform.position = downPos;
         hideArrows();
+        DB.changeEmotion(2);
+
+        if(index == 8 || index == 16){
+            DB.changeEmotion(5);
+        }
+        if(index == 12){
+            DB.changeEmotion(3);
+        }
+        if(index == 17){
+            DB.changeEmotion(0);
+        }
         if(index == 2){
             showArrow(0);
         }

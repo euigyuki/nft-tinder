@@ -123,7 +123,7 @@ public class TutorialBuyManager : MonoBehaviour
         }
     }
 
-    // 0 ang, 1 dis, 2 happy, 3 laugh, 4 sad
+    // 0 ang, 1 dis, 2 happy, 3 laugh, 4 sad, 5 spark
     void changeDialogue(int index){
         dialogueText.text = dialogues[index];
         dialogueBox.transform.position = downPos;
@@ -132,14 +132,14 @@ public class TutorialBuyManager : MonoBehaviour
         if(index == 3){
             showArrow(5);
         }
-        if(index == 5){
+        if(index == 5 || index == 8){
             DB.changeEmotion(3);
         }
         if(index == 7){
             DB.changeEmotion(1);
         }
-        if(index == 8){
-            DB.changeEmotion(3);
+        if(index == 15 || index ==16){
+            DB.changeEmotion(5);
         }
         if(new []{9, 10, 11}.Contains(index)){
             showArrow(0);
