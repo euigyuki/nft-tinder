@@ -10,6 +10,7 @@ public class GameOverMenuDemo : MonoBehaviour
 {
     public Text textMesh;
     public double profit;
+    [SerializeField] HighScoreManager HSM;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,12 @@ public class GameOverMenuDemo : MonoBehaviour
         phoneBehavior.setCount = 0;
         SceneManager.LoadScene("ObjectiveBuyDerrick");
 
+    }
+    public void HighScore() {
+        Debug.Log("HighScoreMenu");
+        //HSM.SendLeaderboard((int)PriceManager.walletValue);
+        SceneManager.LoadScene("HighScorePage");
+ 
     }
 
     public void QuitGame() {
