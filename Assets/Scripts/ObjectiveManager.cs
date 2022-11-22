@@ -13,7 +13,7 @@ public class ObjectiveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        objectiveText.text = String.Format("Wallet + Portfolio >= ${0:0.##}", PriceManager.getLevelObjective(PriceManager.currentDay));
+        objectiveText.text = String.Format("Make ${0:0.##}", PriceManager.getLevelObjective(PriceManager.currentDay));
     }
 
     // Update is called once per frame
