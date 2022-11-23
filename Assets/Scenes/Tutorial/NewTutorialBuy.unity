@@ -3707,8 +3707,8 @@ MonoBehaviour:
   popUpText: {fileID: 1090588622}
   popUpFace: {fileID: 6569355060464953304}
   popUpSprites:
-  - {fileID: 21300000, guid: b4be28f2e21124eca9812f208658b0c9, type: 3}
-  - {fileID: 21300000, guid: 3897248bd66a54e34acebf5724e73e08, type: 3}
+  - {fileID: 21300000, guid: 83ff97172e2364809ae3ce02da149498, type: 3}
+  - {fileID: 21300000, guid: e082dc3c6367c4480be2b332ddd5eed9, type: 3}
   popUp: {fileID: 2265169058874686664}
   firstCard: {fileID: 1812956292}
   secondCard: {fileID: 1812956293}
@@ -5276,7 +5276,7 @@ SpriteRenderer:
   m_SortingLayerID: 545293519
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b4be28f2e21124eca9812f208658b0c9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 83ff97172e2364809ae3ce02da149498, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
