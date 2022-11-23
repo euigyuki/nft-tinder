@@ -23,5 +23,8 @@ public class MenuScript : MonoBehaviour
      public void SwitchToOptions() {
         SceneManager.LoadScene("Options");
     }
+    public void SwitchToCreduts() {
+        SceneManager.LoadScene("Credits");
+    }
 
 }
