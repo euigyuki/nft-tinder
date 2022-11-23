@@ -188,12 +188,12 @@ MonoBehaviour:
   freq: 1.5
   imagePart: {fileID: 4818946022788890030}
   imageSprites:
-  - {fileID: 21300000, guid: 977418d67ae6f4044a03313fbfacb7a9, type: 3}
-  - {fileID: 21300000, guid: b4be28f2e21124eca9812f208658b0c9, type: 3}
-  - {fileID: 21300000, guid: 3897248bd66a54e34acebf5724e73e08, type: 3}
-  - {fileID: 21300000, guid: 6544a881d8ba04d24b95f05428cc9dd0, type: 3}
-  - {fileID: 21300000, guid: 96749c38c3da74f39aa16e1fde4f3243, type: 3}
-  - {fileID: 21300000, guid: 2641409e7d14848e2b90ed8731789005, type: 3}
+  - {fileID: 21300000, guid: 795a44f1afdeb479987d2063613b93ec, type: 3}
+  - {fileID: 21300000, guid: 83ff97172e2364809ae3ce02da149498, type: 3}
+  - {fileID: 21300000, guid: e082dc3c6367c4480be2b332ddd5eed9, type: 3}
+  - {fileID: 21300000, guid: c615ddcee9f3c4281b466e9cf4c4e2a7, type: 3}
+  - {fileID: 21300000, guid: 44af8845d18ae48428c35457177abcbe, type: 3}
+  - {fileID: 21300000, guid: 70d32183df2154b28be413b58e408f2c, type: 3}
 --- !u!1 &4711624000864224820
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +267,7 @@ SpriteRenderer:
   m_SortingLayerID: 545293519
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3897248bd66a54e34acebf5724e73e08, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e082dc3c6367c4480be2b332ddd5eed9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
