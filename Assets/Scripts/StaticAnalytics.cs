@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using Proyecto26;
 using Random=UnityEngine.Random;
+using FullSerializer;
 
 public class StaticAnalytics : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class StaticAnalytics : MonoBehaviour
     private static readonly string databaseURL = $"https://{projectId}.firebaseio.com/";
     public static int levelCount = 0;
     public static int userId;
-    
+    private static fsSerializer serializer = new fsSerializer();
+    public delegate void GetMetricCallback<T>(Dictionary<string, T> metrics);
+
     //"https://nft-tinder-analytics-default-rtdb.firebaseio.com/buySell.json"
     void Start()
     {
@@ -134,10 +137,28 @@ public class StaticAnalytics : MonoBehaviour
         RestClient.Patch<walletPortfolioValueData>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/walletPortfolioValueData/{userId}/{levelCount}.json", data);
     }
 
+    public static void uploadScore(string userName, double score) {
+        UserScore data = new UserScore(score);
+        data.score = score;
+        // Debug.Log("Posting score");
+        RestClient.Patch<UserScore>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/scoreBoard/{userName}.json", data);
+    }
+
+    public static void getScores<T>(GetMetricCallback<T> callback) {
+        RestClient.Get(
+            "https://nft-tinder-analytics-default-rtdb.firebaseio.com/scoreBoard.json"
+        ).Then(response => {
+            var responseJson = response.Text;
+            var data = fsJsonParser.Parse(responseJson);
+            object deserialized = null;
+            serializer.TryDeserialize(data, typeof(Dictionary<string, T>), ref deserialized);
+            var metrics = deserialized as Dictionary<string, T>;
+            callback(metrics);
+            // Debug.Log("Response Data " + metrics);
+        });
+    }
 
 }
-
-
 
 [Serializable]
 public class analyticsData{
@@ -188,4 +209,13 @@ public class sellDataJson{
 public class walletPortfolioValueData {
     public double walletValue = 0;
     public double portfolioValue = 0;
+}
+
+[Serializable]
+public class UserScore {
+    public double score = 0;
+
+    public UserScore(double score) {
+        this.score = score;
+    }
 }
