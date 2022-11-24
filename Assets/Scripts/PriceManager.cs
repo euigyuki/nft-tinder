@@ -289,6 +289,50 @@ public class PriceManager : MonoBehaviour
         changePrice();
         currentNftIdx = 0;
         HypeLevelManager.countdownTimerStr = "";
+
+        // StaticAnalytics.uploadScore("testuser", 132414123413431);
+
+        StaticAnalytics.getScores<UserScore>((users) => {
+            Debug.Log("In pricing manager shit");
+            Debug.Log(users);
+            var scoresList = new List<KeyValuePair<string, double>>();
+
+            foreach (KeyValuePair<string, UserScore> kvp in users)
+            {
+                scoresList.Add(new KeyValuePair<string, double>(kvp.Key, kvp.Value.score));
+            }
+
+            scoresList.Sort((y, x) => (x.Value.CompareTo(y.Value)));
+            // foreach (KeyValuePair<string, double> kvp in scoresList) {
+            //     Debug.Log(kvp.Key + ":" + kvp.Value);
+            // }
+
+            // find idx of test user
+
+            int idx = 0;
+            for (int i = 0; i < scoresList.Count; i++)
+            {
+                if (scoresList[i].Key == "testuser") {
+                    idx = i;
+                    break;
+                }
+            }
+
+            Debug.Log("idx: " + idx);
+
+            // find 10 possible scores around it
+
+            int startIdx = Math.Max(0, idx - 5);
+            int endIdx = Math.Min(scoresList.Count, idx + 4);
+
+            // var scoresToShow = new List<KeyValuePair<string, double>>();
+
+            for (int i = startIdx; i <= endIdx; i++) {
+                // scoresToShow.Add(scoresList[i]);
+                Debug.Log(scoresList[i].Key + ":" + scoresList[i].Value);
+            }
+
+        });
     }
 
     public static double getPortfolioValue() {
