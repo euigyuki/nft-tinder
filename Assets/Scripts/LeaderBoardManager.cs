@@ -15,13 +15,63 @@ public class LeaderBoardManager : MonoBehaviour
     double PlayerScore = PriceManager.walletValue;
     public int ID;
     int MaxScores = 10;
-    public TextMeshProUGUI[] Entries;
+    public TextMeshProUGUI[] Entries1;
+    public TextMeshProUGUI[] Entries2;
     public TextMeshProUGUI scoreText;
+    public static string str;
+    
+    
     
     void  Awake() 
     {
+       
+       StaticAnalytics.getScores<UserScore>((users) => {
+            Debug.Log("In pricing manager shit");
+            Debug.Log(users);
+            Debug.Log(str);
+            
+            var scoresList = new List<KeyValuePair<string, double>>();
 
-       GetLeaderBoard();
+            foreach (KeyValuePair<string, UserScore> kvp in users)
+            {
+                scoresList.Add(new KeyValuePair<string, double>(kvp.Key, kvp.Value.score));
+            }
+            Debug.Log(scoresList.Count);
+            scoresList.Sort((y, x) => (x.Value.CompareTo(y.Value)));
+            // foreach (KeyValuePair<string, double> kvp in scoresList) {
+            //     Debug.Log(kvp.Key + ":" + kvp.Value);
+            // }
+
+            // find idx of test user
+
+            //int idx = 0;
+            //for (int i = 0; i < scoresList.Count; i++)
+            //{
+                
+                //if (string.Equals(scoresList[i].Key, str)) {
+                    //idx = i;
+                    //break;
+                //}
+            //}
+
+            //Debug.Log("idx: " + idx);
+            // find 10 possible scores around it
+
+            //int startIdx = Math.Max(0, idx - 5);
+            //int endIdx = Math.Min(scoresList.Count, idx + 4);
+
+            // var scoresToShow = new List<KeyValuePair<string, double>>();
+
+            //for (int i = startIdx; i <= endIdx; i++) {
+                // scoresToShow.Add(scoresList[i]);
+                //Debug.Log(scoresList[i].Key + ":" + scoresList[i].Value);
+            //}
+            for(int i=0;i<Math.Min(11,scoresList.Count);i++) {
+                Entries1[i].text = scoresList[i].Key;
+                Entries2[i].text = scoresList[i].Value.ToString();
+            }
+
+        }); 
 
         // LootLockerSDKManager.GetScoreList(ID,MaxScores,(response)=>{
         //     if(response.success) {
@@ -46,6 +96,7 @@ public class LeaderBoardManager : MonoBehaviour
         // });
         PriceManager.resetEverything();
         phoneBehavior.setCount = 0;
+        
     }
 
     // Update is called once per frame
@@ -59,25 +110,16 @@ public class LeaderBoardManager : MonoBehaviour
     }
 
     public void GetLeaderBoard() {
-        var request = new GetLeaderboardRequest {
-            StatisticName ="highScore",
-            StartPosition = 0,
-            MaxResultsCount = 10
-        };
-        PlayFabClientAPI.GetLeaderboard(request,OnLeaderboardGet,OnError);
+        
     }
-    void OnLeaderboardGet(GetLeaderboardResult result) {
-        int i =0;
-        foreach (var item in result.Leaderboard) {
-            Entries[i].text = item.Position + "." + item.Profile.DisplayName + "                                                     " + item.StatValue;
-            i++;
-        }
-        //if(i<MaxScores) {
-        //    for(int j=i;j<MaxScores;j++) {
-        //         Entries[j].text = (j).ToString() + ".                                                     none";
-        //    }
-        //}
-    }
+    //void OnLeaderboardGet(GetLeaderboardResult result) {
+        //int i =0;
+        //foreach (var item in result.Leaderboard) {
+          //  Entries[i].text = item.Position + "." + item.Profile.DisplayName + "                                                     " + item.StatValue;
+        //    i++;
+      //  }
+        
+    //}
     public void GoToMenu() {
         PriceManager.resetEverything();
         phoneBehavior.setCount = 0;
