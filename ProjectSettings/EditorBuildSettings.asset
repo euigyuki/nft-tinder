@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial/NewTutorialSell.unity
     guid: a1b3b36af1b3d4fc480660a688211ad7
   - enabled: 1
+    path: Assets/Scenes/HighscoreBoard3.unity
+    guid: 9f54de875d6ab4600856a7243e23bf92
+  - enabled: 1
     path: Assets/Scenes/ObjectiveSellDerrick.unity
     guid: a4e85cfc3c487480ba6e12e25ea84b0c
   - enabled: 1
