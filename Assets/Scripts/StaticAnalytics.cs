@@ -28,6 +28,9 @@ public class StaticAnalytics : MonoBehaviour
         
     }
 
+    void Awake() {
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -137,26 +140,26 @@ public class StaticAnalytics : MonoBehaviour
         RestClient.Patch<walletPortfolioValueData>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/walletPortfolioValueData/{userId}/{levelCount}.json", data);
     }
 
-    public static void uploadScore(string userName, double score) {
-        UserScore data = new UserScore(score);
-        data.score = score;
-        // Debug.Log("Posting score");
-        RestClient.Patch<UserScore>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/scoreBoard/{userName}.json", data);
-    }
+    // public static void uploadScore(string userName, double score) {
+    //     UserScore data = new UserScore(score);
+    //     data.score = score;
+    //     // Debug.Log("Posting score");
+    //     RestClient.Patch<UserScore>($"https://nft-tinder-analytics-default-rtdb.firebaseio.com/scoreBoard/{userName}.json", data);
+    // }
 
-    public static void getScores<T>(GetMetricCallback<T> callback) {
-        RestClient.Get(
-            "https://nft-tinder-analytics-default-rtdb.firebaseio.com/scoreBoard.json"
-        ).Then(response => {
-            var responseJson = response.Text;
-            var data = fsJsonParser.Parse(responseJson);
-            object deserialized = null;
-            serializer.TryDeserialize(data, typeof(Dictionary<string, T>), ref deserialized);
-            var metrics = deserialized as Dictionary<string, T>;
-            callback(metrics);
-            // Debug.Log("Response Data " + metrics);
-        });
-    }
+    // public static void getScores<T>(GetMetricCallback<T> callback) {
+    //     RestClient.Get(
+    //         "https://nft-tinder-analytics-default-rtdb.firebaseio.com/scoreBoard.json"
+    //     ).Then(response => {
+    //         var responseJson = response.Text;
+    //         var data = fsJsonParser.Parse(responseJson);
+    //         object deserialized = null;
+    //         serializer.TryDeserialize(data, typeof(Dictionary<string, T>), ref deserialized);
+    //         var metrics = deserialized as Dictionary<string, T>;
+    //         callback(metrics);
+    //         // Debug.Log("Response Data " + metrics);
+    //     });
+    // }
 
 }
 

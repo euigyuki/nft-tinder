@@ -19,58 +19,59 @@ public class LeaderBoardManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public static string str;
     
+    private ScoreData sd;
     
     
     void  Awake() 
     {
        
-       StaticAnalytics.getScores<UserScore>((users) => {
-            Debug.Log("In pricing manager shit");
-            Debug.Log(users);
-            Debug.Log(str);
+    //    StaticAnalytics.getScores<UserScore>((users) => {
+    //         Debug.Log("In pricing manager shit");
+    //         Debug.Log(users);
+    //         Debug.Log(str);
             
-            var scoresList = new List<KeyValuePair<string, double>>();
+    //         var scoresList = new List<KeyValuePair<string, double>>();
 
-            foreach (KeyValuePair<string, UserScore> kvp in users)
-            {
-                scoresList.Add(new KeyValuePair<string, double>(kvp.Key, kvp.Value.score));
-            }
-            Debug.Log(scoresList.Count);
-            scoresList.Sort((y, x) => (x.Value.CompareTo(y.Value)));
-            // foreach (KeyValuePair<string, double> kvp in scoresList) {
-            //     Debug.Log(kvp.Key + ":" + kvp.Value);
-            // }
+    //         foreach (KeyValuePair<string, UserScore> kvp in users)
+    //         {
+    //             scoresList.Add(new KeyValuePair<string, double>(kvp.Key, kvp.Value.score));
+    //         }
+    //         Debug.Log(scoresList.Count);
+    //         scoresList.Sort((y, x) => (x.Value.CompareTo(y.Value)));
+    //         // foreach (KeyValuePair<string, double> kvp in scoresList) {
+    //         //     Debug.Log(kvp.Key + ":" + kvp.Value);
+    //         // }
 
-            // find idx of test user
+    //         // find idx of test user
 
-            //int idx = 0;
-            //for (int i = 0; i < scoresList.Count; i++)
-            //{
+    //         //int idx = 0;
+    //         //for (int i = 0; i < scoresList.Count; i++)
+    //         //{
                 
-                //if (string.Equals(scoresList[i].Key, str)) {
-                    //idx = i;
-                    //break;
-                //}
-            //}
+    //             //if (string.Equals(scoresList[i].Key, str)) {
+    //                 //idx = i;
+    //                 //break;
+    //             //}
+    //         //}
 
-            //Debug.Log("idx: " + idx);
-            // find 10 possible scores around it
+    //         //Debug.Log("idx: " + idx);
+    //         // find 10 possible scores around it
 
-            //int startIdx = Math.Max(0, idx - 5);
-            //int endIdx = Math.Min(scoresList.Count, idx + 4);
+    //         //int startIdx = Math.Max(0, idx - 5);
+    //         //int endIdx = Math.Min(scoresList.Count, idx + 4);
 
-            // var scoresToShow = new List<KeyValuePair<string, double>>();
+    //         // var scoresToShow = new List<KeyValuePair<string, double>>();
 
-            //for (int i = startIdx; i <= endIdx; i++) {
-                // scoresToShow.Add(scoresList[i]);
-                //Debug.Log(scoresList[i].Key + ":" + scoresList[i].Value);
-            //}
-            for(int i=0;i<Math.Min(11,scoresList.Count);i++) {
-                Entries1[i].text = (i+1)+". "+scoresList[i].Key;
-                Entries2[i].text = scoresList[i].Value.ToString();
-            }
+    //         //for (int i = startIdx; i <= endIdx; i++) {
+    //             // scoresToShow.Add(scoresList[i]);
+    //             //Debug.Log(scoresList[i].Key + ":" + scoresList[i].Value);
+    //         //}
+    //         for(int i=0;i<Math.Min(11,scoresList.Count);i++) {
+    //             Entries1[i].text = (i+1)+". "+scoresList[i].Key;
+    //             Entries2[i].text = scoresList[i].Value.ToString();
+    //         }
 
-        }); 
+    //     }); 
 
         // LootLockerSDKManager.GetScoreList(ID,MaxScores,(response)=>{
         //     if(response.success) {
@@ -96,6 +97,16 @@ public class LeaderBoardManager : MonoBehaviour
         // PriceManager.resetEverything();
         // phoneBehavior.setCount = 0;
         
+        var json = PlayerPrefs.GetString("scores");
+        sd = JsonUtility.FromJson<ScoreData>(json);
+    }
+
+    void Start(){
+        var scores = GetHighScores().ToArray();
+        for(int i = 0;i<Math.Min(10,scores.Length);i++){
+            Entries1[i].text = (i+1)+". "+scores[i].name;
+            Entries2[i].text = scores[i].score.ToString();
+        }
     }
 
     // Update is called once per frame
@@ -110,6 +121,19 @@ public class LeaderBoardManager : MonoBehaviour
 
     public void GetLeaderBoard() {
         
+    }
+
+    public void ResetScores(){
+        var json = "{}";
+        PlayerPrefs.SetString("scores", json);
+        for(int i = 0;i<10;i++){
+            Entries1[i].text = (i+1)+". ---";
+            Entries2[i].text = "---";
+        }
+    }
+
+    public IEnumerable<Score> GetHighScores(){
+        return sd.scores.OrderByDescending(x=>x.score);
     }
     //void OnLeaderboardGet(GetLeaderboardResult result) {
         //int i =0;

@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial/NewTutorialBuy.unity
     guid: b37c63949ca034375ab4f9947c86c555
   - enabled: 1
-    path: Assets/Scenes/HighScorePage2.unity
-    guid: 7f62960b228f2481c92d93e0016147de
-  - enabled: 1
     path: Assets/Scenes/Tutorial/NewTutorialSell.unity
     guid: a1b3b36af1b3d4fc480660a688211ad7
   - enabled: 1
