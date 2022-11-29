@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using Proyecto26;
 using Random=UnityEngine.Random;
-using FullSerializer;
+// using FullSerializer;
 
 public class StaticAnalytics : MonoBehaviour
 {
@@ -19,7 +19,7 @@ public class StaticAnalytics : MonoBehaviour
     private static readonly string databaseURL = $"https://{projectId}.firebaseio.com/";
     public static int levelCount = 0;
     public static int userId;
-    private static fsSerializer serializer = new fsSerializer();
+    // private static fsSerializer serializer = new fsSerializer();
     public delegate void GetMetricCallback<T>(Dictionary<string, T> metrics);
 
     //"https://nft-tinder-analytics-default-rtdb.firebaseio.com/buySell.json"

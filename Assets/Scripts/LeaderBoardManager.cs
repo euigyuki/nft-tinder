@@ -13,13 +13,12 @@ public class LeaderBoardManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public int ID;
-    int MaxScores = 10;
     public TextMeshProUGUI[] Entries1;
     public TextMeshProUGUI[] Entries2;
     public TextMeshProUGUI scoreText;
-    public static string str;
     
     private ScoreData sd;
+    private int scoreCount;
     
     
     void  Awake() 
@@ -97,8 +96,14 @@ public class LeaderBoardManager : MonoBehaviour
         // PriceManager.resetEverything();
         // phoneBehavior.setCount = 0;
         
-        var json = PlayerPrefs.GetString("scores");
-        sd = JsonUtility.FromJson<ScoreData>(json);
+        sd = new ScoreData();
+        scoreCount = PlayerPrefs.GetInt("score_count");
+        for(int i = 0; i<scoreCount; i++){
+            string tempName = PlayerPrefs.GetString("scores_name_" + i);
+            float tempScore = PlayerPrefs.GetFloat("scores_score_" + i);
+            Score tempScoreData = new Score(tempName,tempScore);
+            sd.scores.Add(tempScoreData);
+        }
     }
 
     void Start(){
@@ -124,8 +129,7 @@ public class LeaderBoardManager : MonoBehaviour
     }
 
     public void ResetScores(){
-        var json = "{}";
-        PlayerPrefs.SetString("scores", json);
+        PlayerPrefs.SetInt("score_count",0);
         for(int i = 0;i<10;i++){
             Entries1[i].text = (i+1)+". ---";
             Entries2[i].text = "---";

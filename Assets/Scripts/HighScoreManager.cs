@@ -5,24 +5,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using TMPro;
-// using PlayFab;
-// using PlayFab.ClientModels;
 using UnityEngine.SceneManagement;
+
 
 public class HighScoreManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public  TMP_InputField MemberID;
     float PlayerScore;
-    public int ID;
-    int MaxScores = 10;
     public TextMeshProUGUI scoreText;
     private ScoreData sd;
+    private int scoreCount;
     
     private void Awake() {
         PlayerScore = (float)PriceManager.walletValue;
-        var json = PlayerPrefs.GetString("scores");
-        sd = JsonUtility.FromJson<ScoreData>(json);
+        sd = new ScoreData();
+        scoreCount = PlayerPrefs.GetInt("score_count");
+        for(int i = 0; i<scoreCount; i++){
+            string tempName = PlayerPrefs.GetString("scores_name_" + i);
+            float tempScore = PlayerPrefs.GetFloat("scores_score_" + i);
+            Score tempScoreData = new Score(tempName,tempScore);
+            sd.scores.Add(tempScoreData);
+        }
     }
     
     public void Play() {
@@ -49,9 +53,11 @@ public class HighScoreManager : MonoBehaviour
     public void AddScore(){
         Score score = new Score(MemberID.text, PlayerScore);
         sd.scores.Add(score);
+        scoreCount = sd.scores.Count;
 
-        var json = JsonUtility.ToJson(sd);
-        PlayerPrefs.SetString("scores", json);
+        PlayerPrefs.SetInt("score_count",scoreCount);
+        PlayerPrefs.SetString("scores_name_" + (scoreCount-1),score.name);
+        PlayerPrefs.SetFloat("scores_score_" + (scoreCount-1),score.score);
     }
     // IEnumerator coroutineA()
     // {
