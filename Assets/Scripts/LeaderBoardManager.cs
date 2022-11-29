@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using TMPro;
-using PlayFab;
-using PlayFab.ClientModels;
+// using PlayFab;
+// using PlayFab.ClientModels;
 using UnityEngine.SceneManagement;
 
 public class LeaderBoardManager : MonoBehaviour
@@ -103,10 +103,10 @@ public class LeaderBoardManager : MonoBehaviour
     {
         
     }
-    void OnError(PlayFabError error) {
-        Debug.Log("Error while getting data");
-        Debug.Log(error.GenerateErrorReport());
-    }
+    // void OnError(PlayFabError error) {
+    //     Debug.Log("Error while getting data");
+    //     Debug.Log(error.GenerateErrorReport());
+    // }
 
     public void GetLeaderBoard() {
         

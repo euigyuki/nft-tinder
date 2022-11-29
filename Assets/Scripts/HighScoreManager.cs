@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using TMPro;
-using PlayFab;
-using PlayFab.ClientModels;
+// using PlayFab;
+// using PlayFab.ClientModels;
 using UnityEngine.SceneManagement;
 
 public class HighScoreManager : MonoBehaviour
