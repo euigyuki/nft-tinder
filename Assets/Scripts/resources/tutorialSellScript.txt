@@ -2,9 +2,9 @@ On this page, you can sell the NFT's you've bought and see how much profit or lo
 I prepared some extra NFT's for you in advance so that you can see how selling works.
 On the right, you can see the Portfolio, or how many NFT's you are holding currently, and their current net worth.
 Using the Phone in the middle, you can sell your NFT's however you like.
-The NFT's are separated into three major parts: Face, Body, and Hat. There are four different types of each parts, making a total of 12 cards to choose from.
+The NFT's are separated into three major parts: Animal, Clothing, and Hat.
 Each cards hold the information about the amount and the value of all NFT's with that type.
-For example, looking at the green Face card, you can see that we have 8 NFT's that has a green face, and all of them is totaling up to $514.24.
+For example, looking at the Cat card, you can see that we have 8 NFT's that has a Cat, and all of them is totaling up to $514.24.
 Try clicking on this card!
 Woah something popped up! Cards with green background show you how much profit you're making.
 Try clicking on this card instead!

@@ -1,7 +1,7 @@
 Welcome to NFT-Tinder! An app where you can make some profit while searching for the love of your life NFT.
 I'll help you with all the basics you need to know for your search.
 Since this is a tutorial, I disabled the timers for today.
-You can skip the tutorial with this button. During the game, you can press this button to skip to the next page as well.
+You can skip the buy tutorial with this button.
 To buy an NFT, you can press the right arrow key or the green button on the phone.
 Good job! ... Although that one was questionable.
 To pass on an NFT, you can press the left arrow key or the red button on the phone.

@@ -55,6 +55,7 @@ public class TutorialSellManager : MonoBehaviour
     public TextMeshProUGUI profitLossText;
 
     public Texture checkMark;
+    public Texture checkBox;
 
     // Selected Color: RGB(0,0,0), 150
     public Color selectedColor;
@@ -238,7 +239,7 @@ public class TutorialSellManager : MonoBehaviour
         card.nftCount.text = "" + totalCount;
         card.nftsTotalPrice.text = String.Format("${0:0.##}", totalPrice);
         if(card.selected) card.checkMarkImg.texture = checkMark;
-        else card.checkMarkImg.texture = null;
+        else card.checkMarkImg.texture = checkBox;
 
         if(totalCount == 0 || card.greenCount == card.pinkCount) card.background.color = Color.white;
         else if(card.greenCount > card.pinkCount) card.background.color = goodColor;
