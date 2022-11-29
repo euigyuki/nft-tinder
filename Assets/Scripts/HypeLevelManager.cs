@@ -7,6 +7,7 @@ public class HypeLevelManager : MonoBehaviour
     [SerializeField] BarManager HypeBar;
     [SerializeField] BarManager TimerBar;
     [SerializeField] phoneBehavior phone;
+    [SerializeField] BotManager bot; 
     public static string countdownTimerStr = "";
 
     public GameObject GameOverMenu;
@@ -51,9 +52,13 @@ public class HypeLevelManager : MonoBehaviour
             return;
         }
         currTime -= Time.deltaTime;
+        if(currTime<= timeCap/2){
+            bot.changeEmotion(1);
+        }
         if(currTime<=0){
             resetTimerBar();
             resetLevelBar();
+            bot.changeEmotion(4);
             phone.phonePass();
         }
         setTimerBar();
@@ -94,6 +99,7 @@ public class HypeLevelManager : MonoBehaviour
         phone.setDuration(ogDuration/4);
         float time = 0;
         PriceManager.offerDiscount = true;
+        bot.changeEmotion(5);
         if(PriceManager.currentDay>=4){
             slider.SetActive(true);
         }
@@ -111,6 +117,7 @@ public class HypeLevelManager : MonoBehaviour
 
         time = 1;
         Debug.Log("time: " + time);
+        bot.changeEmotion(1);
         while(time < 6)
         {
             time += Time.deltaTime;

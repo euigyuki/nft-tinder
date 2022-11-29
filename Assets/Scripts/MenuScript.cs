@@ -26,5 +26,8 @@ public class MenuScript : MonoBehaviour
     public void SwitchToCreduts() {
         SceneManager.LoadScene("Credits");
     }
+    public void SwitchToHighScore() {
+        SceneManager.LoadScene("HighscoreBoard3");
+    }
 
 }

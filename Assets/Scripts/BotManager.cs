@@ -1,47 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BotManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject botText;
     public GameObject botText2;
-    public bool isCoroutine = false;
     public float duration;
+
+    public Image imagePart;
+    public Sprite[] imageSprites = new Sprite[6];
+
+    public float currTime = 0f;
 
     void Start()
     {
         botText.SetActive(false);
         botText2.SetActive(false);
+        changeEmotion(2);
     }
 
-    public void BotBuy() {
-        if(isCoroutine==true) return;
-        else{
-        StartCoroutine(showAndHide());
+    void Update()
+    {
+        currTime += Time.deltaTime;
+        if(currTime >= 4){
+            randomEmoji();
         }
-        
+    }
+
+
+    public void BotBuy() {
+        StartCoroutine(showAndHide());
     }
 
     public void BotPass() {
-        if(isCoroutine==true) return;
-        else{
         StartCoroutine(showAndHide2());
-        }   
     }
     
+    public void changeDuration(float newDuration){
+        duration = newDuration;
+    }
+
+    public void randomEmoji(){
+        int index = Random.Range(0,imageSprites.Length);
+        imagePart.sprite = imageSprites[index];
+        currTime = 0;
+    }
+
+    // 0 ang, 1 dis, 2 happy, 3 laugh, 4 sad, 5 spark
+    public void changeEmotion(int index){
+        imagePart.sprite = imageSprites[index];
+        currTime = 0;
+    }
+
     IEnumerator showAndHide()
     {
+        changeEmotion(5);
         botText.SetActive(true);
         yield return new WaitForSeconds(duration);
         botText.SetActive(false);
+        randomEmoji();
     }
 
     IEnumerator showAndHide2()
     {
+        changeEmotion(3);
         botText2.SetActive(true);
         yield return new WaitForSeconds(duration);
         botText2.SetActive(false);
+        randomEmoji();
     }
 }

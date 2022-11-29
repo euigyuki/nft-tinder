@@ -12,7 +12,6 @@ using UnityEngine.SceneManagement;
 public class LeaderBoardManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    double PlayerScore = PriceManager.walletValue;
     public int ID;
     int MaxScores = 10;
     public TextMeshProUGUI[] Entries1;
@@ -94,8 +93,8 @@ public class LeaderBoardManager : MonoBehaviour
         //         Debug.Log("fail");
         //     }
         // });
-        PriceManager.resetEverything();
-        phoneBehavior.setCount = 0;
+        // PriceManager.resetEverything();
+        // phoneBehavior.setCount = 0;
         
     }
 
@@ -121,14 +120,10 @@ public class LeaderBoardManager : MonoBehaviour
         
     //}
     public void GoToMenu() {
-        PriceManager.resetEverything();
-        phoneBehavior.setCount = 0;
         SceneManager.LoadScene("MenuScene");
     }
      public void Play() {
         Debug.Log("Restart Button Clicked");
-        PriceManager.resetEverything();
-        phoneBehavior.setCount = 0;
         SceneManager.LoadScene("ObjectiveBuyDerrick");
     }
 }

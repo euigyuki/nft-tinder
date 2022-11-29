@@ -10250,7 +10250,8 @@ MonoBehaviour:
   selectedPortfolioValue: {fileID: 749439015}
   walletValue: {fileID: 137677405}
   profitLossText: {fileID: 392162414}
-  checkMark: {fileID: 2800000, guid: 2ddf2dd304af9464f8f4f53d837eec61, type: 3}
+  checkMark: {fileID: 2800000, guid: 78f85c0e0fbf64263a9ab90d04da7a62, type: 3}
+  checkBox: {fileID: 2800000, guid: 5883f082e43994c338c06b805e3a4dbd, type: 3}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.5882353}
   goodColor: {r: 0.38039216, g: 0.8117647, b: 0.43137255, a: 1}
   badColor: {r: 0.8117647, g: 0.4117647, b: 0.38039216, a: 1}

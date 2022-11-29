@@ -30,6 +30,7 @@ public class sellHelper : MonoBehaviour
 
     
     public Texture checkMark;
+    public Texture checkBox;
 
     // Selected Color: RGB(0,0,0), 150
     public Color selectedColor;
@@ -112,9 +113,9 @@ public class sellHelper : MonoBehaviour
         sellAllButton.onClick.AddListener(SellAllNFTs);
 
         for(int i=0;i<4;i++) {
-            faceCards[i].checkMarkImg.texture = null;
-            hatCards[i].checkMarkImg.texture = null;
-            bodyCards[i].checkMarkImg.texture = null;
+            faceCards[i].checkMarkImg.texture = checkBox;
+            hatCards[i].checkMarkImg.texture = checkBox;
+            bodyCards[i].checkMarkImg.texture = checkBox;
         }
 
     }
@@ -308,21 +309,21 @@ public class sellHelper : MonoBehaviour
                 faceCards[k].checkMarkImg.texture = checkMark;
             }
             else {
-                faceCards[k].checkMarkImg.texture = null;
+                faceCards[k].checkMarkImg.texture = checkBox;
             }
         } else if(type.Equals("hat")) {
             hatSelected[k] = !hatSelected[k];
             if(hatSelected[k]){
                 hatCards[k].checkMarkImg.texture = checkMark;
             } else {
-                hatCards[k].checkMarkImg.texture = null;
+                hatCards[k].checkMarkImg.texture = checkBox;
             }
         } else if(type.Equals("body")) {
             bodySelected[k] = !bodySelected[k];
             if(bodySelected[k]){
                 bodyCards[k].checkMarkImg.texture = checkMark;
             } else {
-                bodyCards[k].checkMarkImg.texture = null;
+                bodyCards[k].checkMarkImg.texture = checkBox;
             }
         }
         

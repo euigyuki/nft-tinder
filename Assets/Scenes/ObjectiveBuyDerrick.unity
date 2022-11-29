@@ -2598,6 +2598,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -5.8889
       objectReference: {fileID: 0}
+    - target: {fileID: 3809405878043417596, guid: 1f36340e565d442838f5bd414d43de8e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.4875076
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809405878043417596, guid: 1f36340e565d442838f5bd414d43de8e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.3631322
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809405878043417596, guid: 1f36340e565d442838f5bd414d43de8e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.4875076
+      objectReference: {fileID: 0}
     - target: {fileID: 5833351124845381758, guid: 1f36340e565d442838f5bd414d43de8e, type: 3}
       propertyPath: m_Name
       value: Bot Text
@@ -2685,6 +2697,10 @@ PrefabInstance:
     - target: {fileID: 7046612822610512855, guid: 1f36340e565d442838f5bd414d43de8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7515208976001556711, guid: 1f36340e565d442838f5bd414d43de8e, type: 3}
+      propertyPath: duration
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7515208976019077319, guid: 1f36340e565d442838f5bd414d43de8e, type: 3}
       propertyPath: m_Pivot.x
@@ -4146,7 +4162,7 @@ MonoBehaviour:
   start: {r: 0.5165094, g: 0.6488438, b: 0.6886792, a: 1}
   mid: {r: 0.8113208, g: 0.50037825, b: 0.26406196, a: 1}
   end: {r: 0.6352333, g: 0.5176471, b: 0.8352941, a: 1}
-  startTime: 0
+  currTime: 0
 --- !u!4 &1749559439
 Transform:
   m_ObjectHideFlags: 0
@@ -4264,6 +4280,7 @@ MonoBehaviour:
   pass: {fileID: 1925743778}
   fadeTime: 1
   hlMang: {fileID: 1510395843}
+  backgroundTileChange: {fileID: 0}
   bot: {fileID: 910014995}
   popWindow: {fileID: 749822806}
   firstCard: {fileID: 1812956292}
@@ -5532,6 +5549,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 642178725478362312, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
+      propertyPath: bot
+      value: 
+      objectReference: {fileID: 910014995}
     - target: {fileID: 642178725478362312, guid: 7522949a7c67b4e22bcb53d8f0d92b38, type: 3}
       propertyPath: phone
       value: 
