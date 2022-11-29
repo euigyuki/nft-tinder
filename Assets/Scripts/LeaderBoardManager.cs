@@ -67,7 +67,7 @@ public class LeaderBoardManager : MonoBehaviour
                 //Debug.Log(scoresList[i].Key + ":" + scoresList[i].Value);
             //}
             for(int i=0;i<Math.Min(11,scoresList.Count);i++) {
-                Entries1[i].text = scoresList[i].Key;
+                Entries1[i].text = (i+1)+". "+scoresList[i].Key;
                 Entries2[i].text = scoresList[i].Value.ToString();
             }
 

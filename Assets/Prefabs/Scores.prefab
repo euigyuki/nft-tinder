@@ -820,7 +820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 379085059611748632, guid: a4b10884db10d463988778f99d22c88b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 26.50003
+      value: 57
       objectReference: {fileID: 0}
     - target: {fileID: 379085059611748632, guid: a4b10884db10d463988778f99d22c88b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -834,9 +834,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2109603015634840609, guid: a4b10884db10d463988778f99d22c88b, type: 3}
+      propertyPath: m_text
+      value: NAME
+      objectReference: {fileID: 0}
+    - target: {fileID: 2109603015634840609, guid: a4b10884db10d463988778f99d22c88b, type: 3}
+      propertyPath: m_fontSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2109603015634840609, guid: a4b10884db10d463988778f99d22c88b, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2109603015634840609, guid: a4b10884db10d463988778f99d22c88b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2109603015634840609, guid: a4b10884db10d463988778f99d22c88b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4716554219369571939, guid: a4b10884db10d463988778f99d22c88b, type: 3}
       propertyPath: m_Name
       value: Leaderboard Score
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618093690073790050, guid: a4b10884db10d463988778f99d22c88b, type: 3}
+      propertyPath: m_fontSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618093690073790050, guid: a4b10884db10d463988778f99d22c88b, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618093690073790050, guid: a4b10884db10d463988778f99d22c88b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618093690073790050, guid: a4b10884db10d463988778f99d22c88b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4b10884db10d463988778f99d22c88b, type: 3}

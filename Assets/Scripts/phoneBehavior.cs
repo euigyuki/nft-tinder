@@ -10,6 +10,7 @@ public class phoneBehavior : MonoBehaviour
     public int fadeTime;
     public static int setCount = 0;
     [SerializeField] HypeLevelManager hlMang;
+    [SerializeField] backgroundTileChange backgroundTileChange;
 
     [SerializeField] BotManager bot; 
     [SerializeField] PopWindows popWindow;
