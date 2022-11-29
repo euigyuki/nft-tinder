@@ -5246,7 +5246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.88650304}
-  m_AnchoredPosition: {x: -0.1, y: 0.06}
+  m_AnchoredPosition: {x: -0.099999905, y: 0.060000002}
   m_SizeDelta: {x: -0.00000035762787, y: -0.0007587881}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1200646424
@@ -5392,8 +5392,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.0000005, y: 0.29999995}
-  m_SizeDelta: {x: 3.8496, y: 0.8444}
+  m_AnchoredPosition: {x: 1.02895, y: 0.29999995}
+  m_SizeDelta: {x: 3.32476, y: 0.8444}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1244590018
 SpriteRenderer:
@@ -6393,8 +6393,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000008940697, y: 0.76}
-  m_SizeDelta: {x: 381.11, y: 74.033}
+  m_AnchoredPosition: {x: -0.00489676, y: 0.31}
+  m_SizeDelta: {x: 330.13, y: 74.033}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1382309988
 MonoBehaviour:

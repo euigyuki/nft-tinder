@@ -15,6 +15,8 @@ public class BotManager : MonoBehaviour
 
     public float currTime = 0f;
 
+    bool isCoroutine = false;
+
     void Start()
     {
         botText.SetActive(false);
@@ -32,11 +34,11 @@ public class BotManager : MonoBehaviour
 
 
     public void BotBuy() {
-        StartCoroutine(showAndHide());
+        if(!isCoroutine) StartCoroutine(showAndHide());
     }
 
     public void BotPass() {
-        StartCoroutine(showAndHide2());
+        if(!isCoroutine) StartCoroutine(showAndHide2());
     }
     
     public void changeDuration(float newDuration){
@@ -57,19 +59,23 @@ public class BotManager : MonoBehaviour
 
     IEnumerator showAndHide()
     {
+        isCoroutine = true;
         changeEmotion(5);
         botText.SetActive(true);
         yield return new WaitForSeconds(duration);
         botText.SetActive(false);
         randomEmoji();
+        isCoroutine = false;
     }
 
     IEnumerator showAndHide2()
     {
+        isCoroutine = true;
         changeEmotion(3);
         botText2.SetActive(true);
         yield return new WaitForSeconds(duration);
         botText2.SetActive(false);
         randomEmoji();
+        isCoroutine = false;
     }
 }

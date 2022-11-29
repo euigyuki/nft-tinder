@@ -36,7 +36,7 @@ public class TutorialBuyManager : MonoBehaviour
     private int index = 0;
     private bool paused = false;
     private bool isWaiting = false;
-    private float tempRecVal = 0.3333f;
+    private float tempRecVal = 1f;
     private int buyCount = 5;
 
     [SerializeField] nftGenerator firstCard;
@@ -236,7 +236,7 @@ public class TutorialBuyManager : MonoBehaviour
         yield return new WaitForSeconds(firstCard.duration);
         imageHolder head = generator.imageParts[0];
         int rand = Random.Range(0,2);
-        tempRecVal = rand == 0 ? 0.33333f : 0;
+        tempRecVal = rand == 0 ? 1f : 0;
         head.imagePart.texture = head.imageTextures[rand];
         for(int i = 1; i<generator.imageParts.Length; i++){
             imageHolder temp = generator.imageParts[i];
